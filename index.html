@@ -37,12 +37,12 @@
     h2{font-family:Impact,'Arial Black',Arial,sans-serif;font-size:clamp(38px,6vw,72px);font-weight:900;letter-spacing:-.045em;margin:12px 0 0;text-transform:uppercase}
     .texto-apoio{font-size:12px;color:var(--cinza);line-height:1.7;max-width:360px}
     .colecoes{display:grid;grid-template-columns:minmax(0,1fr);gap:12px;width:100%;max-width:1120px;margin:0 auto}
-    .colecao{min-height:0;aspect-ratio:16/7;position:relative;overflow:hidden;background:linear-gradient(120deg,#f8f8f8 0%,#ededed 48%,#dcdcdc 100%);display:flex;align-items:end;padding:clamp(28px,5vw,64px);border:1px solid #dedede;box-shadow:0 10px 28px #0000000b}
-    .colecao:nth-child(2){background:linear-gradient(155deg,#eeeeee,#e2e2e2 55%,#d5d5d5)}
+    .colecao{min-height:0;aspect-ratio:16/7;position:relative;overflow:hidden;background:#171717;display:flex;align-items:end;padding:clamp(28px,5vw,64px);border:1px solid #dedede;box-shadow:0 16px 34px #00000022,0 4px 9px #00000018,inset 0 1px 0 #ffffff35}
+    .colecao-imagem{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .65s ease,filter .65s;filter:contrast(1.04) saturate(.96)}\n    .colecao:after{content:"";position:absolute;inset:0;background:linear-gradient(0deg,#000000a8 0%,#00000038 36%,transparent 72%),linear-gradient(135deg,#ffffff20,transparent 42%,#00000022);pointer-events:none}\n    .colecao:nth-child(2){background:linear-gradient(155deg,#eeeeee,#e2e2e2 55%,#d5d5d5)}
     .colecao:nth-child(3){background:linear-gradient(135deg,#e5e5e5,#f4f4f4 48%,#dcdcdc)}
     .colecao:before{content:"";position:absolute;width:70%;height:115%;left:15%;top:8%;border:1px solid #00000018;transform:rotate(18deg);border-radius:48% 48% 8% 8%;transition:transform .7s}
-    .colecao:hover:before{transform:rotate(10deg) scale(1.08)}
-    .colecao span{position:relative;font-family:Impact,'Arial Black',Arial,sans-serif;font-size:clamp(44px,7vw,88px);font-weight:900;letter-spacing:-.035em;text-transform:uppercase}
+    .colecao:hover:before{transform:rotate(10deg) scale(1.08)}\n    .colecao:hover .colecao-imagem{transform:scale(1.035);filter:contrast(1.08) saturate(1.02)}
+    .colecao span{position:relative;z-index:1;color:#fff;text-shadow:0 2px 5px #00000070,0 8px 18px #00000055;font-family:Impact,'Arial Black',Arial,sans-serif;font-size:clamp(44px,7vw,88px);font-weight:900;letter-spacing:-.035em;text-transform:uppercase}
     .colecao small{display:block;font-size:11px;letter-spacing:.24em;color:#666666;margin-bottom:14px;text-transform:uppercase}
     .manifesto{border-top:1px solid var(--linha);border-bottom:1px solid var(--linha);text-align:center;padding:120px 24px}
     .manifesto p{font-family:Impact,'Arial Black',Arial,sans-serif;font-size:clamp(38px,7vw,86px);font-weight:900;line-height:.98;letter-spacing:-.04em;text-transform:uppercase;max-width:1000px;margin:20px auto}
@@ -89,7 +89,7 @@
     </section>
     <section class="secao" id="colecao">
       <div class="colecoes">
-        <a class="colecao" href="camiseta-gengar.html"><span><small>01 / IMP COMPANY</small>CAMISETA IMP GENGAR DROP #1</span></a>
+        <a class="colecao" href="camiseta-gengar.html" aria-label="Ver detalhes da CAMISETA IMP GENGAR DROP #1"><img class="colecao-imagem" src="assets/13D9B87E-C8EC-486B-ABA7-8F806122024E.jpeg" alt="CAMISETA IMP GENGAR DROP #1" loading="lazy"><span><small>01 / IMP COMPANY</small>CAMISETA IMP GENGAR DROP #1</span></a>
       </div>
     </section>
     <section class="manifesto" id="novidades">
