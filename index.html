@@ -20,8 +20,8 @@
     .copyright{font-family:Arial,sans-serif;font-size:.34em;vertical-align:top;letter-spacing:0;margin-left:3px}
     .capa{min-height:790px;height:100svh;max-height:1050px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff}
     .capa-galeria{position:absolute;inset:0;overflow:hidden;background:#fff}
-    .capa-imagem{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;filter:saturate(.96) contrast(1.06);transform:scale(1.07);transition:opacity 1.5s ease}
-    .capa-imagem.ativa{opacity:1;animation:zoom-banner 5.4s ease-out both}
+    .capa-imagem{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;filter:saturate(.96) contrast(1.06);transform:scale(1);transition:opacity 1.5s ease}
+    .capa-imagem.ativa{opacity:1;animation:none}
     .capa-galeria:before{content:"";position:absolute;inset:-35%;z-index:1;pointer-events:none;background:linear-gradient(110deg,transparent 40%,#ffffff38 49%,#ffffff08 53%,transparent 62%);transform:translateX(-65%);animation:passagem-luz 8s ease-in-out infinite}
     .capa-galeria:after{content:"";position:absolute;inset:0;z-index:2;background:linear-gradient(90deg,#00000018,transparent 24%,transparent 76%,#00000018),linear-gradient(0deg,#00000020,transparent 32%,transparent 72%,#00000012);pointer-events:none}
     .capa:before,.capa:after{content:"";position:absolute;border:1px solid #00000012;border-radius:50%;width:min(78vw,850px);aspect-ratio:1}
