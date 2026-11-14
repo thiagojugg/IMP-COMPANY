@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "IMP COMPANY",
+  "short_name": "IMP",
+  "description": "Loja oficial IMP COMPANY.",
+  "lang": "pt-BR",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "display_override": ["standalone"],
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff",
+  "icons": [
+    {
+      "src": "assets/7F820FC2-E4D9-44CA-832A-119734248297.jpeg",
+      "sizes": "any",
+      "type": "image/jpeg",
+      "purpose": "any"
+    }
+  ]
+}
