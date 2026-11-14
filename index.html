@@ -38,6 +38,29 @@
     .manifesto p{font-family:Impact,'Arial Black',Arial,sans-serif;font-size:clamp(38px,7vw,86px);font-weight:900;line-height:.98;letter-spacing:-.04em;text-transform:uppercase;max-width:1000px;margin:20px auto}
     .rodape{min-height:150px;padding:42px 24px;display:flex;align-items:center;justify-content:center}
     .rodape strong{font-family:Impact,'Arial Black',Arial,sans-serif;font-size:17px;letter-spacing:.24em;font-weight:900}
+
+    /* Movimento cinematográfico */
+    body:after{content:"";position:fixed;inset:0;z-index:20;pointer-events:none;opacity:.12;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.92' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.16'/%3E%3C/svg%3E");mix-blend-mode:multiply}
+    .cabecalho{animation:entrada .9s .15s both}
+    .capa{isolation:isolate}
+    .capa:after{animation:orbita 24s ease-in-out infinite alternate}
+    .capa:before{animation:orbita 32s ease-in-out infinite alternate-reverse}
+    .capa-conteudo h1{animation:titulo 1.35s cubic-bezier(.2,.75,.2,1) both}
+    .capa-conteudo p{animation:entrada 1s .55s both}
+    .indicador{animation:entrada 1s 1s both;transition:letter-spacing .4s}
+    .indicador:hover{letter-spacing:.4em}
+    .capa:after{box-shadow:0 0 90px #00000008}
+    .secao,.manifesto{opacity:0;transform:translateY(42px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
+    .secao.visivel,.manifesto.visivel{opacity:1;transform:translateY(0)}
+    .colecao{transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .8s}
+    .colecao:hover{transform:translateY(-7px);filter:contrast(1.04)}
+    .manifesto p{transition:letter-spacing .8s}
+    .manifesto.visivel p{letter-spacing:.005em}
+    @keyframes entrada{from{opacity:0}to{opacity:1}}
+    @keyframes titulo{from{opacity:0;transform:translateY(55px) scale(.94);filter:blur(12px)}to{opacity:1;transform:translateY(0) scale(1);filter:blur(0)}}
+    @keyframes orbita{from{transform:scale(.94) rotate(-8deg)}to{transform:scale(1.06) rotate(8deg)}}
+    @media(max-width:700px){.secao,.manifesto{transform:translateY(24px)}}
+    @media(prefers-reduced-motion:reduce){.cabecalho,.capa-conteudo h1,.capa-conteudo p,.indicador,.capa:before,.capa:after{animation:none!important}.secao,.manifesto{opacity:1;transform:none;transition:none}}
     @media(max-width:700px){.cabecalho{height:66px}.marca{font-size:27px}.capa{min-height:680px}.capa:before{width:110vw}.capa:after{width:82vw}.capa p{font-size:8px;letter-spacing:.25em}.secao{padding:78px 18px}.cabecalho-secao{display:block}.texto-apoio{margin-top:18px}.colecoes{grid-template-columns:1fr 1fr}.colecao{min-height:270px;padding:16px}.colecao:last-child{grid-column:1/-1;min-height:230px}.colecao span{font-size:18px}.manifesto{padding:90px 22px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
   </style>
@@ -69,5 +92,23 @@
     </section>
   </main>
   <footer class="rodape"><strong>IMP COMPANY</strong></footer>
+  <script>
+    (() => {
+      const elementos = document.querySelectorAll('.secao, .manifesto');
+      if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        elementos.forEach(el => el.classList.add('visivel'));
+        return;
+      }
+      const observador = new IntersectionObserver((entradas, observer) => {
+        entradas.forEach(entrada => {
+          if (entrada.isIntersecting) {
+            entrada.target.classList.add('visivel');
+            observer.unobserve(entrada.target);
+          }
+        });
+      }, { threshold: 0.14 });
+      elementos.forEach(el => observador.observe(el));
+    })();
+  </script>
 </body>
 </html>
