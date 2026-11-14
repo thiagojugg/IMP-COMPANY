@@ -18,6 +18,7 @@
     .cabecalho{height:76px;display:flex;align-items:center;justify-content:center;padding:0 24px;background:#fff;border-bottom:1px solid var(--linha);position:relative;z-index:5;margin-bottom:0}
     .marca{font-family:Impact,'Arial Black',Arial,sans-serif;font-size:36px;line-height:1;font-weight:900;letter-spacing:-2px;text-shadow:0 1px 0 #ffffff}
     .copyright{font-family:Arial,sans-serif;font-size:.34em;vertical-align:top;letter-spacing:0;margin-left:3px}
+    .botao-sacola{position:absolute;right:clamp(18px,5vw,64px);top:50%;transform:translateY(-50%);width:44px;height:48px;display:grid;place-items:center;border:0;background:transparent;padding:3px;cursor:pointer;z-index:6;filter:drop-shadow(0 5px 4px #00000030);transition:transform .25s ease,filter .25s ease}.icone-sacola{width:34px;height:38px;display:block;overflow:visible;animation:sacola-flutua 3s ease-in-out infinite;transform-origin:50% 70%}.botao-sacola:hover{transform:translateY(-54%) scale(1.1);filter:drop-shadow(0 8px 6px #00000040)}.botao-sacola:active{transform:translateY(-48%) scale(.94)}.contador-sacola{position:absolute;top:0;right:-2px;min-width:17px;height:17px;padding:0 4px;border-radius:20px;background:#111;color:#fff;border:1px solid #fff;font:700 9px Arial,sans-serif;display:grid;place-items:center}.botao-sacola:focus-visible{outline:2px solid #111;outline-offset:4px}@keyframes sacola-flutua{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-3px) rotate(2deg)}}@media(prefers-reduced-motion:reduce){.icone-sacola{animation:none}}
     .capa{min-height:790px;height:100svh;max-height:1050px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff}
     .capa-galeria{position:absolute;inset:0;overflow:hidden;background:#fff}
     .capa-imagem{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;filter:saturate(.96) contrast(1.06);transform:scale(1);transition:opacity 1.5s ease}
@@ -80,7 +81,7 @@
   </style>
 </head>
 <body>
-  <header class="cabecalho"><a class="marca" href="#" aria-label="IMP — início">IMP<sup class="copyright">©</sup></a></header>
+  <header class="cabecalho"><a class="marca" href="#" aria-label="IMP — início">IMP<sup class="copyright">©</sup></a><a class="botao-sacola" href="camiseta-gengar.html?carrinho=abrir" aria-label="Abrir sacola de compras"><svg class="icone-sacola" viewBox="0 0 48 52" aria-hidden="true"><defs><linearGradient id="sacola-corpo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#555"/><stop offset=".42" stop-color="#171717"/><stop offset="1" stop-color="#050505"/></linearGradient><linearGradient id="sacola-alca" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#777"/><stop offset=".5" stop-color="#111"/><stop offset="1" stop-color="#555"/></linearGradient></defs><path d="M14 17v-5a10 10 0 0 1 20 0v5" fill="none" stroke="url(#sacola-alca)" stroke-width="4" stroke-linecap="round"/><path d="M8 17h32l3 29H5z" fill="url(#sacola-corpo)" stroke="#050505" stroke-width="1.2" stroke-linejoin="round"/><path d="M10 19h5l-2 23H8z" fill="#ffffff" opacity=".17"/><path d="M13 20h22" stroke="#ffffff" opacity=".22" stroke-width="1.5"/><path d="M8 17h32" stroke="#888" stroke-width="1.3" opacity=".65"/><path d="M16 12a8 8 0 0 1 16 0" fill="none" stroke="#999" stroke-width="1" opacity=".5"/></svg><span class="contador-sacola" id="contador-sacola">0</span></a></header>
   <main>
     <section class="capa" aria-label="Apresentação da IMP">
       <div class="capa-galeria" aria-label="Imagens da coleção">
@@ -102,6 +103,8 @@
   <footer class="rodape"><strong>IMP COMPANY<sup class="copyright">©</sup></strong></footer>
   <script>
     (() => {
+      const contadorSacola = document.getElementById('contador-sacola');
+      try { const itens = JSON.parse(localStorage.getItem('imp-carrinho') || '[]'); contadorSacola.textContent = itens.length; } catch (_) { contadorSacola.textContent = '0'; }
       const imagensCapa = document.querySelectorAll('.capa-imagem');
       if (imagensCapa.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         let imagemAtual = 0;
