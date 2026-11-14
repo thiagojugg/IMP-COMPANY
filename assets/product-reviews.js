@@ -34,7 +34,8 @@
     }
 
     const metaId = document.querySelector('meta[name="product-id"]')?.content;
-    const explicitId = widget.dataset.productId || details.dataset.productId || metaId;
+    const pathSlug = location.pathname.split("/").filter(Boolean).pop()?.replace(/\.html$/i, "");
+    const explicitId = metaId || pathSlug || widget.dataset.productId || details.dataset.productId;
     const productId = explicitId || heading.textContent.trim().toLowerCase()
       .normalize("NFD").replace(/[\u0300-\u036f]/g, "")
       .replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "").slice(0, 120);
