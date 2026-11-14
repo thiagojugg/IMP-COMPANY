@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+  <meta name="theme-color" content="#ffffff">
+  <title>Sacola | IMP COMPANY</title>
+  <style>
+    :root{--linha:#e8e8e8}
+    *{box-sizing:border-box}
+    body{margin:0;background:#fff;color:#080808;font-family:Arial,Helvetica,sans-serif}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;cursor:pointer}
+    .cabecalho{height:76px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--linha);position:relative}
+    .marca{display:inline-flex;align-items:flex-start;justify-content:center;gap:3px;line-height:1}
+    .logo-cabecalho{display:block;width:88px;height:42px;object-fit:contain;object-position:center}
+    .copyright{font: .34em Arial,sans-serif;vertical-align:top;margin-left:3px}
+    .voltar{position:absolute;left:clamp(18px,5vw,64px);top:50%;transform:translateY(-50%);min-height:34px;padding:0 13px;display:inline-flex;align-items:center;gap:8px;border:1px solid #dedede;border-radius:2px;background:#fff;color:#111;font:700 10px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;transition:background .22s ease,color .22s ease,border-color .22s ease,transform .22s ease;box-shadow:0 2px 5px #00000008}
+    .voltar:hover{background:#111;color:#fff;border-color:#111;transform:translateY(calc(-50% - 1px))}
+    .voltar:active{transform:translateY(-50%) scale(.97)}
+    .voltar:focus-visible{outline:1px solid #111;outline-offset:3px}
+    main{width:min(900px,100%);min-height:calc(100vh - 226px);margin:0 auto;padding:58px clamp(18px,5vw,48px) 80px}
+    .cabecalho-sacola{display:flex;align-items:end;justify-content:space-between;gap:16px;padding-bottom:20px;border-bottom:1px solid var(--linha)}
+    h1{margin:0;font:900 clamp(30px,5vw,42px) Impact,'Arial Black',sans-serif;letter-spacing:.01em}
+    .quantidade{font:10px Arial,sans-serif;letter-spacing:.12em;color:#777;text-transform:uppercase}
+    .itens-carrinho{display:grid;gap:0}
+    .item-carrinho{display:flex;align-items:center;gap:18px;padding:22px 0;border-bottom:1px solid var(--linha);font-size:12px;line-height:1.7}
+    .imagem-item-carrinho{width:92px;height:108px;flex:0 0 92px;object-fit:cover;background:#f3f3f3}
+    .dados-item-carrinho{min-width:0;flex:1}
+    .item-carrinho strong{display:block;font-size:13px;line-height:1.4;margin-bottom:5px;letter-spacing:.02em}
+    .remover{display:inline-block;margin-top:7px;border:0;background:none;padding:4px 0;color:#777;text-decoration:underline;text-underline-offset:3px;font-size:10px;letter-spacing:.06em}
+    .vazio{padding:42px 0;color:#777;font-size:13px}
+    .acoes-carrinho{display:grid;gap:10px;max-width:420px;margin:26px 0 0 auto;padding-top:18px;border-top:1px solid var(--linha)}
+    .botao-cupom{width:100%;min-height:44px;border:1px solid #111;background:#fff;color:#111;font:700 11px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s}
+    .botao-cupom:hover{background:#f3f3f3}
+    .campo-cupom{display:none;gap:8px;grid-template-columns:1fr auto}
+    .campo-cupom.aberto{display:grid}
+    .campo-cupom input{min-width:0;height:42px;border:1px solid var(--linha);padding:0 11px;font:16px Arial,sans-serif;text-transform:uppercase;border-radius:0}
+    .aplicar-cupom{border:0;background:#111;color:#fff;padding:0 16px;font:700 10px Arial,sans-serif;text-transform:uppercase;cursor:pointer}
+    .mensagem-cupom{display:none;margin:0;color:#777;font:11px Arial,sans-serif;line-height:1.5}
+    .mensagem-cupom.visivel{display:block}
+    .finalizar-pedido{width:100%;min-height:52px;border:0;background:#111;color:#fff;font:900 14px Impact,'Arial Black',sans-serif;letter-spacing:.1em;text-transform:uppercase;opacity:.45;cursor:not-allowed}
+    .aviso{margin:5px 0 0;color:#777;font-size:11px;line-height:1.7}
+    .rodape{min-height:150px;padding:36px 24px;border-top:1px solid var(--linha);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px}
+    .rodape strong{font-family:Impact,'Arial Black',Arial,sans-serif;font-size:17px;letter-spacing:.24em;font-weight:900}
+    .rodape-info{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#777;font:10px Arial,sans-serif;letter-spacing:.035em;text-align:center}
+    .instagram-rodape{width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;color:#111;transition:opacity .2s ease,transform .2s ease}
+    .instagram-rodape:hover{opacity:.6;transform:translateY(-1px)}
+    .instagram-rodape svg{width:16px;height:16px;display:block}
+    @media(max-width:600px){.cabecalho{height:66px}.logo-cabecalho{width:76px;height:36px}.voltar{font-size:9px;min-height:32px;padding:0 10px}main{padding-top:36px}.item-carrinho{gap:13px}.imagem-item-carrinho{width:76px;height:90px;flex-basis:76px}.acoes-carrinho{max-width:none}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="cabecalho">
+    <a class="voltar" href="camiseta-gengar.html">← Voltar</a>
+    <a class="marca" href="index.html" aria-label="IMP COMPANY — início"><img class="logo-cabecalho" src="assets/7F820FC2-E4D9-44CA-832A-119734248297.jpeg" alt="IMP COMPANY"><sup class="copyright">©</sup></a>
+  </header>
+  <main>
+    <div class="cabecalho-sacola"><h1>SUA SACOLA</h1><span class="quantidade" id="quantidade-carrinho">0 itens</span></div>
+    <section class="itens-carrinho" id="itens-carrinho" aria-live="polite"></section>
+    <section class="acoes-carrinho" aria-label="Finalizar pedido">
+      <button class="botao-cupom" type="button" id="abrir-cupom" aria-expanded="false">＋ Adicionar cupom</button>
+      <div class="campo-cupom" id="campo-cupom">
+        <input type="text" id="codigo-cupom" placeholder="Código do cupom" aria-label="Código do cupom" autocomplete="off">
+        <button class="aplicar-cupom" type="button" id="aplicar-cupom">Aplicar</button>
+      </div>
+      <p class="mensagem-cupom" id="mensagem-cupom" role="status">A aplicação de cupons será disponibilizada em breve.</p>
+      <button class="finalizar-pedido" type="button" disabled>Finalizar pedido</button>
+      <p class="aviso">Seu item fica salvo neste navegador. A finalização de pedidos e o pagamento online serão ativados quando a loja definir os dados comerciais e a integração de pagamento.</p>
+    </section>
+  </main>
+  <footer class="rodape"><strong>IMP COMPANY<sup class="copyright">©</sup></strong><div class="rodape-info"><span>2020/2026 IMP COMPANY. Todos os direitos reservados.</span><a class="instagram-rodape" href="https://www.instagram.com/imp_records/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da IMP RECORDS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a></div></footer>
+  <script>
+    (() => {
+      let carrinho=[];
+      try{carrinho=JSON.parse(localStorage.getItem('imp-carrinho')||'[]');if(!Array.isArray(carrinho))carrinho=[];}catch(_){carrinho=[];}
+      const lista=document.getElementById('itens-carrinho');
+      function renderizar(){
+        document.getElementById('quantidade-carrinho').textContent=carrinho.length+' '+(carrinho.length===1?'item':'itens');
+        lista.innerHTML='';
+        if(!carrinho.length){const vazio=document.createElement('p');vazio.className='vazio';vazio.textContent='Sua sacola está vazia.';lista.appendChild(vazio);return;}
+        carrinho.forEach((item,i)=>{
+          const linha=document.createElement('article');linha.className='item-carrinho';
+          const img=document.createElement('img');img.className='imagem-item-carrinho';img.src=item.imagem||(item.cor==='Bege'?'assets/0C7335D7-22DB-4A49-B0C2-D18BA5BBBFA6.jpeg':'assets/FE633D37-CBDE-4FBC-B7BE-BD8BE80F3F23.jpeg');img.alt=item.nome||'Produto';
+          const dados=document.createElement('div');dados.className='dados-item-carrinho';
+          const nome=document.createElement('strong');nome.textContent=item.nome||'Produto';
+          const variacao=document.createElement('span');variacao.textContent='Cor: '+(item.cor||'—')+' · Tamanho: '+(item.tamanho||'—');
+          const remover=document.createElement('button');remover.type='button';remover.className='remover';remover.textContent='Remover';remover.addEventListener('click',()=>{carrinho.splice(i,1);salvar();});
+          dados.append(nome,variacao,document.createElement('br'),remover);linha.append(img,dados);lista.appendChild(linha);
+        });
+      }
+      function salvar(){localStorage.setItem('imp-carrinho',JSON.stringify(carrinho));renderizar();}
+      const botaoCupom=document.getElementById('abrir-cupom');
+      const campoCupom=document.getElementById('campo-cupom');
+      botaoCupom.addEventListener('click',()=>{
+        const aberto=campoCupom.classList.toggle('aberto');
+        botaoCupom.setAttribute('aria-expanded',String(aberto));
+        botaoCupom.textContent=aberto?'− Fechar cupom':'＋ Adicionar cupom';
+        if(aberto)document.getElementById('codigo-cupom').focus();
+      });
+      document.getElementById('aplicar-cupom').addEventListener('click',()=>document.getElementById('mensagem-cupom').classList.add('visivel'));
+      renderizar();
+    })();
+  </script>
+</body>
+</html>
