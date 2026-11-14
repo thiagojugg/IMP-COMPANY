@@ -37,7 +37,7 @@
     .identificador{font-size:9px;letter-spacing:.25em;color:#888;text-transform:uppercase;margin-bottom:18px}
     h1{font-family:Impact,'Arial Black',Arial,sans-serif;font-size:clamp(34px,4vw,58px);line-height:.98;letter-spacing:-.035em;margin:0;text-transform:uppercase}
     .avaliacao{display:flex;align-items:center;gap:10px;margin:17px 0 34px}
-    .estrelas{color:#111;font-size:17px;letter-spacing:2px;line-height:1}
+    .estrelas{display:flex;align-items:center;gap:3px}.estrela-avaliacao{border:0;background:transparent;padding:2px;color:#c9c9c9;font-size:22px;line-height:1;cursor:pointer;transition:color .18s ease,transform .18s ease}.estrela-avaliacao.ativa,.estrela-avaliacao:hover{color:#111}.estrela-avaliacao:hover{transform:scale(1.12)}.estrela-avaliacao:focus-visible{outline:1px solid #111;outline-offset:2px}.avaliacao small{font-size:10px;color:#777;letter-spacing:.08em;white-space:nowrap}
     .avaliacao small{font-size:10px;color:#777;letter-spacing:.08em}
     .grupo{border-top:1px solid var(--linha);padding:22px 0}
     .rotulo{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;font-size:10px;letter-spacing:.16em;text-transform:uppercase}
@@ -126,9 +126,15 @@
     <section class="detalhes">
       <div class="identificador">IMP COMPANY · DROP #1</div>
       <h1>CAMISETA IMP GENGAR DROP #1</h1>
-      <div class="avaliacao" aria-label="5 de 5 estrelas">
-        <span class="estrelas" aria-hidden="true">★★★★★</span>
-        <small>5,0</small>
+      <div class="avaliacao" aria-label="Avalie este produto">
+        <div class="estrelas" id="estrelas-avaliacao" role="group" aria-label="Escolha uma nota de 1 a 5">
+          <button class="estrela-avaliacao" type="button" data-rating="1" aria-label="1 estrela" aria-pressed="false">★</button>
+          <button class="estrela-avaliacao" type="button" data-rating="2" aria-label="2 estrelas" aria-pressed="false">★</button>
+          <button class="estrela-avaliacao" type="button" data-rating="3" aria-label="3 estrelas" aria-pressed="false">★</button>
+          <button class="estrela-avaliacao" type="button" data-rating="4" aria-label="4 estrelas" aria-pressed="false">★</button>
+          <button class="estrela-avaliacao" type="button" data-rating="5" aria-label="5 estrelas" aria-pressed="false">★</button>
+        </div>
+        <small id="texto-avaliacao">Avalie este produto</small>
       </div>
       <div class="grupo">
         <div class="rotulo"><span>Cor</span><span class="valor-selecao" id="cor-atual">Preta</span></div>
@@ -243,6 +249,24 @@
       });
       painel.addEventListener('click',e=>{if(e.target===painel)fecharCarrinho()});
       document.addEventListener('keydown',e=>{if(e.key==='Escape')fecharCarrinho()});
+      const chaveAvaliacao = 'imp-avaliacao-gengar-v1';
+      const botoesEstrelas = document.querySelectorAll('[data-rating]');
+      const textoAvaliacao = document.getElementById('texto-avaliacao');
+      let notaSelecionada = Number(localStorage.getItem(chaveAvaliacao)) || 0;
+      function atualizarEstrelas(nota) {
+        botoesEstrelas.forEach(botao => {
+          const ativa = Number(botao.dataset.rating) <= nota;
+          botao.classList.toggle('ativa', ativa);
+          botao.setAttribute('aria-pressed', String(Number(botao.dataset.rating) === nota));
+        });
+        textoAvaliacao.textContent = nota ? 'Sua avaliação: ' + nota + '/5' : 'Avalie este produto';
+      }
+      botoesEstrelas.forEach(botao => botao.addEventListener('click', () => {
+        notaSelecionada = Number(botao.dataset.rating);
+        localStorage.setItem(chaveAvaliacao, String(notaSelecionada));
+        atualizarEstrelas(notaSelecionada);
+      }));
+      atualizarEstrelas(notaSelecionada);
       atualizarGaleria();renderizarCarrinho();
     })();
   </script>
