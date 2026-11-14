@@ -11,7 +11,10 @@
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{margin:0;background:var(--preto);color:var(--branco);font-family:Impact,'Arial Black',Arial,Helvetica,sans-serif;letter-spacing:-.025em}
-    a{color:inherit;text-decoration:none}
+    a{color:inherit;text-decoration:none; -webkit-tap-highlight-color:transparent}
+    .marca{display:inline-block;transition:transform .25s ease,text-shadow .25s ease}
+    .marca:hover{transform:translateY(-2px);text-shadow:0 3px 0 #d8d8d8,0 7px 14px #00000020}
+    .marca:active{transform:translateY(1px) scale(.97)}
     .cabecalho{height:76px;display:flex;align-items:center;justify-content:center;padding:0 24px;border-bottom:1px solid var(--linha);position:absolute;inset:0 0 auto;z-index:5}
     .marca{font-family:Impact,'Arial Black',Arial,sans-serif;font-size:36px;line-height:1;font-weight:900;letter-spacing:-2px;text-shadow:0 1px 0 #ffffff}
     .copyright{font-family:Arial,sans-serif;font-size:.34em;vertical-align:top;letter-spacing:0;margin-left:3px}
@@ -54,8 +57,10 @@
     .capa:after{box-shadow:0 0 90px #00000008}
     .secao,.manifesto{opacity:0;transform:translateY(42px);transition:opacity 1s ease,transform 1s cubic-bezier(.2,.7,.2,1)}
     .secao.visivel,.manifesto.visivel{opacity:1;transform:translateY(0)}
-    .colecao{transition:transform .8s cubic-bezier(.2,.7,.2,1),filter .8s}
-    .colecao:hover{transform:translateY(-9px) scale(1.008);filter:contrast(1.06);box-shadow:0 32px 80px #0000001c}
+    .colecao{transform:perspective(1100px) rotateX(0deg) rotateY(0deg);transform-style:preserve-3d;transition:transform .55s cubic-bezier(.2,.7,.2,1),filter .55s,box-shadow .55s;will-change:transform}
+    .colecao:hover{transform:perspective(1100px) translateY(-10px) rotateX(2deg) rotateY(-1deg) scale(1.012);filter:contrast(1.06);box-shadow:0 34px 0 -22px #bdbdbd,0 38px 85px #00000024}
+    .colecao:active{transform:perspective(1100px) translateY(-2px) scale(.985);box-shadow:0 8px 18px #00000018}
+    .colecao:focus-visible,.marca:focus-visible{outline:2px solid #111;outline-offset:6px}
     .manifesto p{transition:letter-spacing .8s}
     .manifesto.visivel p{letter-spacing:.005em}
     @keyframes entrada{from{opacity:0}to{opacity:1}}
