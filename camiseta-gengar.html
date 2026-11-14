@@ -87,8 +87,19 @@
     @media(max-width:800px){.cabecalho{height:66px}.logo-cabecalho{width:84px;height:40px}.botao-sacola{right:18px}.voltar{font-size:9px}.produto{grid-template-columns:1fr;gap:30px;padding-top:20px}.galeria{gap:8px}.miniaturas{gap:8px}.detalhes{position:static;padding-top:0}h1{font-size:42px}.avaliacao{margin:14px 0 25px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
   </style>
+  <style>
+    .transicao-cinematografica{position:fixed;inset:0;z-index:99999;pointer-events:none;background:#080808;opacity:0;visibility:hidden;transition:opacity .48s cubic-bezier(.77,0,.18,1),visibility .48s;overflow:hidden}
+    .transicao-cinematografica::after{content:"";position:absolute;top:0;bottom:0;left:-35%;width:22%;background:linear-gradient(90deg,transparent,#ffffff18,transparent);transform:skewX(-18deg);opacity:0}
+    .transicao-cinematografica.entrada{opacity:1;visibility:visible}
+    .transicao-cinematografica.saida{opacity:1;visibility:visible}
+    .transicao-cinematografica.saida::after{opacity:1;animation:passagem-luz .62s cubic-bezier(.2,.7,.2,1) forwards}
+    @keyframes passagem-luz{from{left:-35%}to{left:125%}}
+    @media(prefers-reduced-motion:reduce){.transicao-cinematografica{display:none!important}}
+
+  </style>
 </head>
 <body>
+  <div class="transicao-cinematografica entrada" aria-hidden="true"></div>
   <header class="cabecalho">
     <a class="voltar" href="index.html">← Voltar</a>
     <a class="marca" href="index.html" aria-label="IMP COMPANY — início"><img class="logo-cabecalho" src="assets/7F820FC2-E4D9-44CA-832A-119734248297.jpeg" alt="IMP COMPANY"><sup class="copyright">©</sup></a>
@@ -225,6 +236,24 @@
       painel.addEventListener('click',e=>{if(e.target===painel)fecharCarrinho()});
       document.addEventListener('keydown',e=>{if(e.key==='Escape')fecharCarrinho()});
       atualizarGaleria();renderizarCarrinho();
+    })();
+  </script>
+
+  <script>
+    (() => {
+      const camada = document.querySelector('.transicao-cinematografica');
+      if (!camada || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      requestAnimationFrame(() => requestAnimationFrame(() => camada.classList.remove('entrada')));
+      document.addEventListener('click', event => {
+        const link = event.target.closest('a[href]');
+        if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.target || link.hasAttribute('download')) return;
+        let destino;
+        try { destino = new URL(link.href, window.location.href); } catch (_) { return; }
+        if (destino.origin !== window.location.origin || destino.pathname === window.location.pathname || destino.hash && destino.pathname === window.location.pathname) return;
+        event.preventDefault();
+        camada.classList.add('saida');
+        window.setTimeout(() => { window.location.href = destino.href; }, 460);
+      });
     })();
   </script>
 </body>
