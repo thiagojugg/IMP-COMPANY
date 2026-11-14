@@ -18,7 +18,11 @@
     .cabecalho{height:76px;display:flex;align-items:center;justify-content:center;padding:0 24px;border-bottom:1px solid var(--linha);position:absolute;inset:0 0 auto;z-index:5}
     .marca{font-family:Impact,'Arial Black',Arial,sans-serif;font-size:36px;line-height:1;font-weight:900;letter-spacing:-2px;text-shadow:0 1px 0 #ffffff}
     .copyright{font-family:Arial,sans-serif;font-size:.34em;vertical-align:top;letter-spacing:0;margin-left:3px}
-    .capa{min-height:790px;height:100svh;max-height:1050px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(ellipse at 50% 42%,#ffffff 0,#f3f3f3 48%,#e8e8e8 100%)}
+    .capa{min-height:790px;height:100svh;max-height:1050px;position:relative;display:flex;align-items:center;justify-content:center;overflow:hidden;background:#fff}
+    .capa-galeria{position:absolute;inset:0;overflow:hidden;background:#fff}
+    .capa-imagem{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;opacity:0;transition:opacity 1.5s ease;filter:saturate(.88)}
+    .capa-imagem.ativa{opacity:1}
+    .capa-galeria:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#ffffff55,#ffffff20 48%,#ffffff55);pointer-events:none}
     .capa:before,.capa:after{content:"";position:absolute;border:1px solid #00000012;border-radius:50%;width:min(78vw,850px);aspect-ratio:1}
     .capa:after{width:min(58vw,620px)}
     .capa-conteudo{position:relative;z-index:1;text-align:center;padding:100px 20px 70px}
@@ -76,6 +80,11 @@
   <header class="cabecalho"><a class="marca" href="#" aria-label="IMP — início">IMP<sup class="copyright">©</sup></a></header>
   <main>
     <section class="capa" aria-label="Apresentação da IMP">
+      <div class="capa-galeria" aria-label="Imagens da coleção">
+        <img class="capa-imagem ativa" src="assets/454DCD45-72A7-4CBD-9416-D13027725291.png" alt="Imagem da coleção IMP" fetchpriority="high">
+        <img class="capa-imagem" src="assets/B6900736-E412-48FF-8C1A-DDAC45E2BE3B.png" alt="Imagem da coleção IMP" loading="lazy">
+        <img class="capa-imagem" src="assets/C3D9D17F-9A2A-4B9A-A850-972EDC15F44F.png" alt="Imagem da coleção IMP" loading="lazy">
+      </div>
       <div class="capa-conteudo">
         <h1>IMP</h1>
         <p>Moda independente · Essência urbana</p>
@@ -95,6 +104,15 @@
   <footer class="rodape"><strong>IMP COMPANY<sup class="copyright">©</sup></strong></footer>
   <script>
     (() => {
+      const imagensCapa = document.querySelectorAll('.capa-imagem');
+      if (imagensCapa.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        let imagemAtual = 0;
+        window.setInterval(() => {
+          imagensCapa[imagemAtual].classList.remove('ativa');
+          imagemAtual = (imagemAtual + 1) % imagensCapa.length;
+          imagensCapa[imagemAtual].classList.add('ativa');
+        }, 5000);
+      }
       const elementos = document.querySelectorAll('.secao, .manifesto');
       if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         elementos.forEach(el => el.classList.add('visivel'));
