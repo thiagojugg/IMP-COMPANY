@@ -67,7 +67,17 @@
     .dados-item-carrinho{min-width:0;flex:1}
     .item-carrinho strong{display:block;font-size:12px;line-height:1.35;margin-bottom:5px}
     .vazio{color:#777;font-size:12px;padding:20px 0}
-    .aviso{margin-top:auto;padding-top:18px;border-top:1px solid var(--linha);font-size:11px;line-height:1.7;color:#777}
+    .acoes-carrinho{display:grid;gap:10px;padding-top:16px;border-top:1px solid var(--linha)}
+    .botao-cupom{width:100%;min-height:42px;border:1px solid #111;background:#fff;color:#111;font:700 11px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s}
+    .botao-cupom:hover{background:#f3f3f3}
+    .campo-cupom{display:none;gap:8px;grid-template-columns:1fr auto}
+    .campo-cupom.aberto{display:grid}
+    .campo-cupom input{min-width:0;height:40px;border:1px solid var(--linha);padding:0 11px;font:12px Arial,sans-serif;text-transform:uppercase}
+    .aplicar-cupom{border:0;background:#111;color:#fff;padding:0 14px;font:700 10px Arial,sans-serif;text-transform:uppercase;cursor:pointer}
+    .mensagem-cupom{display:none;margin:0;color:#777;font:11px Arial,sans-serif;line-height:1.5}
+    .mensagem-cupom.visivel{display:block}
+    .finalizar-pedido{width:100%;min-height:48px;border:0;background:#111;color:#fff;font:900 13px Impact,'Arial Black',sans-serif;letter-spacing:.08em;text-transform:uppercase;opacity:.45;cursor:not-allowed}
+    .aviso{margin-top:0;padding-top:14px;border-top:0;font-size:11px;line-height:1.7;color:#777}
     .rodape{padding:36px 20px;text-align:center;border-top:1px solid var(--linha);font:900 15px Impact,'Arial Black',sans-serif;letter-spacing:.22em;display:flex;flex-direction:column;align-items:center;gap:13px}
     .rodape-info{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#777;font:10px Arial,sans-serif;letter-spacing:.035em;text-align:center}
     .instagram-rodape{width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;color:#111;transition:opacity .2s ease,transform .2s ease}
@@ -127,6 +137,15 @@
     <aside class="painel-carrinho" role="dialog" aria-modal="true" aria-label="Seu carrinho">
       <div class="topo-carrinho"><h2>SEU CARRINHO</h2><button class="fechar" type="button" id="fechar-carrinho" aria-label="Fechar">×</button></div>
       <div class="itens-carrinho" id="itens-carrinho"><p class="vazio">Seu carrinho está vazio.</p></div>
+      <div class="acoes-carrinho">
+        <button class="botao-cupom" type="button" id="abrir-cupom" aria-expanded="false">＋ Adicionar cupom</button>
+        <div class="campo-cupom" id="campo-cupom">
+          <input type="text" id="codigo-cupom" placeholder="Código do cupom" aria-label="Código do cupom">
+          <button class="aplicar-cupom" type="button" id="aplicar-cupom">Aplicar</button>
+        </div>
+        <p class="mensagem-cupom" id="mensagem-cupom" role="status">A aplicação de cupons será disponibilizada em breve.</p>
+        <button class="finalizar-pedido" type="button" disabled>Finalizar pedido</button>
+      </div>
       <div class="aviso">Seu item fica salvo neste navegador. A finalização de pedidos e o pagamento online serão ativados quando a loja definir os dados comerciais e a integração de pagamento.</div>
     </aside>
   </div>
@@ -192,6 +211,17 @@
       document.getElementById('comprar').addEventListener('click',()=>adicionar(true));
       document.getElementById('abrir-carrinho').addEventListener('click',abrirCarrinho);
       document.getElementById('fechar-carrinho').addEventListener('click',fecharCarrinho);
+      const botaoCupom=document.getElementById('abrir-cupom');
+      const campoCupom=document.getElementById('campo-cupom');
+      botaoCupom.addEventListener('click',()=>{
+        const aberto=campoCupom.classList.toggle('aberto');
+        botaoCupom.setAttribute('aria-expanded',String(aberto));
+        botaoCupom.textContent=aberto?'− Fechar cupom':'＋ Adicionar cupom';
+        if(aberto) document.getElementById('codigo-cupom').focus();
+      });
+      document.getElementById('aplicar-cupom').addEventListener('click',()=>{
+        document.getElementById('mensagem-cupom').classList.add('visivel');
+      });
       painel.addEventListener('click',e=>{if(e.target===painel)fecharCarrinho()});
       document.addEventListener('keydown',e=>{if(e.key==='Escape')fecharCarrinho()});
       atualizarGaleria();renderizarCarrinho();
