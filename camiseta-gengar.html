@@ -62,8 +62,10 @@
     .topo-carrinho h2{font:900 25px Impact,'Arial Black',sans-serif;margin:0}
     .fechar{border:0;background:none;font-size:25px}
     .itens-carrinho{padding:18px 0;display:grid;gap:14px;overflow:auto}
-    .item-carrinho{font-size:12px;line-height:1.7;border-bottom:1px solid var(--linha);padding-bottom:14px}
-    .item-carrinho strong{display:block;font-size:12px}
+    .item-carrinho{display:flex;align-items:center;gap:13px;font-size:12px;line-height:1.7;border-bottom:1px solid var(--linha);padding-bottom:14px}
+    .imagem-item-carrinho{width:64px;height:76px;flex:0 0 64px;object-fit:cover;background:#f3f3f3}
+    .dados-item-carrinho{min-width:0;flex:1}
+    .item-carrinho strong{display:block;font-size:12px;line-height:1.35;margin-bottom:5px}
     .vazio{color:#777;font-size:12px;padding:20px 0}
     .aviso{margin-top:auto;padding-top:18px;border-top:1px solid var(--linha);font-size:11px;line-height:1.7;color:#777}
     .rodape{padding:36px 20px;text-align:center;border-top:1px solid var(--linha);font:900 15px Impact,'Arial Black',sans-serif;letter-spacing:.22em;display:flex;flex-direction:column;align-items:center;gap:13px}
@@ -173,13 +175,13 @@
       function renderizarCarrinho() {
         document.getElementById('quantidade-carrinho').textContent = carrinho.length;
         const lista = document.getElementById('itens-carrinho');
-        lista.innerHTML = carrinho.length ? carrinho.map((item,i) => '<div class="item-carrinho"><strong>'+item.nome+'</strong>Cor: '+item.cor+' · Tamanho: '+item.tamanho+'<br><button type="button" data-remove="'+i+'" style="border:0;background:none;padding:8px 0;text-decoration:underline;font-size:10px">Remover</button></div>').join('') : '<p class="vazio">Seu carrinho está vazio.</p>';
+        lista.innerHTML = carrinho.length ? carrinho.map((item,i) => { const imagemItem = item.imagem || (item.cor === 'Bege' ? imagens.Bege[0].src : imagens.Preta[0].src); return '<div class="item-carrinho"><img class="imagem-item-carrinho" src="'+imagemItem+'" alt="'+item.nome+'"><div class="dados-item-carrinho"><strong>'+item.nome+'</strong>Cor: '+item.cor+' · Tamanho: '+item.tamanho+'<br><button type="button" data-remove="'+i+'" style="border:0;background:none;padding:8px 0;text-decoration:underline;font-size:10px">Remover</button></div></div>'; }).join('') : '<p class="vazio">Seu carrinho está vazio.</p>';
         lista.querySelectorAll('[data-remove]').forEach(b => b.addEventListener('click', () => { carrinho.splice(Number(b.dataset.remove),1); salvar(); }));
       }
       function salvar() { localStorage.setItem('imp-carrinho',JSON.stringify(carrinho)); renderizarCarrinho(); }
       function adicionar(abrir) {
         if (!tamanho) { document.getElementById('tamanho-atual').textContent = 'Escolha P, M, G ou GG'; document.querySelector('.grupo:nth-of-type(2)').scrollIntoView({behavior:'smooth',block:'center'}); return; }
-        carrinho.push({nome:'CAMISETA IMP GENGAR DROP #1',cor,tamanho});
+        carrinho.push({nome:'CAMISETA IMP GENGAR DROP #1',cor,tamanho,imagem:imagens[cor][0].src});
         salvar();
         if (abrir) abrirCarrinho();
         else { const b=document.getElementById('adicionar'); b.textContent='Adicionado ao carrinho'; setTimeout(()=>b.textContent='Adicionar ao carrinho',1500); }
