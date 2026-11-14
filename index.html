@@ -83,8 +83,19 @@
     @media(max-width:700px){.cabecalho{height:66px}.logo-cabecalho{width:76px;height:36px}.capa{min-height:680px}.capa:before{width:110vw}.capa:after{width:82vw}.capa p{font-size:8px;letter-spacing:.25em}.secao{padding:78px 18px}.cabecalho-secao{display:block}.texto-apoio{margin-top:18px}.colecoes{grid-template-columns:1fr}.colecao{min-height:0;aspect-ratio:16/10;padding:24px}.colecao:last-child{grid-column:auto;min-height:0;aspect-ratio:16/10}.colecao span{font-size:clamp(36px,10vw,54px)}.colecao span strong{font-size:clamp(34px,9vw,54px);line-height:.9}.colecao span small{font-size:8px;margin-bottom:13px}.colecao small{font-size:9px;margin-bottom:10px}.manifesto{padding:90px 22px}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
   </style>
+  <style>
+    .transicao-cinematografica{position:fixed;inset:0;z-index:99999;pointer-events:none;background:#080808;opacity:0;visibility:hidden;transition:opacity .48s cubic-bezier(.77,0,.18,1),visibility .48s;overflow:hidden}
+    .transicao-cinematografica::after{content:"";position:absolute;top:0;bottom:0;left:-35%;width:22%;background:linear-gradient(90deg,transparent,#ffffff18,transparent);transform:skewX(-18deg);opacity:0}
+    .transicao-cinematografica.entrada{opacity:1;visibility:visible}
+    .transicao-cinematografica.saida{opacity:1;visibility:visible}
+    .transicao-cinematografica.saida::after{opacity:1;animation:passagem-luz .62s cubic-bezier(.2,.7,.2,1) forwards}
+    @keyframes passagem-luz{from{left:-35%}to{left:125%}}
+    @media(prefers-reduced-motion:reduce){.transicao-cinematografica{display:none!important}}
+
+  </style>
 </head>
 <body>
+  <div class="transicao-cinematografica entrada" aria-hidden="true"></div>
   <header class="cabecalho"><a class="marca" href="#" aria-label="IMP COMPANY — início"><img class="logo-cabecalho" src="assets/7F820FC2-E4D9-44CA-832A-119734248297.jpeg" alt="IMP COMPANY"><sup class="copyright">©</sup></a></header>
   <main>
     <section class="capa" aria-label="Apresentação da IMP">
@@ -130,6 +141,24 @@
         });
       }, { threshold: 0.14 });
       elementos.forEach(el => observador.observe(el));
+    })();
+  </script>
+
+  <script>
+    (() => {
+      const camada = document.querySelector('.transicao-cinematografica');
+      if (!camada || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      requestAnimationFrame(() => requestAnimationFrame(() => camada.classList.remove('entrada')));
+      document.addEventListener('click', event => {
+        const link = event.target.closest('a[href]');
+        if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.target || link.hasAttribute('download')) return;
+        let destino;
+        try { destino = new URL(link.href, window.location.href); } catch (_) { return; }
+        if (destino.origin !== window.location.origin || destino.pathname === window.location.pathname || destino.hash && destino.pathname === window.location.pathname) return;
+        event.preventDefault();
+        camada.classList.add('saida');
+        window.setTimeout(() => { window.location.href = destino.href; }, 460);
+      });
     })();
   </script>
 </body>
