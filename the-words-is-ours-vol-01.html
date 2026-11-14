@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/7F820FC2-E4D9-44CA-832A-119734248297.jpeg" type="image/jpeg">
+  <link rel="apple-touch-icon" href="assets/7F820FC2-E4D9-44CA-832A-119734248297.jpeg">
+  <meta name="apple-mobile-web-app-title" content="IMP COMPANY">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="description" content="THE WORDS IS OURS — VOL. 01. Nova coleção IMP COMPANY.">
+  <title>THE WORDS IS OURS — VOL. 01 | IMP COMPANY</title>
+  <style>
+    :root{--preto:#080808;--cinza:#777;--linha:#e8e8e8}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:#fff;color:var(--preto);font-family:Arial,Helvetica,sans-serif}
+    a{color:inherit;text-decoration:none}
+    .cabecalho{height:76px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--linha);position:relative}
+    .marca{display:inline-flex;align-items:center;justify-content:center}.logo-cabecalho{display:block;width:98px;height:46px;object-fit:contain}
+    .voltar{position:absolute;left:clamp(18px,5vw,64px);top:50%;transform:translateY(-50%);min-height:34px;padding:0 13px;display:inline-flex;align-items:center;gap:8px;border:1px solid #dedede;background:#fff;color:#111;font:700 10px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+    .produto{width:min(1380px,100%);margin:0 auto;padding:54px clamp(18px,5vw,72px) 100px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:clamp(36px,6vw,100px);align-items:start}
+    .galeria{min-width:0}
+    .foto-principal{position:relative;aspect-ratio:1/1.08;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 50% 42%,#353535 0%,#171717 54%,#080808 100%);color:#fff;text-align:center;padding:24px}
+    .foto-principal:before,.foto-principal:after{content:"";position:absolute;width:70%;aspect-ratio:1;border:1px solid #ffffff20;border-radius:50%}
+    .foto-principal:after{width:48%}
+    .placeholder{position:relative;z-index:1;display:grid;gap:13px;justify-items:center}
+    .placeholder small{font:700 9px Arial,sans-serif;letter-spacing:.32em;color:#aaa}
+    .placeholder strong{font:900 clamp(38px,6vw,76px)/.82 Impact,'Arial Black',sans-serif;letter-spacing:-.045em}
+    .placeholder span{font:700 10px Arial,sans-serif;letter-spacing:.28em;color:#aaa}
+    .detalhes{position:sticky;top:35px;padding-top:8px}
+    .identificador{font-size:9px;letter-spacing:.25em;color:#888;text-transform:uppercase;margin-bottom:18px}
+    h1{font-family:Impact,'Arial Black',Arial,sans-serif;font-size:clamp(36px,4.2vw,60px);line-height:.9;letter-spacing:-.035em;margin:0;text-transform:uppercase}
+    .subtitulo{margin:17px 0 30px;color:#777;font:10px Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase}
+    .grupo{border-top:1px solid var(--linha);padding:22px 0}
+    .rotulo{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#777}
+    .mensagem{margin:12px 0 0;font-size:12px;line-height:1.8;color:#777}
+    .descricao{margin-top:12px;padding-top:22px;border-top:1px solid var(--linha);font-size:12px;line-height:1.8;color:#666}
+    .descricao strong{display:block;color:#111;font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
+    .rodape{min-height:150px;padding:36px 24px;border-top:1px solid var(--linha);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px}
+    .rodape strong{font:900 17px Impact,'Arial Black',sans-serif;letter-spacing:.24em}
+    .rodape-info{display:flex;flex-direction:column;align-items:center;gap:10px;color:#777;font:10px Arial,sans-serif;letter-spacing:.035em;text-align:center}
+    .instagram-rodape{width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;color:#111}
+    .instagram-rodape svg{width:16px;height:16px;display:block}
+    .transicao-cinematografica{position:fixed;inset:0;z-index:99999;pointer-events:none;background:#fff;opacity:0;visibility:hidden;transition:opacity .48s cubic-bezier(.77,0,.18,1),visibility .48s}
+    .transicao-cinematografica.entrada,.transicao-cinematografica.saida{opacity:1;visibility:visible}
+    @media(max-width:800px){.cabecalho{height:66px}.logo-cabecalho{width:84px;height:40px}.voltar{font-size:9px}.produto{grid-template-columns:1fr;gap:30px;padding-top:20px}.detalhes{position:static;padding-top:0}h1{font-size:44px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}.transicao-cinematografica{display:none}}
+    .copyright,sup.copyright{display:none!important}
+  </style>
+</head>
+<body>
+  <div class="transicao-cinematografica entrada" aria-hidden="true"></div>
+  <header class="cabecalho">
+    <a class="voltar" href="index.html">← Voltar</a>
+    <a class="marca" href="index.html" aria-label="IMP COMPANY — início"><img class="logo-cabecalho" src="assets/7F820FC2-E4D9-44CA-832A-119734248297.jpeg" alt="IMP COMPANY"></a>
+  </header>
+  <main class="produto">
+    <section class="galeria" aria-label="Fotos do produto">
+      <div class="foto-principal">
+        <div class="placeholder"><small>IMP COMPANY PRESENTS</small><strong>THE WORDS<br>IS OURS</strong><span>VOL. 01</span></div>
+      </div>
+    </section>
+    <section class="detalhes">
+      <div class="identificador">IMP COMPANY · NOVA COLEÇÃO</div>
+      <h1>THE WORDS IS OURS — VOL. 01</h1>
+      <p class="subtitulo">A TWO-PART COLLECTION</p>
+      <div class="grupo">
+        <div class="rotulo">Lançamento</div>
+        <p class="mensagem">As informações deste lançamento serão adicionadas em breve.</p>
+      </div>
+      <div class="descricao"><strong>Sobre a coleção</strong><p>THE WORDS IS OURS — VOL. 01. Uma nova expressão da identidade IMP COMPANY.</p></div>
+    </section>
+  </main>
+  <footer class="rodape"><strong>IMP COMPANY</strong><div class="rodape-info"><span>2020/2026 IMP COMPANY. Todos os direitos reservados.</span><a class="instagram-rodape" href="https://www.instagram.com/imp_records/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da IMP RECORDS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a></div></footer>
+  <script src="assets/product-reviews.js" defer></script>
+  <script>
+    (() => {
+      const camada=document.querySelector('.transicao-cinematografica');
+      if(!camada||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
+      requestAnimationFrame(()=>requestAnimationFrame(()=>camada.classList.remove('entrada')));
+      document.addEventListener('click',event=>{
+        const link=event.target.closest('a[href]');
+        if(!link||event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||link.target||link.hasAttribute('download'))return;
+        let destino;try{destino=new URL(link.href,window.location.href)}catch(_){return}
+        if(destino.origin!==window.location.origin||destino.pathname===window.location.pathname||destino.hash&&destino.pathname===window.location.pathname)return;
+        event.preventDefault();camada.classList.add('saida');window.setTimeout(()=>{window.location.href=destino.href},460);
+      });
+    })();
+  </script>
+</body>
+</html>
