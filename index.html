@@ -89,7 +89,17 @@
     @keyframes orbita{from{transform:scale(.94) rotate(-8deg)}to{transform:scale(1.06) rotate(8deg)}}\n    @keyframes zoom-banner{from{transform:scale(1.07)}to{transform:scale(1.17)}}\n    @keyframes passagem-luz{0%,18%{transform:translateX(-65%)}65%,100%{transform:translateX(65%)}}
     @media(max-width:700px){.secao,.manifesto{transform:translateY(24px)}}
     @media(prefers-reduced-motion:reduce){.cabecalho,.capa-conteudo h1,.capa-conteudo p,.indicador,.capa:before,.capa:after,.capa-imagem.ativa,.capa-galeria:before{animation:none!important}.capa-imagem{transform:none}.secao,.manifesto{opacity:1;transform:none;transition:none}}
-    /* Remove efeitos de zoom da página principal, preservando o gesto de acessibilidade do navegador */
+    /* Corrige qualquer transbordamento horizontal no mobile */
+    html,body{width:100%;max-width:100%;overflow-x:clip}
+    @supports not (overflow:clip){html,body{overflow-x:hidden}}
+    @media(max-width:700px){
+      .capa:before,.capa:after{display:none!important}
+      .capa,.capa-galeria,.secao,.manifesto,.rodape{width:100%;max-width:100%;min-width:0}
+      .capa-imagem{width:100%;max-width:100%;inset:0}
+      .colecoes,.colecao,.titulo-colecao{max-width:100%;min-width:0}
+      .corrente-imagem-mobile{max-width:none}
+    }
+        /* Remove efeitos de zoom da página principal, preservando o gesto de acessibilidade do navegador */
     .capa-imagem,.colecao-imagem{transform:none!important;animation:none!important}
     .colecao:hover,.colecao:active,.colecao:hover:before,.colecao:hover .colecao-imagem{transform:none!important}
     @media(hover:none){.colecao:hover,.colecao:active,.colecao:hover:before,.colecao:hover .colecao-imagem{transform:none!important;filter:none!important;box-shadow:none!important}}
