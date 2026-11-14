@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#ffffff">
+  <meta name="description" content="Camiseta IMP Gengar Drop #1 — escolha a cor e o tamanho.">
+  <title>CAMISETA IMP GENGAR DROP #1 — IMP COMPANY</title>
+  <style>
+    :root{--preto:#080808;--branco:#fff;--cinza:#777;--linha:#e8e8e8}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:#fff;color:var(--preto);font-family:Arial,Helvetica,sans-serif}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;cursor:pointer}
+    .cabecalho{height:76px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--linha);position:relative}
+    .marca{font-family:Impact,'Arial Black',Arial,sans-serif;font-size:36px;font-weight:900;letter-spacing:-2px}
+    .copyright{font: .34em Arial,sans-serif;vertical-align:top;margin-left:3px}
+    .voltar{position:absolute;left:clamp(18px,5vw,64px);font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+    .sacola{position:absolute;right:clamp(18px,5vw,64px);border:0;background:transparent;font-size:11px;letter-spacing:.1em;text-transform:uppercase}
+    .sacola span{display:inline-grid;place-items:center;width:20px;height:20px;border:1px solid #111;border-radius:50%;margin-left:5px;font-size:10px}
+    .produto{width:min(1380px,100%);margin:0 auto;padding:54px clamp(18px,5vw,72px) 100px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:clamp(36px,6vw,100px);align-items:start}
+    .galeria{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .foto-principal{grid-column:1/-1;position:relative;background:#f3f3f1;overflow:hidden;aspect-ratio:1/1.08}
+    .foto-principal img{width:100%;height:100%;display:block;object-fit:cover;transition:opacity .25s}
+    .miniaturas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .miniatura{padding:0;border:1px solid transparent;background:#f4f4f4;aspect-ratio:1/1.12;overflow:hidden}
+    .miniatura[aria-pressed="true"]{border-color:#111}
+    .miniatura img{width:100%;height:100%;object-fit:cover;display:block}
+    .detalhes{position:sticky;top:35px;padding-top:8px}
+    .identificador{font-size:9px;letter-spacing:.25em;color:#888;text-transform:uppercase;margin-bottom:18px}
+    h1{font-family:Impact,'Arial Black',Arial,sans-serif;font-size:clamp(34px,4vw,58px);line-height:.98;letter-spacing:-.035em;margin:0;text-transform:uppercase}
+    .avaliacao{display:flex;align-items:center;gap:10px;margin:17px 0 34px}
+    .estrelas{color:#111;font-size:17px;letter-spacing:2px;line-height:1}
+    .avaliacao small{font-size:10px;color:#777;letter-spacing:.08em}
+    .grupo{border-top:1px solid var(--linha);padding:22px 0}
+    .rotulo{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+    .valor-selecao{font-size:10px;color:#777;letter-spacing:.08em}
+    .cores{display:flex;gap:10px}
+    .cor{width:42px;height:42px;border:1px solid #d8d8d8;border-radius:50%;padding:4px;background:#fff}
+    .cor[aria-pressed="true"]{outline:1px solid #111;outline-offset:3px}
+    .amostra{display:block;width:100%;height:100%;border-radius:50%;border:1px solid #00000016}
+    .amostra.preta{background:#111}
+    .amostra.bege{background:#d8c5a5}
+    .tamanhos{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .tamanho{height:48px;background:#fff;border:1px solid #dedede;font-size:12px;transition:background .2s,color .2s,border .2s}
+    .tamanho[aria-pressed="true"]{background:#080808;color:#fff;border-color:#080808}
+    .acoes{display:grid;gap:10px;padding-top:24px}
+    .acao{min-height:54px;border:1px solid #080808;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;transition:transform .2s,background .2s,color .2s}
+    .acao:active{transform:scale(.985)}
+    .primaria{background:#080808;color:#fff}
+    .primaria:hover{background:#333}
+    .secundaria{background:#fff;color:#080808}
+    .secundaria:hover{background:#f2f2f2}
+    .descricao{margin-top:32px;padding-top:22px;border-top:1px solid var(--linha);font-size:12px;line-height:1.8;color:#666}
+    .descricao strong{display:block;color:#111;font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
+    .carrinho-fundo{position:fixed;inset:0;background:#0008;z-index:20;opacity:0;visibility:hidden;transition:.25s}
+    .carrinho-fundo.aberto{opacity:1;visibility:visible}
+    .painel-carrinho{position:absolute;right:0;top:0;height:100%;width:min(430px,100%);background:#fff;padding:28px;transform:translateX(100%);transition:transform .3s;display:flex;flex-direction:column}
+    .carrinho-fundo.aberto .painel-carrinho{transform:translateX(0)}
+    .topo-carrinho{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--linha);padding-bottom:20px}
+    .topo-carrinho h2{font:900 25px Impact,'Arial Black',sans-serif;margin:0}
+    .fechar{border:0;background:none;font-size:25px}
+    .itens-carrinho{padding:18px 0;display:grid;gap:14px;overflow:auto}
+    .item-carrinho{font-size:12px;line-height:1.7;border-bottom:1px solid var(--linha);padding-bottom:14px}
+    .item-carrinho strong{display:block;font-size:12px}
+    .vazio{color:#777;font-size:12px;padding:20px 0}
+    .aviso{margin-top:auto;padding-top:18px;border-top:1px solid var(--linha);font-size:11px;line-height:1.7;color:#777}
+    .rodape{padding:36px 20px;text-align:center;border-top:1px solid var(--linha);font:900 15px Impact,'Arial Black',sans-serif;letter-spacing:.22em}
+    @media(max-width:800px){.cabecalho{height:66px}.marca{font-size:29px}.voltar,.sacola{font-size:9px}.produto{grid-template-columns:1fr;gap:30px;padding-top:20px}.galeria{gap:8px}.miniaturas{gap:8px}.detalhes{position:static;padding-top:0}h1{font-size:42px}.avaliacao{margin:14px 0 25px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="cabecalho">
+    <a class="voltar" href="index.html">← Voltar</a>
+    <a class="marca" href="index.html">IMP<sup class="copyright">©</sup></a>
+    <button class="sacola" type="button" id="abrir-carrinho">Carrinho <span id="quantidade-carrinho">0</span></button>
+  </header>
+  <main class="produto">
+    <section class="galeria" aria-label="Fotos da camiseta">
+      <div class="foto-principal"><img id="foto-atual" src="assets/FE633D37-CBDE-4FBC-B7BE-BD8BE80F3F23.jpeg" alt="Camiseta IMP Gengar Drop #1 preta — frente"></div>
+      <div class="miniaturas" id="miniaturas">
+        <button class="miniatura" type="button" data-image="assets/FE633D37-CBDE-4FBC-B7BE-BD8BE80F3F23.jpeg" data-alt="Camiseta preta — frente" aria-pressed="true"><img src="assets/FE633D37-CBDE-4FBC-B7BE-BD8BE80F3F23.jpeg" alt="Frente preta"></button>
+        <button class="miniatura" type="button" data-image="assets/B679474E-F91C-4005-AA22-A6458729D56A.jpeg" data-alt="Camiseta preta — costas" aria-pressed="false"><img src="assets/B679474E-F91C-4005-AA22-A6458729D56A.jpeg" alt="Costas preta"></button>
+        <button class="miniatura" type="button" data-image="assets/0C7335D7-22DB-4A49-B0C2-D18BA5BBBFA6.jpeg" data-alt="Camiseta bege — frente" aria-pressed="false"><img src="assets/0C7335D7-22DB-4A49-B0C2-D18BA5BBBFA6.jpeg" alt="Frente bege"></button>
+        <button class="miniatura" type="button" data-image="assets/69F0497C-073A-48D5-B66A-2169330D2479.jpeg" data-alt="Camiseta bege — costas" aria-pressed="false"><img src="assets/69F0497C-073A-48D5-B66A-2169330D2479.jpeg" alt="Costas bege"></button>
+      </div>
+    </section>
+    <section class="detalhes">
+      <div class="identificador">IMP COMPANY · DROP #1</div>
+      <h1>CAMISETA IMP GENGAR DROP #1</h1>
+      <div class="avaliacao" aria-label="5 de 5 estrelas">
+        <span class="estrelas" aria-hidden="true">★★★★★</span>
+        <small>5,0</small>
+      </div>
+      <div class="grupo">
+        <div class="rotulo"><span>Cor</span><span class="valor-selecao" id="cor-atual">Preta</span></div>
+        <div class="cores">
+          <button class="cor" type="button" data-color="Preta" aria-label="Selecionar cor preta" aria-pressed="true"><span class="amostra preta"></span></button>
+          <button class="cor" type="button" data-color="Bege" aria-label="Selecionar cor bege" aria-pressed="false"><span class="amostra bege"></span></button>
+        </div>
+      </div>
+      <div class="grupo">
+        <div class="rotulo"><span>Tamanho</span><span class="valor-selecao" id="tamanho-atual">Selecione</span></div>
+        <div class="tamanhos">
+          <button class="tamanho" type="button" data-size="P" aria-pressed="false">P</button>
+          <button class="tamanho" type="button" data-size="M" aria-pressed="false">M</button>
+          <button class="tamanho" type="button" data-size="G" aria-pressed="false">G</button>
+          <button class="tamanho" type="button" data-size="GG" aria-pressed="false">GG</button>
+        </div>
+      </div>
+      <div class="acoes">
+        <button class="acao primaria" type="button" id="comprar">Comprar agora</button>
+        <button class="acao secundaria" type="button" id="adicionar">Adicionar ao carrinho</button>
+      </div>
+      <div class="descricao"><strong>Detalhes do produto</strong>Escolha a cor e o tamanho para adicionar a camiseta ao seu carrinho.</div>
+    </section>
+  </main>
+  <div class="carrinho-fundo" id="carrinho-fundo" aria-hidden="true">
+    <aside class="painel-carrinho" role="dialog" aria-modal="true" aria-label="Seu carrinho">
+      <div class="topo-carrinho"><h2>SEU CARRINHO</h2><button class="fechar" type="button" id="fechar-carrinho" aria-label="Fechar">×</button></div>
+      <div class="itens-carrinho" id="itens-carrinho"><p class="vazio">Seu carrinho está vazio.</p></div>
+      <div class="aviso">Seu item fica salvo neste navegador. A finalização de pedidos e o pagamento online serão ativados quando a loja definir os dados comerciais e a integração de pagamento.</div>
+    </aside>
+  </div>
+  <footer class="rodape">IMP COMPANY<sup class="copyright">©</sup></footer>
+  <script>
+    (() => {
+      const imagens = {
+        Preta: [
+          {src:'assets/FE633D37-CBDE-4FBC-B7BE-BD8BE80F3F23.jpeg',alt:'Camiseta preta — frente'},
+          {src:'assets/B679474E-F91C-4005-AA22-A6458729D56A.jpeg',alt:'Camiseta preta — costas'}
+        ],
+        Bege: [
+          {src:'assets/0C7335D7-22DB-4A49-B0C2-D18BA5BBBFA6.jpeg',alt:'Camiseta bege — frente'},
+          {src:'assets/69F0497C-073A-48D5-B66A-2169330D2479.jpeg',alt:'Camiseta bege — costas'}
+        ]
+      };
+      let cor = 'Preta';
+      let tamanho = '';
+      let carrinho = [];
+      try { carrinho = JSON.parse(localStorage.getItem('imp-carrinho') || '[]'); } catch (_) { carrinho = []; }
+      const foto = document.getElementById('foto-atual');
+      const miniaturas = document.getElementById('miniaturas');
+      const painel = document.getElementById('carrinho-fundo');
+      function atualizarGaleria() {
+        const conjunto = imagens[cor];
+        foto.src = conjunto[0].src;
+        foto.alt = conjunto[0].alt;
+        miniaturas.innerHTML = conjunto.map((item,i) => '<button class="miniatura" type="button" data-image="'+item.src+'" data-alt="'+item.alt+'" aria-pressed="'+(i===0)+'"><img src="'+item.src+'" alt="'+item.alt+'"></button>').join('');
+        miniaturas.querySelectorAll('button').forEach(botao => botao.addEventListener('click', () => {
+          foto.src = botao.dataset.image;
+          foto.alt = botao.dataset.alt;
+          miniaturas.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b===botao)));
+        }));
+      }
+      document.querySelectorAll('[data-color]').forEach(botao => botao.addEventListener('click', () => {
+        cor = botao.dataset.color;
+        document.getElementById('cor-atual').textContent = cor;
+        document.querySelectorAll('[data-color]').forEach(b => b.setAttribute('aria-pressed',String(b===botao)));
+        atualizarGaleria();
+      }));
+      document.querySelectorAll('[data-size]').forEach(botao => botao.addEventListener('click', () => {
+        tamanho = botao.dataset.size;
+        document.getElementById('tamanho-atual').textContent = tamanho;
+        document.querySelectorAll('[data-size]').forEach(b => b.setAttribute('aria-pressed',String(b===botao)));
+      }));
+      function renderizarCarrinho() {
+        document.getElementById('quantidade-carrinho').textContent = carrinho.length;
+        const lista = document.getElementById('itens-carrinho');
+        lista.innerHTML = carrinho.length ? carrinho.map((item,i) => '<div class="item-carrinho"><strong>'+item.nome+'</strong>Cor: '+item.cor+' · Tamanho: '+item.tamanho+'<br><button type="button" data-remove="'+i+'" style="border:0;background:none;padding:8px 0;text-decoration:underline;font-size:10px">Remover</button></div>').join('') : '<p class="vazio">Seu carrinho está vazio.</p>';
+        lista.querySelectorAll('[data-remove]').forEach(b => b.addEventListener('click', () => { carrinho.splice(Number(b.dataset.remove),1); salvar(); }));
+      }
+      function salvar() { localStorage.setItem('imp-carrinho',JSON.stringify(carrinho)); renderizarCarrinho(); }
+      function adicionar(abrir) {
+        if (!tamanho) { document.getElementById('tamanho-atual').textContent = 'Escolha P, M, G ou GG'; document.querySelector('.grupo:nth-of-type(2)').scrollIntoView({behavior:'smooth',block:'center'}); return; }
+        carrinho.push({nome:'CAMISETA IMP GENGAR DROP #1',cor,tamanho});
+        salvar();
+        if (abrir) abrirCarrinho();
+        else { const b=document.getElementById('adicionar'); b.textContent='Adicionado ao carrinho'; setTimeout(()=>b.textContent='Adicionar ao carrinho',1500); }
+      }
+      function abrirCarrinho(){painel.classList.add('aberto');painel.setAttribute('aria-hidden','false')}
+      function fecharCarrinho(){painel.classList.remove('aberto');painel.setAttribute('aria-hidden','true')}
+      document.getElementById('adicionar').addEventListener('click',()=>adicionar(false));
+      document.getElementById('comprar').addEventListener('click',()=>adicionar(true));
+      document.getElementById('abrir-carrinho').addEventListener('click',abrirCarrinho);
+      document.getElementById('fechar-carrinho').addEventListener('click',fecharCarrinho);
+      painel.addEventListener('click',e=>{if(e.target===painel)fecharCarrinho()});
+      document.addEventListener('keydown',e=>{if(e.key==='Escape')fecharCarrinho()});
+      atualizarGaleria();renderizarCarrinho();
+    })();
+  </script>
+</body>
+</html>
