@@ -66,7 +66,11 @@
     .item-carrinho strong{display:block;font-size:12px}
     .vazio{color:#777;font-size:12px;padding:20px 0}
     .aviso{margin-top:auto;padding-top:18px;border-top:1px solid var(--linha);font-size:11px;line-height:1.7;color:#777}
-    .rodape{padding:36px 20px;text-align:center;border-top:1px solid var(--linha);font:900 15px Impact,'Arial Black',sans-serif;letter-spacing:.22em}
+    .rodape{padding:36px 20px;text-align:center;border-top:1px solid var(--linha);font:900 15px Impact,'Arial Black',sans-serif;letter-spacing:.22em;display:flex;flex-direction:column;align-items:center;gap:13px}
+    .rodape-info{display:flex;align-items:center;justify-content:center;gap:14px;color:#777;font:10px Arial,sans-serif;letter-spacing:.035em}
+    .instagram-rodape{width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;color:#111;transition:opacity .2s ease,transform .2s ease}
+    .instagram-rodape:hover{opacity:.6;transform:translateY(-1px)}
+    .instagram-rodape svg{width:16px;height:16px;display:block}
     @media(max-width:800px){.cabecalho{height:66px}.marca{font-size:29px}.botao-sacola{right:18px}.voltar{font-size:9px}.produto{grid-template-columns:1fr;gap:30px;padding-top:20px}.galeria{gap:8px}.miniaturas{gap:8px}.detalhes{position:static;padding-top:0}h1{font-size:42px}.avaliacao{margin:14px 0 25px}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
   </style>
@@ -124,7 +128,7 @@
       <div class="aviso">Seu item fica salvo neste navegador. A finalização de pedidos e o pagamento online serão ativados quando a loja definir os dados comerciais e a integração de pagamento.</div>
     </aside>
   </div>
-  <footer class="rodape">IMP COMPANY<sup class="copyright">©</sup></footer>
+  <footer class="rodape">IMP COMPANY<sup class="copyright">©</sup><div class="rodape-info"><span>2023/2026. Todos os direitos reservados.</span><a class="instagram-rodape" href="https://www.instagram.com/imp_records/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da IMP RECORDS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a></div></footer>
   <script>
     (() => {
       const imagens = {
