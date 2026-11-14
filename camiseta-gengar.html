@@ -126,7 +126,7 @@
     <section class="detalhes">
       <div class="identificador">IMP COMPANY · DROP #1</div>
       <h1>CAMISETA IMP GENGAR DROP #1</h1>
-      <div class="avaliacao" aria-label="Avalie este produto">
+      <div class="avaliacao" data-product-id="camiseta-gengar-drop-1" aria-label="Avalie este produto">
         <div class="estrelas" id="estrelas-avaliacao" role="group" aria-label="Escolha uma nota de 1 a 5">
           <button class="estrela-avaliacao" type="button" data-rating="1" aria-label="1 estrela" aria-pressed="false">★</button>
           <button class="estrela-avaliacao" type="button" data-rating="2" aria-label="2 estrelas" aria-pressed="false">★</button>
@@ -249,24 +249,6 @@
       });
       painel.addEventListener('click',e=>{if(e.target===painel)fecharCarrinho()});
       document.addEventListener('keydown',e=>{if(e.key==='Escape')fecharCarrinho()});
-      const chaveAvaliacao = 'imp-avaliacao-gengar-v1';
-      const botoesEstrelas = document.querySelectorAll('[data-rating]');
-      const textoAvaliacao = document.getElementById('texto-avaliacao');
-      let notaSelecionada = Number(localStorage.getItem(chaveAvaliacao)) || 0;
-      function atualizarEstrelas(nota) {
-        botoesEstrelas.forEach(botao => {
-          const ativa = Number(botao.dataset.rating) <= nota;
-          botao.classList.toggle('ativa', ativa);
-          botao.setAttribute('aria-pressed', String(Number(botao.dataset.rating) === nota));
-        });
-        textoAvaliacao.textContent = nota ? 'Sua avaliação: ' + nota + '/5' : 'Avalie este produto';
-      }
-      botoesEstrelas.forEach(botao => botao.addEventListener('click', () => {
-        notaSelecionada = Number(botao.dataset.rating);
-        localStorage.setItem(chaveAvaliacao, String(notaSelecionada));
-        atualizarEstrelas(notaSelecionada);
-      }));
-      atualizarEstrelas(notaSelecionada);
       atualizarGaleria();renderizarCarrinho();
     })();
   </script>
