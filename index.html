@@ -81,7 +81,7 @@
   </style>
 </head>
 <body>
-  <header class="cabecalho"><a class="marca" href="#" aria-label="IMP — início">IMP<sup class="copyright">©</sup></a><a class="botao-sacola" href="camiseta-gengar.html?carrinho=abrir" aria-label="Abrir sacola de compras"><svg class="icone-sacola" viewBox="0 0 48 52" aria-hidden="true"><defs><linearGradient id="sacola-corpo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#555"/><stop offset=".42" stop-color="#171717"/><stop offset="1" stop-color="#050505"/></linearGradient><linearGradient id="sacola-alca" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#777"/><stop offset=".5" stop-color="#111"/><stop offset="1" stop-color="#555"/></linearGradient></defs><path d="M14 17v-5a10 10 0 0 1 20 0v5" fill="none" stroke="url(#sacola-alca)" stroke-width="4" stroke-linecap="round"/><path d="M8 17h32l3 29H5z" fill="url(#sacola-corpo)" stroke="#050505" stroke-width="1.2" stroke-linejoin="round"/><path d="M10 19h5l-2 23H8z" fill="#ffffff" opacity=".17"/><path d="M13 20h22" stroke="#ffffff" opacity=".22" stroke-width="1.5"/><path d="M8 17h32" stroke="#888" stroke-width="1.3" opacity=".65"/><path d="M16 12a8 8 0 0 1 16 0" fill="none" stroke="#999" stroke-width="1" opacity=".5"/></svg><span class="contador-sacola" id="contador-sacola">0</span></a></header>
+  <header class="cabecalho"><a class="marca" href="#" aria-label="IMP — início">IMP<sup class="copyright">©</sup></a></header>
   <main>
     <section class="capa" aria-label="Apresentação da IMP">
       <div class="capa-galeria" aria-label="Imagens da coleção">
@@ -103,8 +103,6 @@
   <footer class="rodape"><strong>IMP COMPANY<sup class="copyright">©</sup></strong></footer>
   <script>
     (() => {
-      const contadorSacola = document.getElementById('contador-sacola');
-      try { const itens = JSON.parse(localStorage.getItem('imp-carrinho') || '[]'); contadorSacola.textContent = itens.length; } catch (_) { contadorSacola.textContent = '0'; }
       const imagensCapa = document.querySelectorAll('.capa-imagem');
       if (imagensCapa.length > 1 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         let imagemAtual = 0;
