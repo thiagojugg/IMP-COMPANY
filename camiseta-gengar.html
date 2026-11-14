@@ -92,7 +92,7 @@
   <header class="cabecalho">
     <a class="voltar" href="index.html">← Voltar</a>
     <a class="marca" href="index.html" aria-label="IMP COMPANY — início"><img class="logo-cabecalho" src="assets/7F820FC2-E4D9-44CA-832A-119734248297.jpeg" alt="IMP COMPANY"><sup class="copyright">©</sup></a>
-    <button class="botao-sacola" type="button" id="abrir-carrinho" aria-label="Abrir sacola de compras"><svg class="icone-sacola" viewBox="0 0 48 52" aria-hidden="true"><defs><linearGradient id="sacola-corpo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#555"/><stop offset=".42" stop-color="#171717"/><stop offset="1" stop-color="#050505"/></linearGradient><linearGradient id="sacola-alca" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#777"/><stop offset=".5" stop-color="#111"/><stop offset="1" stop-color="#555"/></linearGradient></defs><path d="M14 17v-5a10 10 0 0 1 20 0v5" fill="none" stroke="url(#sacola-alca)" stroke-width="4" stroke-linecap="round"/><path d="M8 17h32l3 29H5z" fill="url(#sacola-corpo)" stroke="#050505" stroke-width="1.2" stroke-linejoin="round"/><path d="M10 19h5l-2 23H8z" fill="#ffffff" opacity=".17"/><path d="M13 20h22" stroke="#ffffff" opacity=".22" stroke-width="1.5"/><path d="M8 17h32" stroke="#888" stroke-width="1.3" opacity=".65"/><path d="M16 12a8 8 0 0 1 16 0" fill="none" stroke="#999" stroke-width="1" opacity=".5"/></svg><span class="contador-sacola" id="quantidade-carrinho">0</span></button>
+    <a class="botao-sacola" href="carrinho.html" aria-label="Abrir sacola de compras"><svg class="icone-sacola" viewBox="0 0 48 52" aria-hidden="true"><defs><linearGradient id="sacola-corpo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#555"/><stop offset=".42" stop-color="#171717"/><stop offset="1" stop-color="#050505"/></linearGradient><linearGradient id="sacola-alca" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#777"/><stop offset=".5" stop-color="#111"/><stop offset="1" stop-color="#555"/></linearGradient></defs><path d="M14 17v-5a10 10 0 0 1 20 0v5" fill="none" stroke="url(#sacola-alca)" stroke-width="4" stroke-linecap="round"/><path d="M8 17h32l3 29H5z" fill="url(#sacola-corpo)" stroke="#050505" stroke-width="1.2" stroke-linejoin="round"/><path d="M10 19h5l-2 23H8z" fill="#ffffff" opacity=".17"/><path d="M13 20h22" stroke="#ffffff" opacity=".22" stroke-width="1.5"/><path d="M8 17h32" stroke="#888" stroke-width="1.3" opacity=".65"/><path d="M16 12a8 8 0 0 1 16 0" fill="none" stroke="#999" stroke-width="1" opacity=".5"/></svg><span class="contador-sacola" id="quantidade-carrinho">0</span></a>
   </header>
   <main class="produto">
     <section class="galeria" aria-label="Fotos da camiseta">
@@ -203,14 +203,13 @@
         if (!tamanho) { document.getElementById('tamanho-atual').textContent = 'Escolha P, M, G ou GG'; document.querySelector('.grupo:nth-of-type(2)').scrollIntoView({behavior:'smooth',block:'center'}); return; }
         carrinho.push({nome:'CAMISETA IMP GENGAR DROP #1',cor,tamanho,imagem:imagens[cor][0].src});
         salvar();
-        if (abrir) abrirCarrinho();
+        if (abrir) window.location.href='carrinho.html';
         else { const b=document.getElementById('adicionar'); b.textContent='Adicionado ao carrinho'; setTimeout(()=>b.textContent='Adicionar ao carrinho',1500); }
       }
       function abrirCarrinho(){painel.classList.add('aberto');painel.setAttribute('aria-hidden','false')}
       function fecharCarrinho(){painel.classList.remove('aberto');painel.setAttribute('aria-hidden','true')}
       document.getElementById('adicionar').addEventListener('click',()=>adicionar(false));
       document.getElementById('comprar').addEventListener('click',()=>adicionar(true));
-      document.getElementById('abrir-carrinho').addEventListener('click',abrirCarrinho);
       document.getElementById('fechar-carrinho').addEventListener('click',fecharCarrinho);
       const botaoCupom=document.getElementById('abrir-cupom');
       const campoCupom=document.getElementById('campo-cupom');
@@ -226,7 +225,6 @@
       painel.addEventListener('click',e=>{if(e.target===painel)fecharCarrinho()});
       document.addEventListener('keydown',e=>{if(e.key==='Escape')fecharCarrinho()});
       atualizarGaleria();renderizarCarrinho();
-      if (new URLSearchParams(window.location.search).get('carrinho') === 'abrir') abrirCarrinho();
     })();
   </script>
 </body>
