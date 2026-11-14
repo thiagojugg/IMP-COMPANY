@@ -84,8 +84,8 @@
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
   </style>
   <style>
-    .transicao-cinematografica{position:fixed;inset:0;z-index:99999;pointer-events:none;background:#080808;opacity:0;visibility:hidden;transition:opacity .48s cubic-bezier(.77,0,.18,1),visibility .48s;overflow:hidden}
-    .transicao-cinematografica::after{content:"";position:absolute;top:0;bottom:0;left:-35%;width:22%;background:linear-gradient(90deg,transparent,#ffffff18,transparent);transform:skewX(-18deg);opacity:0}
+    .transicao-cinematografica{position:fixed;inset:0;z-index:99999;pointer-events:none;background:#fff;opacity:0;visibility:hidden;transition:opacity .48s cubic-bezier(.77,0,.18,1),visibility .48s;overflow:hidden}
+    .transicao-cinematografica::after{content:"";position:absolute;top:0;bottom:0;left:-35%;width:22%;background:linear-gradient(90deg,transparent,#d8d8d82e,transparent);transform:skewX(-18deg);opacity:0}
     .transicao-cinematografica.entrada{opacity:1;visibility:visible}
     .transicao-cinematografica.saida{opacity:1;visibility:visible}
     .transicao-cinematografica.saida::after{opacity:1;animation:passagem-luz .62s cubic-bezier(.2,.7,.2,1) forwards}
