@@ -10,53 +10,100 @@
   <meta name="apple-mobile-web-app-title" content="IMP COMPANY">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="description" content="THE WORDS IS OURS — VOL. 01. Nova coleção IMP COMPANY.">
-  <title>CAMISETA THE WORLD IS OURS | IMP COMPANY</title>
+  <meta name="description" content="Camiseta THE WORLD IS OURS — escolha a cor e o tamanho.">
+  <title>CAMISETA THE WORLD IS OURS — IMP COMPANY</title>
   <style>
-    :root{--preto:#080808;--cinza:#777;--linha:#e8e8e8}
+    :root{--preto:#080808;--branco:#fff;--cinza:#777;--linha:#e8e8e8}
     *{box-sizing:border-box}
     html{scroll-behavior:smooth}
     body{margin:0;background:#fff;color:var(--preto);font-family:Arial,Helvetica,sans-serif}
     a{color:inherit;text-decoration:none}
+    button{font:inherit;cursor:pointer}
     .cabecalho{height:76px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--linha);position:relative}
-    .marca{display:inline-flex;align-items:center;justify-content:center}.logo-cabecalho{display:block;width:98px;height:46px;object-fit:contain}
-    .voltar{position:absolute;left:clamp(18px,5vw,64px);top:50%;transform:translateY(-50%);min-height:34px;padding:0 13px;display:inline-flex;align-items:center;gap:8px;border:1px solid #dedede;background:#fff;color:#111;font:700 10px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase}
+    .marca{display:inline-flex;align-items:flex-start;justify-content:center;gap:0;line-height:1;position:relative}.logo-cabecalho{display:block;width:98px;height:46px;object-fit:contain;object-position:center}
+
+    .voltar{position:absolute;left:clamp(18px,5vw,64px);top:50%;transform:translateY(-50%);min-height:34px;padding:0 13px;display:inline-flex;align-items:center;gap:8px;border:1px solid #dedede;border-radius:2px;background:#fff;color:#111;font:700 10px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;transition:background .22s ease,color .22s ease,border-color .22s ease,transform .22s ease;box-shadow:0 2px 5px #00000008}.voltar:hover{background:#111;color:#fff;border-color:#111;transform:translateY(calc(-50% - 1px))}.voltar:active{transform:translateY(-50%) scale(.97)}.voltar:focus-visible{outline:1px solid #111;outline-offset:3px}
+    .botao-sacola{position:absolute;right:clamp(18px,5vw,64px);top:50%;transform:translateY(-50%);width:36px;height:38px;display:grid;place-items:center;border:0;background:transparent;padding:2px;cursor:pointer;z-index:6;filter:drop-shadow(0 2px 2px #00000020);transition:transform .22s ease,filter .22s ease}.icone-sacola{width:25px;height:29px;display:block;overflow:visible;animation:sacola-flutua 4s ease-in-out infinite;transform-origin:50% 70%}.botao-sacola:hover{transform:translateY(-52%) scale(1.06);filter:drop-shadow(0 4px 3px #00000028)}.botao-sacola:active{transform:translateY(-48%) scale(.96)}.contador-sacola{position:absolute;top:1px;right:-1px;min-width:14px;height:14px;padding:0 3px;border-radius:20px;background:#111;color:#fff;border:1px solid #fff;font:700 8px Arial,sans-serif;display:grid;place-items:center}.botao-sacola:focus-visible{outline:1px solid #111;outline-offset:3px}@keyframes sacola-flutua{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.5px)}}@media(prefers-reduced-motion:reduce){.icone-sacola{animation:none}}
+    .botao-sacola .contador-sacola{top:0;right:-2px}
     .produto{width:min(1380px,100%);margin:0 auto;padding:54px clamp(18px,5vw,72px) 100px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:clamp(36px,6vw,100px);align-items:start}
-    .galeria{min-width:0}
-    .foto-principal{position:relative;aspect-ratio:1/1.08;display:grid;place-items:center;overflow:hidden;background:#f3f3f3;color:#fff;text-align:center;padding:0}
-    .foto-principal img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
-    .cores-produto{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
-    .opcao-cor{display:block;min-width:0;padding:0;border:1px solid #e5e5e5;background:#fff;cursor:pointer;text-align:left;transition:border-color .2s,transform .2s}
-    .opcao-cor[aria-pressed="true"]{border:2px solid #111}
-    .opcao-cor img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
-    .opcao-cor span{display:block;padding:9px 8px;font:700 9px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#333}
-    .opcao-cor:hover{transform:translateY(-2px)}
-    .opcao-cor:focus-visible{outline:2px solid #111;outline-offset:3px}
-    .foto-principal:before,.foto-principal:after{content:"";position:absolute;width:70%;aspect-ratio:1;border:1px solid #ffffff20;border-radius:50%}
-    .foto-principal:after{width:48%}
-    .placeholder{position:relative;z-index:1;display:grid;gap:13px;justify-items:center}
-    .placeholder small{font:700 9px Arial,sans-serif;letter-spacing:.32em;color:#aaa}
-    .placeholder strong{font:900 clamp(38px,6vw,76px)/.82 Impact,'Arial Black',sans-serif;letter-spacing:-.045em}
-    .placeholder span{font:700 10px Arial,sans-serif;letter-spacing:.28em;color:#aaa}
+    .galeria{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .foto-principal{grid-column:1/-1;position:relative;background:#f3f3f1;overflow:hidden;aspect-ratio:1/1.08}
+    .foto-principal img{width:100%;height:100%;display:block;object-fit:cover;transition:opacity .25s}
+    .miniaturas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .miniatura{padding:0;border:1px solid transparent;background:#f4f4f4;aspect-ratio:1/1.12;overflow:hidden}
+    .miniatura[aria-pressed="true"]{border-color:#111}
+    .miniatura img{width:100%;height:100%;object-fit:cover;display:block}
     .detalhes{position:sticky;top:35px;padding-top:8px}
     .identificador{font-size:9px;letter-spacing:.25em;color:#888;text-transform:uppercase;margin-bottom:18px}
-    h1{font-family:Impact,'Arial Black',Arial,sans-serif;font-size:clamp(36px,4.2vw,60px);line-height:.9;letter-spacing:-.035em;margin:0;text-transform:uppercase}
-    .subtitulo{margin:17px 0 30px;color:#777;font:10px Arial,sans-serif;letter-spacing:.22em;text-transform:uppercase}
+    h1{font-family:Impact,'Arial Black',Arial,sans-serif;font-size:clamp(34px,4vw,58px);line-height:.98;letter-spacing:-.035em;margin:0;text-transform:uppercase}
+    .avaliacao{display:flex;align-items:center;gap:10px;margin:17px 0 34px}
+    .estrelas{display:flex;align-items:center;gap:3px}.estrela-avaliacao{border:0;background:transparent;padding:2px;color:#c9c9c9;font-size:22px;line-height:1;cursor:pointer;transition:color .18s ease,transform .18s ease}.estrela-avaliacao.ativa,.estrela-avaliacao:hover{color:#111}.estrela-avaliacao:hover{transform:scale(1.12)}.estrela-avaliacao:focus-visible{outline:1px solid #111;outline-offset:2px}.avaliacao small{font-size:10px;color:#777;letter-spacing:.08em;white-space:nowrap}
+    .avaliacao small{font-size:10px;color:#777;letter-spacing:.08em}
     .grupo{border-top:1px solid var(--linha);padding:22px 0}
-    .rotulo{font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#777}
-    .mensagem{margin:12px 0 0;font-size:12px;line-height:1.8;color:#777}
-    .descricao{margin-top:12px;padding-top:22px;border-top:1px solid var(--linha);font-size:12px;line-height:1.8;color:#666}
-    .descricao strong{display:block;color:#111;font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}\n    .descricao ul{padding-left:18px;margin:10px 0 16px}.descricao li{padding:3px 0}.tabela-medidas{display:block;width:min(100%,520px);height:auto;margin:18px auto 16px;object-fit:contain}
+    .rotulo{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+    .valor-selecao{font-size:10px;color:#777;letter-spacing:.08em}
+    .cores{display:flex;gap:10px}
+    .cor{width:42px;height:42px;border:1px solid #d8d8d8;border-radius:50%;padding:4px;background:#fff}
+    .cor[aria-pressed="true"]{outline:1px solid #111;outline-offset:3px}
+    .amostra{display:block;width:100%;height:100%;border-radius:50%;border:1px solid #00000016}
+    .amostra.preta{background:#111}
+    .amostra.branca{background:#fff}.amostra.bege{background:#d8c5a5}
+    .tamanhos{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .tamanho{height:48px;background:#fff;border:1px solid #dedede;font-size:12px;transition:background .2s,color .2s,border .2s}
+    .tamanho[aria-pressed="true"]{background:#080808;color:#fff;border-color:#080808}
+    .acoes{display:grid;gap:10px;padding-top:24px}
+    .acao{min-height:54px;border:1px solid #080808;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;transition:transform .2s,background .2s,color .2s}
+    .acao:active{transform:scale(.985)}
+    .primaria{background:#080808;color:#fff}
+    .primaria:hover{background:#333}
+    .secundaria{background:#fff;color:#080808}
+    .secundaria:hover{background:#f2f2f2}
+    .descricao{margin-top:32px;padding-top:22px;border-top:1px solid var(--linha);font-size:12px;line-height:1.8;color:#666}
+    .descricao strong{display:block;color:#111;font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}.tabela-medidas{display:block;width:min(100%,520px);height:auto;margin:18px auto 16px;object-fit:contain}
+    .carrinho-fundo{position:fixed;inset:0;background:#0008;z-index:20;opacity:0;visibility:hidden;transition:.25s}
+    .carrinho-fundo.aberto{opacity:1;visibility:visible}
+    .painel-carrinho{position:absolute;right:0;top:0;height:100%;width:min(430px,100%);background:#fff;padding:28px;transform:translateX(100%);transition:transform .3s;display:flex;flex-direction:column}
+    .carrinho-fundo.aberto .painel-carrinho{transform:translateX(0)}
+    .topo-carrinho{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--linha);padding-bottom:20px}
+    .topo-carrinho h2{font:900 25px Impact,'Arial Black',sans-serif;margin:0}
+    .fechar{border:0;background:none;font-size:25px}
+    .itens-carrinho{padding:18px 0;display:grid;gap:14px;overflow:auto}
+    .item-carrinho{display:flex;align-items:center;gap:13px;font-size:12px;line-height:1.7;border-bottom:1px solid var(--linha);padding-bottom:14px}
+    .imagem-item-carrinho{width:64px;height:76px;flex:0 0 64px;object-fit:cover;background:#f3f3f3}
+    .dados-item-carrinho{min-width:0;flex:1}
+    .item-carrinho strong{display:block;font-size:12px;line-height:1.35;margin-bottom:5px}
+    .vazio{color:#777;font-size:12px;padding:20px 0}
+    .acoes-carrinho{display:grid;gap:10px;padding-top:16px;border-top:1px solid var(--linha)}
+    .botao-cupom{width:100%;min-height:42px;border:1px solid #111;background:#fff;color:#111;font:700 11px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s}
+    .botao-cupom:hover{background:#f3f3f3}
+    .campo-cupom{display:none;gap:8px;grid-template-columns:1fr auto}
+    .campo-cupom.aberto{display:grid}
+    .campo-cupom input{min-width:0;height:40px;border:1px solid var(--linha);padding:0 11px;font:16px Arial,sans-serif;text-transform:uppercase}
+    .aplicar-cupom{border:0;background:#111;color:#fff;padding:0 14px;font:700 10px Arial,sans-serif;text-transform:uppercase;cursor:pointer}
+    .mensagem-cupom{display:none;margin:0;color:#777;font:11px Arial,sans-serif;line-height:1.5}
+    .mensagem-cupom.visivel{display:block}
+    .finalizar-pedido{width:100%;min-height:48px;border:0;background:#111;color:#fff;font:900 13px Impact,'Arial Black',sans-serif;letter-spacing:.08em;text-transform:uppercase;opacity:.45;cursor:not-allowed}
+    .aviso{margin-top:0;padding-top:14px;border-top:0;font-size:11px;line-height:1.7;color:#777}
     .rodape{min-height:150px;padding:36px 24px;border-top:1px solid var(--linha);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px}
-    .rodape strong{font:900 17px Impact,'Arial Black',sans-serif;letter-spacing:.24em}
-    .rodape-info{display:flex;flex-direction:column;align-items:center;gap:10px;color:#777;font:10px Arial,sans-serif;letter-spacing:.035em;text-align:center}
-    .instagram-rodape{width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;color:#111}
+    .rodape strong{font-family:Impact,'Arial Black',Arial,sans-serif;font-size:17px;letter-spacing:.24em;font-weight:900}
+    .rodape-info{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#777;font:10px Arial,sans-serif;letter-spacing:.035em;text-align:center}
+    .instagram-rodape{width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;color:#111;transition:opacity .2s ease,transform .2s ease}
+    .instagram-rodape:hover{opacity:.6;transform:translateY(-1px)}
     .instagram-rodape svg{width:16px;height:16px;display:block}
-    .transicao-cinematografica{position:fixed;inset:0;z-index:99999;pointer-events:none;background:#fff;opacity:0;visibility:hidden;transition:opacity .48s cubic-bezier(.77,0,.18,1),visibility .48s}
-    .transicao-cinematografica.entrada,.transicao-cinematografica.saida{opacity:1;visibility:visible}
-    @media(max-width:800px){.cabecalho{height:66px}.logo-cabecalho{width:84px;height:40px}.voltar{font-size:9px}.produto{grid-template-columns:1fr;gap:30px;padding-top:20px}.detalhes{position:static;padding-top:0}h1{font-size:44px}}
-    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}.transicao-cinematografica{display:none}}
+    @media(max-width:800px){.cabecalho{height:66px}.logo-cabecalho{width:84px;height:40px}.botao-sacola{right:18px}.voltar{font-size:9px}.produto{grid-template-columns:1fr;gap:30px;padding-top:20px}.galeria{gap:8px}.miniaturas{gap:8px}.detalhes{position:static;padding-top:0}h1{font-size:42px}.avaliacao{margin:14px 0 25px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
     .copyright,sup.copyright{display:none!important}
+  </style>
+  <style>
+    .transicao-cinematografica{position:fixed;top:0;right:0;bottom:0;left:0;width:100%;height:100%;min-height:100vh;z-index:99999;pointer-events:none;background:#fff;opacity:0;visibility:hidden;transition:opacity .48s cubic-bezier(.77,0,.18,1),visibility .48s;overflow:hidden;transform:translateZ(0)}
+    @media(max-width:700px){.transicao-cinematografica{position:fixed;top:0;left:0;right:auto;bottom:auto;width:100vw;height:100vh;height:100dvh;min-height:100svh;max-width:none;transform:translate3d(0,0,0)}}
+    .transicao-cinematografica::after{content:none}
+    .transicao-cinematografica.entrada{opacity:1;visibility:visible}
+    .transicao-cinematografica.saida{opacity:1;visibility:visible}
+    .transicao-cinematografica.saida::after{content:none}
+    @keyframes passagem-luz{from{left:-35%}to{left:125%}}
+    @media(prefers-reduced-motion:reduce){.transicao-cinematografica{display:none!important}}
+
   </style>
 </head>
 <body>
@@ -64,52 +111,161 @@
   <header class="cabecalho">
     <a class="voltar" href="index.html">← Voltar</a>
     <a class="marca" href="index.html" aria-label="IMP COMPANY — início"><img class="logo-cabecalho" src="assets/7F820FC2-E4D9-44CA-832A-119734248297.jpeg" alt="IMP COMPANY"></a>
+    <a class="botao-sacola" href="carrinho.html" aria-label="Abrir sacola de compras"><svg class="icone-sacola" viewBox="0 0 48 52" aria-hidden="true"><defs><linearGradient id="sacola-corpo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#555"/><stop offset=".42" stop-color="#171717"/><stop offset="1" stop-color="#050505"/></linearGradient><linearGradient id="sacola-alca" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#777"/><stop offset=".5" stop-color="#111"/><stop offset="1" stop-color="#555"/></linearGradient></defs><path d="M14 17v-5a10 10 0 0 1 20 0v5" fill="none" stroke="url(#sacola-alca)" stroke-width="4" stroke-linecap="round"/><path d="M8 17h32l3 29H5z" fill="url(#sacola-corpo)" stroke="#050505" stroke-width="1.2" stroke-linejoin="round"/><path d="M10 19h5l-2 23H8z" fill="#ffffff" opacity=".17"/><path d="M13 20h22" stroke="#ffffff" opacity=".22" stroke-width="1.5"/><path d="M8 17h32" stroke="#888" stroke-width="1.3" opacity=".65"/><path d="M16 12a8 8 0 0 1 16 0" fill="none" stroke="#999" stroke-width="1" opacity=".5"/></svg><span class="contador-sacola" id="quantidade-carrinho">0</span></a>
   </header>
   <main class="produto">
-    <section class="galeria" aria-label="Fotos do produto">
-      <div class="foto-principal">
-        <img id="imagem-produto" src="assets/09D784ED-66EA-4E62-A7A3-4FCCD9056488.jpeg" alt="Camiseta THE WORLD IS OURS — cor preta">
-      </div>
-      <div class="cores-produto" aria-label="Escolha uma cor">
-        <button class="opcao-cor" type="button" data-imagem="assets/09D784ED-66EA-4E62-A7A3-4FCCD9056488.jpeg" aria-label="Selecionar cor preta" aria-pressed="true"><img src="assets/09D784ED-66EA-4E62-A7A3-4FCCD9056488.jpeg" alt="Camiseta na cor preta"><span>Preta</span></button>
-        <button class="opcao-cor" type="button" data-imagem="assets/3F5EEBA9-0AB3-46EB-A441-2CC363783366.jpeg" aria-label="Selecionar cor branca" aria-pressed="false"><img src="assets/3F5EEBA9-0AB3-46EB-A441-2CC363783366.jpeg" alt="Camiseta na cor branca"><span>Branca</span></button>
-        <button class="opcao-cor" type="button" data-imagem="assets/6EAF33C7-99E6-489C-901F-EA55EAE9E93D.jpeg" aria-label="Selecionar cor bege" aria-pressed="false"><img src="assets/6EAF33C7-99E6-489C-901F-EA55EAE9E93D.jpeg" alt="Camiseta na cor bege"><span>Bege</span></button>
+    <section class="galeria" aria-label="Fotos da camiseta">
+      <div class="foto-principal"><img id="foto-atual" src="assets/FE633D37-CBDE-4FBC-B7BE-BD8BE80F3F23.jpeg" alt="Camiseta IMP Gengar Drop #1 preta — frente"></div>
+      <div class="miniaturas" id="miniaturas">
+        <button class="miniatura" type="button" data-image="assets/FE633D37-CBDE-4FBC-B7BE-BD8BE80F3F23.jpeg" data-alt="Camiseta preta — frente" aria-pressed="true"><img src="assets/FE633D37-CBDE-4FBC-B7BE-BD8BE80F3F23.jpeg" alt="Frente preta"></button>
+        <button class="miniatura" type="button" data-image="assets/B679474E-F91C-4005-AA22-A6458729D56A.jpeg" data-alt="Camiseta preta — costas" aria-pressed="false"><img src="assets/B679474E-F91C-4005-AA22-A6458729D56A.jpeg" alt="Costas preta"></button>
+        <button class="miniatura" type="button" data-image="assets/0C7335D7-22DB-4A49-B0C2-D18BA5BBBFA6.jpeg" data-alt="Camiseta bege — frente" aria-pressed="false"><img src="assets/0C7335D7-22DB-4A49-B0C2-D18BA5BBBFA6.jpeg" alt="Frente bege"></button>
+        <button class="miniatura" type="button" data-image="assets/69F0497C-073A-48D5-B66A-2169330D2479.jpeg" data-alt="Camiseta bege — costas" aria-pressed="false"><img src="assets/69F0497C-073A-48D5-B66A-2169330D2479.jpeg" alt="Costas bege"></button>
       </div>
     </section>
     <section class="detalhes">
-      <div class="identificador">IMP COMPANY · NOVA COLEÇÃO</div>
+      <div class="identificador">IMP COMPANY · DROP #1</div>
       <h1>CAMISETA THE WORLD IS OURS</h1>
-      <p class="subtitulo">A TWO-PART COLLECTION</p>
-      <div class="grupo">
-        <div class="rotulo">Lançamento</div>
-        <p class="mensagem">As informações deste lançamento serão adicionadas em breve.</p>
+      <div class="avaliacao" data-product-id="camiseta-the-world-is-ours-vol-01" aria-label="Avalie este produto">
+        <div class="estrelas" id="estrelas-avaliacao" role="group" aria-label="Escolha uma nota de 1 a 5">
+          <button class="estrela-avaliacao" type="button" data-rating="1" aria-label="1 estrela" aria-pressed="false">★</button>
+          <button class="estrela-avaliacao" type="button" data-rating="2" aria-label="2 estrelas" aria-pressed="false">★</button>
+          <button class="estrela-avaliacao" type="button" data-rating="3" aria-label="3 estrelas" aria-pressed="false">★</button>
+          <button class="estrela-avaliacao" type="button" data-rating="4" aria-label="4 estrelas" aria-pressed="false">★</button>
+          <button class="estrela-avaliacao" type="button" data-rating="5" aria-label="5 estrelas" aria-pressed="false">★</button>
+        </div>
+        <small id="texto-avaliacao">Avalie este produto</small>
       </div>
-      <div class="descricao"><strong>Sobre o produto</strong><p>Inspirada na estética underground, a THE WORLD IS OURS representa atitude, personalidade e originalidade.</p><ul><li>Tecido 100% algodão, proporcionando conforto e toque agradável.</li><li>Estampa em DTF de alta qualidade, com excelente definição e acabamento.</li><li>Impressão desenvolvida para destacar cada detalhe da arte.</li><li>Design exclusivo, pensado para quem valoriza estilo e autenticidade.</li></ul><p>Uma peça para quem constrói o próprio caminho e não precisa seguir tendências para se destacar.</p><img class="tabela-medidas" src="assets/Tabela%20de%20Medidas%20para%20Camisetas.png" alt="Tabela de medidas para camisetas"></div>
+      <div class="grupo">
+        <div class="rotulo"><span>Cor</span><span class="valor-selecao" id="cor-atual">Preta</span></div>
+        <div class="cores">
+          <button class="cor" type="button" data-color="Preta" aria-label="Selecionar cor preta" aria-pressed="true"><span class="amostra preta"></span></button>
+          <button class="cor" type="button" data-color="Branca" aria-label="Selecionar cor branca" aria-pressed="false"><span class="amostra branca"></span></button>
+          <button class="cor" type="button" data-color="Bege" aria-label="Selecionar cor bege" aria-pressed="false"><span class="amostra bege"></span></button>
+        </div>
+      </div>
+      <div class="grupo">
+        <div class="rotulo"><span>Tamanho</span><span class="valor-selecao" id="tamanho-atual">Selecione</span></div>
+        <div class="tamanhos">
+          <button class="tamanho" type="button" data-size="P" aria-pressed="false">P</button>
+          <button class="tamanho" type="button" data-size="M" aria-pressed="false">M</button>
+          <button class="tamanho" type="button" data-size="G" aria-pressed="false">G</button>
+          <button class="tamanho" type="button" data-size="GG" aria-pressed="false">GG</button>
+        </div>
+      </div>
+      <div class="acoes">
+        <button class="acao primaria" type="button" id="comprar">Comprar agora</button>
+        <button class="acao secundaria" type="button" id="adicionar">Adicionar ao carrinho</button>
+      </div>
+      <div class="descricao"><strong>Detalhes do produto</strong><p>Inspirada na estética underground, a THE WORLD IS OURS representa atitude, personalidade e originalidade.</p><ul><li>Tecido 100% algodão, proporcionando conforto e toque agradável.</li><li>Estampa em DTF de alta qualidade, com excelente definição e acabamento.</li><li>Impressão desenvolvida para destacar cada detalhe da arte.</li><li>Design exclusivo, pensado para quem valoriza estilo e autenticidade.</li></ul><p>Uma peça para quem constrói o próprio caminho e não precisa seguir tendências para se destacar.</p><img class="tabela-medidas" src="assets/Tabela%20de%20Medidas%20para%20Camisetas.png" alt="Tabela de medidas para camisetas"></div>
     </section>
   </main>
+  <div class="carrinho-fundo" id="carrinho-fundo" aria-hidden="true">
+    <aside class="painel-carrinho" role="dialog" aria-modal="true" aria-label="Seu carrinho">
+      <div class="topo-carrinho"><h2>SEU CARRINHO</h2><button class="fechar" type="button" id="fechar-carrinho" aria-label="Fechar">×</button></div>
+      <div class="itens-carrinho" id="itens-carrinho"><p class="vazio">Seu carrinho está vazio.</p></div>
+      <div class="acoes-carrinho">
+        <button class="botao-cupom" type="button" id="abrir-cupom" aria-expanded="false">＋ Adicionar cupom</button>
+        <div class="campo-cupom" id="campo-cupom">
+          <input type="text" id="codigo-cupom" placeholder="Código do cupom" aria-label="Código do cupom">
+          <button class="aplicar-cupom" type="button" id="aplicar-cupom">Aplicar</button>
+        </div>
+        <p class="mensagem-cupom" id="mensagem-cupom" role="status">A aplicação de cupons será disponibilizada em breve.</p>
+        <button class="finalizar-pedido" type="button" disabled>Finalizar pedido</button>
+      </div>
+      <div class="aviso">Seu item fica salvo neste navegador. A finalização de pedidos e o pagamento online serão ativados quando a loja definir os dados comerciais e a integração de pagamento.</div>
+    </aside>
+  </div>
   <footer class="rodape"><strong>IMP COMPANY</strong><div class="rodape-info"><span>2020/2026 IMP COMPANY. Todos os direitos reservados.</span><a class="instagram-rodape" href="https://www.instagram.com/imp_records/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da IMP RECORDS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a></div></footer>
-  <script src="assets/product-reviews.js" defer></script>
   <script>
     (() => {
-      const imagemProduto=document.getElementById('imagem-produto');
-      document.querySelectorAll('.opcao-cor').forEach(botao=>{
-        botao.addEventListener('click',()=>{
-          imagemProduto.src=botao.dataset.imagem;
-          imagemProduto.alt='Camiseta THE WORLD IS OURS — cor '+botao.textContent.trim();
-          document.querySelectorAll('.opcao-cor').forEach(item=>item.setAttribute('aria-pressed',String(item===botao)));
-        });
+      const imagens = {
+        Preta: [{src:'assets/09D784ED-66EA-4E62-A7A3-4FCCD9056488.jpeg',alt:'Camiseta preta'}],
+        Branca: [{src:'assets/3F5EEBA9-0AB3-46EB-A441-2CC363783366.jpeg',alt:'Camiseta branca'}],
+        Bege: [{src:'assets/6EAF33C7-99E6-489C-901F-EA55EAE9E93D.jpeg',alt:'Camiseta bege'}]
+      };
+      let cor = 'Preta';
+      let tamanho = '';
+      let carrinho = [];
+      try { carrinho = JSON.parse(localStorage.getItem('imp-carrinho') || '[]'); } catch (_) { carrinho = []; }
+      const foto = document.getElementById('foto-atual');
+      const miniaturas = document.getElementById('miniaturas');
+      const painel = document.getElementById('carrinho-fundo');
+      function atualizarGaleria() {
+        const conjunto = imagens[cor];
+        foto.src = conjunto[0].src;
+        foto.alt = conjunto[0].alt;
+        miniaturas.innerHTML = conjunto.map((item,i) => '<button class="miniatura" type="button" data-image="'+item.src+'" data-alt="'+item.alt+'" aria-pressed="'+(i===0)+'"><img src="'+item.src+'" alt="'+item.alt+'"></button>').join('');
+        miniaturas.querySelectorAll('button').forEach(botao => botao.addEventListener('click', () => {
+          foto.src = botao.dataset.image;
+          foto.alt = botao.dataset.alt;
+          miniaturas.querySelectorAll('button').forEach(b => b.setAttribute('aria-pressed', String(b===botao)));
+        }));
+      }
+      document.querySelectorAll('[data-color]').forEach(botao => botao.addEventListener('click', () => {
+        cor = botao.dataset.color;
+        document.getElementById('cor-atual').textContent = cor;
+        document.querySelectorAll('[data-color]').forEach(b => b.setAttribute('aria-pressed',String(b===botao)));
+        atualizarGaleria();
+      }));
+      document.querySelectorAll('[data-size]').forEach(botao => botao.addEventListener('click', () => {
+        tamanho = botao.dataset.size;
+        document.getElementById('tamanho-atual').textContent = tamanho;
+        document.querySelectorAll('[data-size]').forEach(b => b.setAttribute('aria-pressed',String(b===botao)));
+      }));
+      function renderizarCarrinho() {
+        document.getElementById('quantidade-carrinho').textContent = carrinho.length;
+        const lista = document.getElementById('itens-carrinho');
+        lista.innerHTML = carrinho.length ? carrinho.map((item,i) => { const imagemItem = item.imagem || imagens[item.cor]?.[0]?.src || imagens.Preta[0].src; return '<div class="item-carrinho"><img class="imagem-item-carrinho" src="'+imagemItem+'" alt="'+item.nome+'"><div class="dados-item-carrinho"><strong>'+item.nome+'</strong>Cor: '+item.cor+' · Tamanho: '+item.tamanho+'<br><button type="button" data-remove="'+i+'" style="border:0;background:none;padding:8px 0;text-decoration:underline;font-size:10px">Remover</button></div></div>'; }).join('') : '<p class="vazio">Seu carrinho está vazio.</p>';
+        lista.querySelectorAll('[data-remove]').forEach(b => b.addEventListener('click', () => { carrinho.splice(Number(b.dataset.remove),1); salvar(); }));
+      }
+      function salvar() { localStorage.setItem('imp-carrinho',JSON.stringify(carrinho)); renderizarCarrinho(); }
+      function adicionar(abrir) {
+        if (!tamanho) { document.getElementById('tamanho-atual').textContent = 'Escolha P, M, G ou GG'; document.querySelector('.grupo:nth-of-type(2)').scrollIntoView({behavior:'smooth',block:'center'}); return; }
+        carrinho.push({nome:'CAMISETA THE WORLD IS OURS',cor,tamanho,imagem:imagens[cor][0].src});
+        salvar();
+        if (abrir) window.location.href='carrinho.html';
+        else { const b=document.getElementById('adicionar'); b.textContent='Adicionado ao carrinho'; setTimeout(()=>b.textContent='Adicionar ao carrinho',1500); }
+      }
+      function abrirCarrinho(){painel.classList.add('aberto');painel.setAttribute('aria-hidden','false')}
+      function fecharCarrinho(){painel.classList.remove('aberto');painel.setAttribute('aria-hidden','true')}
+      document.getElementById('adicionar').addEventListener('click',()=>adicionar(false));
+      document.getElementById('comprar').addEventListener('click',()=>adicionar(true));
+      document.getElementById('fechar-carrinho').addEventListener('click',fecharCarrinho);
+      const botaoCupom=document.getElementById('abrir-cupom');
+      const campoCupom=document.getElementById('campo-cupom');
+      botaoCupom.addEventListener('click',()=>{
+        const aberto=campoCupom.classList.toggle('aberto');
+        botaoCupom.setAttribute('aria-expanded',String(aberto));
+        botaoCupom.textContent=aberto?'− Fechar cupom':'＋ Adicionar cupom';
+        if(aberto) document.getElementById('codigo-cupom').focus();
       });
-      const camada=document.querySelector('.transicao-cinematografica');
-      if(!camada||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
-      requestAnimationFrame(()=>requestAnimationFrame(()=>camada.classList.remove('entrada')));
-      document.addEventListener('click',event=>{
-        const link=event.target.closest('a[href]');
-        if(!link||event.defaultPrevented||event.button!==0||event.metaKey||event.ctrlKey||event.shiftKey||event.altKey||link.target||link.hasAttribute('download'))return;
-        let destino;try{destino=new URL(link.href,window.location.href)}catch(_){return}
-        if(destino.origin!==window.location.origin||destino.pathname===window.location.pathname||destino.hash&&destino.pathname===window.location.pathname)return;
-        event.preventDefault();camada.classList.add('saida');window.setTimeout(()=>{window.location.href=destino.href},460);
+      document.getElementById('aplicar-cupom').addEventListener('click',()=>{
+        document.getElementById('mensagem-cupom').classList.add('visivel');
+      });
+      painel.addEventListener('click',e=>{if(e.target===painel)fecharCarrinho()});
+      document.addEventListener('keydown',e=>{if(e.key==='Escape')fecharCarrinho()});
+      atualizarGaleria();renderizarCarrinho();
+    })();
+  </script>
+
+  <script>
+    (() => {
+      const camada = document.querySelector('.transicao-cinematografica');
+      if (!camada || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      requestAnimationFrame(() => requestAnimationFrame(() => camada.classList.remove('entrada')));
+      document.addEventListener('click', event => {
+        const link = event.target.closest('a[href]');
+        if (!link || event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey || link.target || link.hasAttribute('download')) return;
+        let destino;
+        try { destino = new URL(link.href, window.location.href); } catch (_) { return; }
+        if (destino.origin !== window.location.origin || destino.pathname === window.location.pathname || destino.hash && destino.pathname === window.location.pathname) return;
+        event.preventDefault();
+        camada.classList.add('saida');
+        window.setTimeout(() => { window.location.href = destino.href; }, 460);
       });
     })();
   </script>
+  <script src="assets/product-reviews.js" defer></script>
 </body>
 </html>
