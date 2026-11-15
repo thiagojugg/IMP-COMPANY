@@ -116,8 +116,8 @@
   </header>
   <main class="produto">
     <section class="galeria" aria-label="Fotos da camiseta">
-      <div class="foto-principal"><img id="foto-atual" src="assets/09D784ED-66EA-4E62-A7A3-4FCCD9056488.jpeg" alt="Camiseta THE WORLD IS OURS — preta"><span class="selo-em-breve" aria-label="Em breve">EM BREVE</span></div>
-
+      <div class="foto-principal"><img id="foto-atual" src="assets/146323B1-98BD-4DFB-BE3A-802524D94693.jpeg" alt="Camiseta THE WORLD IS OURS — preta, frente"><span class="selo-em-breve" aria-label="Em breve">EM BREVE</span></div>
+      <div class="miniaturas" id="miniaturas" aria-label="Outras fotos do produto"></div>
     </section>
     <section class="detalhes">
       <div class="identificador">IMP COMPANY · DROP #1</div>
@@ -136,7 +136,6 @@
         <div class="rotulo"><span>Cor</span><span class="valor-selecao" id="cor-atual">Preta</span></div>
         <div class="cores">
           <button class="cor" type="button" data-color="Preta" aria-label="Selecionar cor preta" aria-pressed="true"><span class="amostra preta"></span></button>
-          <button class="cor" type="button" data-color="Branca" aria-label="Selecionar cor branca" aria-pressed="false"><span class="amostra branca"></span></button>
           <button class="cor" type="button" data-color="Bege" aria-label="Selecionar cor bege" aria-pressed="false"><span class="amostra bege"></span></button>
         </div>
       </div>
@@ -176,9 +175,8 @@
   <script>
     (() => {
       const imagens = {
-        Preta: [{src:'assets/09D784ED-66EA-4E62-A7A3-4FCCD9056488.jpeg',alt:'Camiseta preta'}],
-        Branca: [{src:'assets/3F5EEBA9-0AB3-46EB-A441-2CC363783366.jpeg',alt:'Camiseta branca'}],
-        Bege: [{src:'assets/6EAF33C7-99E6-489C-901F-EA55EAE9E93D.jpeg',alt:'Camiseta bege'}]
+        Preta: [{src:'assets/146323B1-98BD-4DFB-BE3A-802524D94693.jpeg',alt:'Camiseta preta — frente'},{src:'assets/477F3507-8D12-4918-839B-1A523FFCE5D9.jpeg',alt:'Camiseta preta — costas'}],
+        Bege: [{src:'assets/6250AD1F-76F4-45EE-B7AD-04DD7C5DA4B0.jpeg',alt:'Camiseta bege — frente'},{src:'assets/D0DB67B2-E56F-410E-8546-8271522531AC.jpeg',alt:'Camiseta bege — costas'}]
       };
       let cor = 'Preta';
       let tamanho = '';
@@ -186,10 +184,13 @@
       try { carrinho = JSON.parse(localStorage.getItem('imp-carrinho') || '[]'); } catch (_) { carrinho = []; }
       const foto = document.getElementById('foto-atual');
       const painel = document.getElementById('carrinho-fundo');
-      function atualizarGaleria() {
+      function atualizarGaleria(indice = 0) {
         const conjunto = imagens[cor];
-        foto.src = conjunto[0].src;
-        foto.alt = conjunto[0].alt;
+        foto.src = conjunto[indice].src;
+        foto.alt = conjunto[indice].alt;
+        const miniaturas = document.getElementById('miniaturas');
+        miniaturas.innerHTML = conjunto.map((imagem,i) => '<button class="miniatura" type="button" data-photo="'+i+'" aria-label="Ver '+imagem.alt+'" aria-pressed="'+String(i===indice)+'"><img src="'+imagem.src+'" alt=""></button>').join('');
+        miniaturas.querySelectorAll('[data-photo]').forEach(botao => botao.addEventListener('click', () => atualizarGaleria(Number(botao.dataset.photo))));
       }
       document.querySelectorAll('[data-color]').forEach(botao => botao.addEventListener('click', () => {
         cor = botao.dataset.color;
