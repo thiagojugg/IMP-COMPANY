@@ -142,7 +142,13 @@
       }
     }
     /* Selo e desfoque no botão THE WORLD IS OURS da vitrine */
-    .colecao-words .colecao-imagem{filter:blur(4px) contrast(1.04) saturate(.96)!important;transform:scale(1.035)!important}
+    .colecao-words .colecao-imagem,
+    .colecao-words:hover .colecao-imagem,
+    .colecao-words:active .colecao-imagem,
+    .colecao-words:focus .colecao-imagem{
+      filter:blur(4px) contrast(1.04) saturate(.96)!important;
+      transform:scale(1.035)!important;
+    }
     .colecao .selo-em-breve-home{
       position:absolute!important;left:50%;top:50%;right:auto;bottom:auto;margin:0;
       transform:translate(-50%,-50%) rotate(-7deg);
