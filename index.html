@@ -161,6 +161,11 @@
       -webkit-backdrop-filter:blur(12px) saturate(.72);pointer-events:none;
     }
   </style>
+
+  <style id="protecoes-conteudo-imp">
+    body,body *:not(input):not(textarea):not([contenteditable="true"]){-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none}
+    img{-webkit-user-drag:none;user-drag:none}
+  </style>
 </head>
 <body>
   <div class="transicao-cinematografica entrada" aria-hidden="true"></div>
@@ -238,6 +243,21 @@
         event.preventDefault();
         camada.classList.add('saida');
         window.setTimeout(() => { window.location.href = destino.href; }, 460);
+      });
+    })();
+  </script>
+
+  <script id="bloqueio-copia-imp">
+    (()=>{
+      const bloquear=e=>e.preventDefault();
+      document.addEventListener('contextmenu',bloquear);
+      document.addEventListener('dragstart',e=>{if(e.target.closest('img'))bloquear(e)});
+      document.addEventListener('copy',bloquear);
+      document.addEventListener('cut',bloquear);
+      document.addEventListener('selectstart',e=>{if(!e.target.closest('input,textarea,[contenteditable="true"]'))bloquear(e)});
+      document.addEventListener('keydown',e=>{
+        const k=(e.key||'').toLowerCase();
+        if((e.ctrlKey||e.metaKey)&&['c','x','s','u','p'].includes(k))bloquear(e);
       });
     })();
   </script>
