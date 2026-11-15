@@ -23,7 +23,15 @@
     .voltar{position:absolute;left:clamp(18px,5vw,64px);top:50%;transform:translateY(-50%);min-height:34px;padding:0 13px;display:inline-flex;align-items:center;gap:8px;border:1px solid #dedede;background:#fff;color:#111;font:700 10px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase}
     .produto{width:min(1380px,100%);margin:0 auto;padding:54px clamp(18px,5vw,72px) 100px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:clamp(36px,6vw,100px);align-items:start}
     .galeria{min-width:0}
-    .foto-principal{position:relative;aspect-ratio:1/1.08;display:grid;place-items:center;overflow:hidden;background:radial-gradient(ellipse at 50% 42%,#353535 0%,#171717 54%,#080808 100%);color:#fff;text-align:center;padding:24px}
+    .foto-principal{position:relative;aspect-ratio:1/1.08;display:grid;place-items:center;overflow:hidden;background:#f3f3f3;color:#fff;text-align:center;padding:0}
+    .foto-principal img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}
+    .cores-produto{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:14px}
+    .opcao-cor{display:block;min-width:0;padding:0;border:1px solid #e5e5e5;background:#fff;cursor:pointer;text-align:left;transition:border-color .2s,transform .2s}
+    .opcao-cor[aria-pressed="true"]{border:2px solid #111}
+    .opcao-cor img{display:block;width:100%;aspect-ratio:1/1;object-fit:cover}
+    .opcao-cor span{display:block;padding:9px 8px;font:700 9px Arial,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:#333}
+    .opcao-cor:hover{transform:translateY(-2px)}
+    .opcao-cor:focus-visible{outline:2px solid #111;outline-offset:3px}
     .foto-principal:before,.foto-principal:after{content:"";position:absolute;width:70%;aspect-ratio:1;border:1px solid #ffffff20;border-radius:50%}
     .foto-principal:after{width:48%}
     .placeholder{position:relative;z-index:1;display:grid;gap:13px;justify-items:center}
@@ -60,7 +68,12 @@
   <main class="produto">
     <section class="galeria" aria-label="Fotos do produto">
       <div class="foto-principal">
-        <div class="placeholder"><small>IMP COMPANY PRESENTS</small><strong>THE WORDS<br>IS OURS</strong><span>VOL. 01</span></div>
+        <img id="imagem-produto" src="assets/15047FDE-A519-47FA-85DD-F7B757371B6A.jpeg" alt="Camiseta THE WORLD IS OURS">
+      </div>
+      <div class="cores-produto" aria-label="Escolha uma cor">
+        <button class="opcao-cor" type="button" data-imagem="assets/09D784ED-66EA-4E62-A7A3-4FCCD9056488.jpeg" aria-label="Selecionar cor preta" aria-pressed="false"><img src="assets/09D784ED-66EA-4E62-A7A3-4FCCD9056488.jpeg" alt="Camiseta na cor preta"><span>Preta</span></button>
+        <button class="opcao-cor" type="button" data-imagem="assets/3F5EEBA9-0AB3-46EB-A441-2CC363783366.jpeg" aria-label="Selecionar cor branca" aria-pressed="false"><img src="assets/3F5EEBA9-0AB3-46EB-A441-2CC363783366.jpeg" alt="Camiseta na cor branca"><span>Branca</span></button>
+        <button class="opcao-cor" type="button" data-imagem="assets/6EAF33C7-99E6-489C-901F-EA55EAE9E93D.jpeg" aria-label="Selecionar cor bege" aria-pressed="false"><img src="assets/6EAF33C7-99E6-489C-901F-EA55EAE9E93D.jpeg" alt="Camiseta na cor bege"><span>Bege</span></button>
       </div>
     </section>
     <section class="detalhes">
@@ -78,6 +91,14 @@
   <script src="assets/product-reviews.js" defer></script>
   <script>
     (() => {
+      const imagemProduto=document.getElementById('imagem-produto');
+      document.querySelectorAll('.opcao-cor').forEach(botao=>{
+        botao.addEventListener('click',()=>{
+          imagemProduto.src=botao.dataset.imagem;
+          imagemProduto.alt='Camiseta THE WORLD IS OURS — cor '+botao.textContent.trim();
+          document.querySelectorAll('.opcao-cor').forEach(item=>item.setAttribute('aria-pressed',String(item===botao)));
+        });
+      });
       const camada=document.querySelector('.transicao-cinematografica');
       if(!camada||window.matchMedia('(prefers-reduced-motion: reduce)').matches)return;
       requestAnimationFrame(()=>requestAnimationFrame(()=>camada.classList.remove('entrada')));
