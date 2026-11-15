@@ -72,7 +72,7 @@
 <body>
   <div class="transicao-cinematografica entrada" aria-hidden="true"></div>
   <header class="cabecalho">
-    <a class="voltar" href="camiseta-gengar.html">← Voltar</a>
+    <a class="voltar" id="voltar-sacola" href="index.html">← Voltar</a>
     <a class="marca" href="index.html" aria-label="IMP COMPANY — início"><img class="logo-cabecalho" src="assets/7F820FC2-E4D9-44CA-832A-119734248297.jpeg" alt="IMP COMPANY"></a>
   </header>
   <main>
@@ -90,6 +90,17 @@
     </section>
   </main>
   <footer class="rodape"><strong>IMP COMPANY</strong><div class="rodape-info"><span>2020/2026 IMP COMPANY. Todos os direitos reservados.</span><a class="instagram-rodape" href="https://www.instagram.com/imp_records/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da IMP RECORDS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a></div></footer>
+  <script>
+    (() => {
+      const voltar = document.getElementById('voltar-sacola');
+      try {
+        const anterior = new URL(document.referrer);
+        if (anterior.origin === window.location.origin && !anterior.pathname.endsWith('/carrinho.html')) {
+          voltar.href = anterior.pathname.split('/').pop() + anterior.search + anterior.hash;
+        }
+      } catch (_) {}
+    })();
+  </script>
   <script>
     (() => {
       let carrinho=[];
