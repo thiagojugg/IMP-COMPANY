@@ -121,6 +121,28 @@
     @media(prefers-reduced-motion:reduce){.transicao-cinematografica{display:none!important}}
 
   </style>
+  <style>
+    /* Profundidade permanente nos cards de produto */
+    .colecao{
+      border:1px solid #ffffff35!important;
+      box-shadow:
+        inset 0 2px 0 #ffffff55,
+        inset 0 -5px 0 #00000035,
+        0 5px 0 #a9a9a9,
+        0 12px 22px #00000030,
+        0 22px 38px #00000018!important;
+    }
+    @media(hover:none){
+      .colecao:hover,.colecao:active{
+        box-shadow:
+          inset 0 2px 0 #ffffff55,
+          inset 0 -5px 0 #00000035,
+          0 5px 0 #a9a9a9,
+          0 12px 22px #00000030,
+          0 22px 38px #00000018!important;
+      }
+    }
+  </style>
 </head>
 <body>
   <div class="transicao-cinematografica entrada" aria-hidden="true"></div>
