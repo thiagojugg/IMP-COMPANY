@@ -10,41 +10,87 @@
   <meta name="description" content="CAMISETA VN ANARQUISTA — IMP COMPANY. Camiseta preta, tamanhos P ao GG.">
   <title>CAMISETA VN ANARQUISTA — IMP COMPANY</title>
   <style>
-    :root{--line:#e8e8e8;--black:#080808;--muted:#777}
+    :root{--preto:#080808;--branco:#fff;--cinza:#777;--linha:#e8e8e8}
     *{box-sizing:border-box}
-    body{margin:0;background:#fff;color:var(--black);font-family:Arial,Helvetica,sans-serif}
-    a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
-    .header{height:76px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line);position:relative}
-    .logo{width:92px;height:44px;object-fit:contain}
-    .back,.bag{position:absolute;top:50%;transform:translateY(-50%)}
-    .back{left:clamp(18px,5vw,64px);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border:1px solid #dedede;padding:11px 13px}
-    .bag{right:clamp(18px,5vw,64px);font-size:11px;font-weight:700;letter-spacing:.1em}
-    main{width:min(1240px,100%);margin:auto;padding:52px clamp(18px,5vw,64px) 90px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:clamp(34px,6vw,90px);align-items:start}
-    .photo{background:#fff;overflow:hidden;display:grid;gap:12px;align-content:start}.photo-main{background:#fff;overflow:hidden;aspect-ratio:1170/1461}.photo-main img{width:100%;height:100%;object-fit:contain;display:block}.thumbnails{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}.thumbnail{padding:0;border:1px solid transparent;background:#f4f4f4;aspect-ratio:1/1.12;overflow:hidden;cursor:pointer}.thumbnail[aria-pressed="true"]{border-color:#111}.thumbnail img{width:100%;height:100%;object-fit:cover;display:block}
-    .details{position:sticky;top:32px;padding-top:10px}
-    .eyebrow{font-size:9px;letter-spacing:.25em;color:#888;text-transform:uppercase;margin-bottom:18px}
-    h1{font-family:Impact,'Arial Black',Arial,sans-serif;font-size:clamp(38px,5vw,64px);line-height:.94;letter-spacing:-.035em;margin:0}
-    .price{font-size:24px;font-weight:800;margin:18px 0 32px}
-    .group{border-top:1px solid var(--line);padding:22px 0}
-    .label{display:flex;justify-content:space-between;gap:12px;margin-bottom:14px;font-size:10px;letter-spacing:.16em;text-transform:uppercase}
-    .selected{color:#777}
-    .swatch{width:42px;height:42px;border:1px solid #111;border-radius:50%;padding:4px;background:#fff}
-    .swatch span{display:block;width:100%;height:100%;border-radius:50%;background:#111}
-    .sizes{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
-    .size{height:48px;background:#fff;border:1px solid #dedede;font-size:12px}
-    .size[aria-pressed=true]{background:#080808;color:#fff;border-color:#080808}
-    .availability{min-height:32px;margin:12px 0 0;color:#777;font-size:11px;line-height:1.5}
-    .actions{display:grid;gap:10px;padding-top:18px}
-    .action{min-height:54px;border:1px solid #080808;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
-    .primary{background:#080808;color:#fff}.secondary{background:#fff;color:#080808}
-    .action:disabled{opacity:.42;cursor:not-allowed}
-    .description{margin-top:30px;padding-top:22px;border-top:1px solid var(--line);font-size:12px;line-height:1.8;color:#666}
-    .description strong{display:block;color:#111;font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
-    footer{border-top:1px solid var(--line);min-height:130px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
-    footer strong{font-family:Impact,'Arial Black',Arial,sans-serif;font-size:17px;letter-spacing:.24em}
-    footer span{font:10px Arial,sans-serif;color:#777}
-    @media(max-width:800px){.header{height:66px}.logo{width:78px;height:38px}.back{left:14px;font-size:9px;padding:10px}.bag{right:16px}main{grid-template-columns:1fr;gap:28px;padding-top:20px}.details{position:static;padding-top:0}h1{font-size:44px}}
-    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:#fff;color:var(--preto);font-family:Arial,Helvetica,sans-serif}
+    a{color:inherit;text-decoration:none}
+    button{font:inherit;cursor:pointer}
+    .cabecalho{height:76px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--linha);position:relative}
+    .marca{display:inline-flex;align-items:flex-start;justify-content:center;gap:0;line-height:1;position:relative}.logo-cabecalho{display:block;width:98px;height:46px;object-fit:contain;object-position:center}
+
+    .voltar{position:absolute;left:clamp(18px,5vw,64px);top:50%;transform:translateY(-50%);min-height:34px;padding:0 13px;display:inline-flex;align-items:center;gap:8px;border:1px solid #dedede;border-radius:2px;background:#fff;color:#111;font:700 10px Arial,sans-serif;letter-spacing:.14em;text-transform:uppercase;transition:background .22s ease,color .22s ease,border-color .22s ease,transform .22s ease;box-shadow:0 2px 5px #00000008}.voltar:hover{background:#111;color:#fff;border-color:#111;transform:translateY(calc(-50% - 1px))}.voltar:active{transform:translateY(-50%) scale(.97)}.voltar:focus-visible{outline:1px solid #111;outline-offset:3px}
+    .botao-sacola{position:absolute;right:clamp(18px,5vw,64px);top:50%;transform:translateY(-50%);width:36px;height:38px;display:grid;place-items:center;border:0;background:transparent;padding:2px;cursor:pointer;z-index:6;filter:drop-shadow(0 2px 2px #00000020);transition:transform .22s ease,filter .22s ease}.icone-sacola{width:25px;height:29px;display:block;overflow:visible;animation:sacola-flutua 4s ease-in-out infinite;transform-origin:50% 70%}.botao-sacola:hover{transform:translateY(-52%) scale(1.06);filter:drop-shadow(0 4px 3px #00000028)}.botao-sacola:active{transform:translateY(-48%) scale(.96)}.contador-sacola{position:absolute;top:1px;right:-1px;min-width:14px;height:14px;padding:0 3px;border-radius:20px;background:#111;color:#fff;border:1px solid #fff;font:700 8px Arial,sans-serif;display:grid;place-items:center}.botao-sacola:focus-visible{outline:1px solid #111;outline-offset:3px}@keyframes sacola-flutua{0%,100%{transform:translateY(0)}50%{transform:translateY(-1.5px)}}@media(prefers-reduced-motion:reduce){.icone-sacola{animation:none}}
+    .botao-sacola .contador-sacola{top:0;right:-2px}
+    .produto{width:min(1380px,100%);margin:0 auto;padding:54px clamp(18px,5vw,72px) 100px;display:grid;grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);gap:clamp(36px,6vw,100px);align-items:start}
+    .galeria{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .foto-principal{grid-column:1/-1;position:relative;background:#f3f3f1;overflow:hidden;aspect-ratio:1/1.08}
+    .foto-principal img{width:100%;height:100%;display:block;object-fit:cover;transition:opacity .25s}
+    .miniaturas{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .miniatura{padding:0;border:1px solid transparent;background:#f4f4f4;aspect-ratio:1/1.12;overflow:hidden}
+    .miniatura[aria-pressed="true"]{border-color:#111}
+    .miniatura img{width:100%;height:100%;object-fit:cover;display:block}
+    .detalhes{position:sticky;top:35px;padding-top:8px}
+    .identificador{font-size:9px;letter-spacing:.25em;color:#888;text-transform:uppercase;margin-bottom:18px}
+    h1{font-family:Impact,'Arial Black',Arial,sans-serif;font-size:clamp(34px,4vw,58px);line-height:.98;letter-spacing:-.035em;margin:0;text-transform:uppercase}
+    .preco-produto{display:flex;align-items:baseline;gap:12px;margin:16px 0 4px}.preco-produto del{font-size:14px;color:#999}.preco-produto strong{font-size:22px;font-weight:800;color:#111;letter-spacing:-.03em}
+    .avaliacao{display:flex;align-items:center;gap:10px;margin:17px 0 34px}
+    .estrelas{display:flex;align-items:center;gap:3px}.estrela-avaliacao{border:0;background:transparent;padding:2px;color:#c9c9c9;font-size:22px;line-height:1;cursor:pointer;transition:color .18s ease,transform .18s ease}.estrela-avaliacao.ativa,.estrela-avaliacao:hover{color:#111}.estrela-avaliacao:hover{transform:scale(1.12)}.estrela-avaliacao:focus-visible{outline:1px solid #111;outline-offset:2px}.avaliacao small{font-size:10px;color:#777;letter-spacing:.08em;white-space:nowrap}
+    .avaliacao small{font-size:10px;color:#777;letter-spacing:.08em}
+    .grupo{border-top:1px solid var(--linha);padding:22px 0}
+    .rotulo{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+    .valor-selecao{font-size:10px;color:#777;letter-spacing:.08em}
+    .cores{display:flex;gap:10px}
+    .cor{width:42px;height:42px;border:1px solid #d8d8d8;border-radius:50%;padding:4px;background:#fff}
+    .cor[aria-pressed="true"]{outline:1px solid #111;outline-offset:3px}
+    .amostra{display:block;width:100%;height:100%;border-radius:50%;border:1px solid #00000016}
+    .amostra.preta{background:#111}
+    .amostra.bege{background:#d8c5a5}
+    .tamanhos{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .tamanho{height:48px;background:#fff;border:1px solid #dedede;font-size:12px;transition:background .2s,color .2s,border .2s}
+    .tamanho[aria-pressed="true"]{background:#080808;color:#fff;border-color:#080808}
+    .acoes{display:grid;gap:10px;padding-top:24px}.acao:disabled{opacity:.42;cursor:not-allowed}.estoque-variante{margin:10px 0 0;color:#777;font-size:10px;letter-spacing:.04em;line-height:1.5}
+    .acao{min-height:54px;border:1px solid #080808;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;letter-spacing:.18em;text-transform:uppercase;transition:transform .2s,background .2s,color .2s}
+    .acao:active{transform:scale(.985)}
+    .primaria{background:#080808;color:#fff}
+    .primaria:hover{background:#333}
+    .secundaria{background:#fff;color:#080808}
+    .secundaria:hover{background:#f2f2f2}
+    .descricao{margin-top:32px;padding-top:22px;border-top:1px solid var(--linha);font-size:12px;line-height:1.8;color:#666}
+    .descricao strong{display:block;color:#111;font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}.tabela-medidas{display:block;width:min(100%,520px);height:auto;margin:18px auto 16px;object-fit:contain}
+    .carrinho-fundo{position:fixed;inset:0;background:#0008;z-index:20;opacity:0;visibility:hidden;transition:.25s}
+    .carrinho-fundo.aberto{opacity:1;visibility:visible}
+    .painel-carrinho{position:absolute;right:0;top:0;height:100%;width:min(430px,100%);background:#fff;padding:28px;transform:translateX(100%);transition:transform .3s;display:flex;flex-direction:column}
+    .carrinho-fundo.aberto .painel-carrinho{transform:translateX(0)}
+    .topo-carrinho{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--linha);padding-bottom:20px}
+    .topo-carrinho h2{font:900 25px Impact,'Arial Black',sans-serif;margin:0}
+    .fechar{border:0;background:none;font-size:25px}
+    .itens-carrinho{padding:18px 0;display:grid;gap:14px;overflow:auto}
+    .item-carrinho{display:flex;align-items:center;gap:13px;font-size:12px;line-height:1.7;border-bottom:1px solid var(--linha);padding-bottom:14px}
+    .imagem-item-carrinho{width:64px;height:76px;flex:0 0 64px;object-fit:cover;background:#f3f3f3}
+    .dados-item-carrinho{min-width:0;flex:1}
+    .item-carrinho strong{display:block;font-size:12px;line-height:1.35;margin-bottom:5px}
+    .vazio{color:#777;font-size:12px;padding:20px 0}
+    .acoes-carrinho{display:grid;gap:10px;padding-top:16px;border-top:1px solid var(--linha)}
+    .botao-cupom{width:100%;min-height:42px;border:1px solid #111;background:#fff;color:#111;font:700 11px Arial,sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:background .2s,color .2s}
+    .botao-cupom:hover{background:#f3f3f3}
+    .campo-cupom{display:none;gap:8px;grid-template-columns:1fr auto}
+    .campo-cupom.aberto{display:grid}
+    .campo-cupom input{min-width:0;height:40px;border:1px solid var(--linha);padding:0 11px;font:16px Arial,sans-serif;text-transform:uppercase}
+    .aplicar-cupom{border:0;background:#111;color:#fff;padding:0 14px;font:700 10px Arial,sans-serif;text-transform:uppercase;cursor:pointer}
+    .mensagem-cupom{display:none;margin:0;color:#777;font:11px Arial,sans-serif;line-height:1.5}
+    .mensagem-cupom.visivel{display:block}
+    .finalizar-pedido{width:100%;min-height:48px;border:0;background:#111;color:#fff;font:900 13px Impact,'Arial Black',sans-serif;letter-spacing:.08em;text-transform:uppercase;opacity:.45;cursor:not-allowed}
+    .aviso{margin-top:0;padding-top:14px;border-top:0;font-size:11px;line-height:1.7;color:#777}
+    .rodape{min-height:150px;padding:36px 24px;border-top:1px solid var(--linha);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:13px}
+    .rodape strong{font-family:Impact,'Arial Black',Arial,sans-serif;font-size:17px;letter-spacing:.24em;font-weight:900}
+    .rodape-info{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;color:#777;font:10px Arial,sans-serif;letter-spacing:.035em;text-align:center}
+    .instagram-rodape{width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;color:#111;transition:opacity .2s ease,transform .2s ease}
+    .instagram-rodape:hover{opacity:.6;transform:translateY(-1px)}
+    .instagram-rodape svg{width:16px;height:16px;display:block}
+    @media(max-width:800px){.cabecalho{height:66px}.logo-cabecalho{width:84px;height:40px}.botao-sacola{right:18px}.voltar{font-size:9px}.produto{grid-template-columns:1fr;gap:30px;padding-top:20px}.galeria{gap:8px}.miniaturas{gap:8px}.detalhes{position:static;padding-top:0}h1{font-size:42px}.avaliacao{margin:14px 0 25px}}
+    @media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition:none!important}}
+    .copyright,sup.copyright{display:none!important}
   </style>
 <style id="cabecalho-padrao-gengar">
 
@@ -74,37 +120,49 @@
     <a class="botao-sacola" href="carrinho.html" aria-label="Abrir sacola de compras"><svg class="icone-sacola" viewBox="0 0 48 52" aria-hidden="true"><defs><linearGradient id="sacola-corpo" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#555"/><stop offset=".42" stop-color="#171717"/><stop offset="1" stop-color="#050505"/></linearGradient><linearGradient id="sacola-alca" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#777"/><stop offset=".5" stop-color="#111"/><stop offset="1" stop-color="#555"/></linearGradient></defs><path d="M14 17v-5a10 10 0 0 1 20 0v5" fill="none" stroke="url(#sacola-alca)" stroke-width="4" stroke-linecap="round"/><path d="M8 17h32l3 29H5z" fill="url(#sacola-corpo)" stroke="#050505" stroke-width="1.2" stroke-linejoin="round"/><path d="M10 19h5l-2 23H8z" fill="#ffffff" opacity=".17"/><path d="M13 20h22" stroke="#ffffff" opacity=".22" stroke-width="1.5"/><path d="M8 17h32" stroke="#888" stroke-width="1.3" opacity=".65"/><path d="M16 12a8 8 0 0 1 16 0" fill="none" stroke="#999" stroke-width="1" opacity=".5"/></svg><span class="contador-sacola" id="contador-sacola-cabecalho">0</span></a>
   </header>
   <script>(function(){try{var c=JSON.parse(localStorage.getItem('imp-carrinho')||'[]');if(!Array.isArray(c))c=[];var e=document.getElementById('contador-sacola-cabecalho');if(e)e.textContent=c.length;}catch(_){}})();</script>
-  <main>
-    <section class="photo" aria-label="Fotos da CAMISETA VN ANARQUISTA">
-      <div class="photo-main"><img id="product-photo" src="assets/58E45D54-8A7B-4528-9565-6862BA09B643.jpeg" alt="CAMISETA VN ANARQUISTA preta — frente"></div>
-      <div class="thumbnails" aria-label="Selecionar foto do produto">
-        <button class="thumbnail" type="button" data-photo="assets/58E45D54-8A7B-4528-9565-6862BA09B643.jpeg" data-alt="CAMISETA VN ANARQUISTA preta — frente" aria-pressed="true"><img src="assets/58E45D54-8A7B-4528-9565-6862BA09B643.jpeg" alt="Frente da camiseta"></button>
-        <button class="thumbnail" type="button" data-photo="assets/4F69D160-17A2-4C65-B12D-AF0D0FBC257C.jpeg" data-alt="CAMISETA VN ANARQUISTA preta — costas" aria-pressed="false"><img src="assets/4F69D160-17A2-4C65-B12D-AF0D0FBC257C.jpeg" alt="Costas da camiseta"></button>
+  <main class="produto">
+    <section class="galeria" aria-label="Fotos da camiseta">
+      <div class="foto-principal"><img id="product-photo" src="assets/58E45D54-8A7B-4528-9565-6862BA09B643.jpeg" alt="CAMISETA VN ANARQUISTA preta — frente"></div>
+      <div class="miniaturas" id="miniaturas">
+        <button class="miniatura" type="button" data-photo="assets/58E45D54-8A7B-4528-9565-6862BA09B643.jpeg" data-alt="CAMISETA VN ANARQUISTA preta — frente" aria-pressed="true"><img src="assets/58E45D54-8A7B-4528-9565-6862BA09B643.jpeg" alt="Frente da camiseta"></button>
+        <button class="miniatura" type="button" data-photo="assets/4F69D160-17A2-4C65-B12D-AF0D0FBC257C.jpeg" data-alt="CAMISETA VN ANARQUISTA preta — costas" aria-pressed="false"><img src="assets/4F69D160-17A2-4C65-B12D-AF0D0FBC257C.jpeg" alt="Costas da camiseta"></button>
       </div>
     </section>
-    <section class="details">
-      <div class="eyebrow">IMP COMPANY · VESTUÁRIO</div>
+    <section class="detalhes">
+      <div class="identificador">IMP COMPANY · VESTUÁRIO</div>
       <h1>CAMISETA VN ANARQUISTA</h1>
-      <div class="price">R$ 134,90</div>
-      <div class="group">
-        <div class="label"><span>Cor</span><span class="selected">Preta</span></div>
-        <button class="swatch" type="button" aria-label="Cor preta selecionada" aria-pressed="true"><span></span></button>
-      </div>
-      <div class="group">
-        <div class="label"><span>Tamanho</span><span class="selected" id="size-label">Selecione</span></div>
-        <div class="sizes">
-          <button class="size" type="button" data-size="P" aria-pressed="false">P</button>
-          <button class="size" type="button" data-size="M" aria-pressed="false">M</button>
-          <button class="size" type="button" data-size="G" aria-pressed="false">G</button>
-          <button class="size" type="button" data-size="GG" aria-pressed="false">GG</button>
+      <div class="preco-produto"><strong>R$ 134,90</strong></div>
+      <div class="avaliacao" data-product-id="camiseta-vn-anarquista" aria-label="Avalie este produto">
+        <div class="estrelas" id="estrelas-avaliacao" role="group" aria-label="Escolha uma nota de 1 a 5">
+          <button class="estrela-avaliacao" type="button" data-rating="1" aria-label="1 estrela" aria-pressed="false">★</button>
+          <button class="estrela-avaliacao" type="button" data-rating="2" aria-label="2 estrelas" aria-pressed="false">★</button>
+          <button class="estrela-avaliacao" type="button" data-rating="3" aria-label="3 estrelas" aria-pressed="false">★</button>
+          <button class="estrela-avaliacao" type="button" data-rating="4" aria-label="4 estrelas" aria-pressed="false">★</button>
+          <button class="estrela-avaliacao" type="button" data-rating="5" aria-label="5 estrelas" aria-pressed="false">★</button>
         </div>
-        <p class="availability" id="availability" aria-live="polite">Selecione um tamanho para consultar a disponibilidade.</p>
+        <small id="texto-avaliacao">Avalie este produto</small>
       </div>
-      <div class="actions">
-        <button class="action primary" id="buy" type="button" disabled>SELECIONE O TAMANHO</button>
-        <button class="action secondary" id="add" type="button" disabled>ADICIONAR À SACOLA</button>
+      <div class="grupo">
+        <div class="rotulo"><span>Cor</span><span class="valor-selecao">Preta</span></div>
+        <div class="cores">
+          <button class="cor" type="button" aria-label="Cor preta selecionada" aria-pressed="true"><span class="amostra preta"></span></button>
+        </div>
       </div>
-      <div class="description"><strong>Detalhes do produto</strong><p>CAMISETA VN ANARQUISTA — uma peça de presença marcante, com identidade visual exclusiva da IMP COMPANY.</p><p>Cor: preta. Tamanhos P, M, G e GG. Estoque zerado em todas as variações.</p></div>
+      <div class="grupo">
+        <div class="rotulo"><span>Tamanho</span><span class="valor-selecao" id="size-label">Selecione</span></div>
+        <div class="tamanhos">
+          <button class="tamanho" type="button" data-size="P" aria-pressed="false">P</button>
+          <button class="tamanho" type="button" data-size="M" aria-pressed="false">M</button>
+          <button class="tamanho" type="button" data-size="G" aria-pressed="false">G</button>
+          <button class="tamanho" type="button" data-size="GG" aria-pressed="false">GG</button>
+        </div>
+        <p class="estoque-variante" id="availability" aria-live="polite">Selecione um tamanho para consultar a disponibilidade.</p>
+      </div>
+      <div class="acoes">
+        <button class="acao primaria" id="buy" type="button" disabled>SELECIONE O TAMANHO</button>
+        <button class="acao secundaria" id="add" type="button" disabled>ADICIONAR À SACOLA</button>
+      </div>
+      <div class="descricao"><strong>Detalhes do produto</strong><p>CAMISETA VN ANARQUISTA — uma peça de presença marcante, com identidade visual exclusiva da IMP COMPANY.</p><p>Cor: preta. Tamanhos P, M, G e GG. Estoque zerado em todas as variações.</p></div>
     </section>
   </main>
   <footer><strong>IMP COMPANY</strong><span>© 2020/2026 IMP COMPANY. Todos os direitos reservados.</span></footer>
