@@ -165,8 +165,8 @@
 
     <style id="vitrine-produtos-home">
     .vitrine-produtos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;width:100%;max-width:1200px;margin:0 auto}
-    .produto-card{display:block;min-width:0;background:#fff;border:0;transition:transform .25s ease,box-shadow .25s ease;overflow:hidden}
-    .produto-card:hover{transform:translateY(-5px);box-shadow:0 16px 30px #00000012}
+    .produto-card{display:block;min-width:0;background:#fff;border:0;color:inherit;text-decoration:none;cursor:pointer;transition:transform .25s ease,box-shadow .25s ease;overflow:hidden}
+    .produto-card:hover{transform:translateY(-5px);box-shadow:0 16px 30px #00000012}.produto-card:focus-visible{outline:2px solid #111;outline-offset:4px}
     .produto-foto{position:relative;aspect-ratio:4/5;background:#fff;overflow:hidden;border:0!important;outline:0!important;box-shadow:none!important}
     .produto-foto img{width:100%;height:100%;display:block;object-fit:contain;background:#fff;border:0!important;outline:0!important;box-shadow:none!important;transition:transform .45s ease}
     .produto-card:hover .produto-foto img{transform:scale(1.025)}
@@ -236,18 +236,18 @@
         
       </div>
       <div class="vitrine-produtos">
-        <div class="produto-card">
+        <a class="produto-card" href="camiseta-gengar.html" aria-label="Ver CAMISETA IMP GENGAR DROP #1">
           <div class="produto-foto"><img src="assets/FE633D37-CBDE-4FBC-B7BE-BD8BE80F3F23.jpeg" alt="Camiseta IMP Gengar preta" loading="lazy"></div>
-          <div class="produto-info"><span class="produto-categoria">CAMISETA</span><h3>CAMISETA IMP GENGAR DROP #1</h3><strong class="produto-preco">R$ 123,90</strong><a class="produto-link" href="camiseta-gengar.html">VER PRODUTO ↗</a></div>
-        </div>
-        <div class="produto-card">
+          <div class="produto-info"><span class="produto-categoria">CAMISETA</span><h3>CAMISETA IMP GENGAR DROP #1</h3><strong class="produto-preco">R$ 123,90</strong><span class="produto-link">VER PRODUTO ↗</span></div>
+        </a>
+        <a class="produto-card" href="regata-lady-death.html" aria-label="Ver REGATA LADY DEATH">
           <div class="produto-foto"><img src="assets/03EE116A-5087-446B-8141-0ACC6D1745F6.jpeg" alt="Regata Lady Death preta" loading="lazy"></div>
-          <div class="produto-info"><span class="produto-categoria">REGATA</span><h3>REGATA LADY DEATH</h3><strong class="produto-preco">R$ 123,90</strong><a class="produto-link" href="regata-lady-death.html">VER PRODUTO ↗</a></div>
-        </div>
-        <div class="produto-card produto-em-breve">
+          <div class="produto-info"><span class="produto-categoria">REGATA</span><h3>REGATA LADY DEATH</h3><strong class="produto-preco">R$ 123,90</strong><span class="produto-link">VER PRODUTO ↗</span></div>
+        </a>
+        <a class="produto-card produto-em-breve" href="the-words-is-ours-vol-01.html" aria-label="Ver CAMISETA THE WORLD IS OURS">
           <div class="produto-foto"><img src="assets/146323B1-98BD-4DFB-BE3A-802524D94693.jpeg" alt="Camiseta The World Is Ours preta" loading="lazy"><span class="produto-selo">EM BREVE</span></div>
-          <div class="produto-info"><span class="produto-categoria">CAMISETA</span><h3>CAMISETA THE WORLD IS OURS</h3><strong class="produto-preco">EM BREVE</strong><a class="produto-link" href="the-words-is-ours-vol-01.html">VER PRODUTO ↗</a></div>
-        </div>
+          <div class="produto-info"><span class="produto-categoria">CAMISETA</span><h3>CAMISETA THE WORLD IS OURS</h3><strong class="produto-preco">EM BREVE</strong><span class="produto-link">VER PRODUTO ↗</span></div>
+        </a>
       </div>
     </section>
 
