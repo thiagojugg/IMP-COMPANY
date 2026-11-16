@@ -30,6 +30,7 @@ function requireConfig(res) {
   if (!SUPABASE_URL) missing.push("SUPABASE_URL");
   if (!SUPABASE_SERVICE_ROLE_KEY) missing.push("SUPABASE_SERVICE_ROLE_KEY");
   if (!MP_ACCESS_TOKEN) missing.push("MERCADO_PAGO_ACCESS_TOKEN");
+  if (!MP_WEBHOOK_SECRET) missing.push("MERCADO_PAGO_WEBHOOK_SECRET");
   if (missing.length) {
     res.status(503).json({ error: "SERVER_NOT_CONFIGURED", message: "Integração ainda não configurada no servidor.", missing });
     return false;
