@@ -200,6 +200,8 @@
       let tamanho = '';
       const variantIdDisponivel = '713eb4db-9c0c-4101-9968-35f0d40031a1';
       let carrinho = [];
+      let estoqueAtual = 0;
+      const API_URL = 'https://imp-company-payments-uwq7.onrender.com';
       try { carrinho = JSON.parse(localStorage.getItem('imp-carrinho') || '[]'); } catch (_) { carrinho = []; }
       const foto = document.getElementById('foto-atual');
       const miniaturas = document.getElementById('miniaturas');
@@ -222,17 +224,53 @@
         atualizarGaleria();
         atualizarDisponibilidade();
       }));
-      function atualizarDisponibilidade() {
-        const disponivel = cor === 'Preta' && tamanho === 'G';
+      async function atualizarDisponibilidade() {
         const comprar = document.getElementById('comprar');
         const adicionarBotao = document.getElementById('adicionar');
-        comprar.disabled = !disponivel;
-        comprar.setAttribute('aria-disabled', String(!disponivel));
-        comprar.textContent = !tamanho ? 'SELECIONE O TAMANHO' : (disponivel ? 'COMPRAR AGORA' : 'ESGOTADO');
-        adicionarBotao.disabled = !disponivel;
-        document.getElementById('disponibilidade-estoque').textContent =
-          !tamanho ? 'Selecione uma variação para consultar a disponibilidade.' :
-          (disponivel ? '1 unidade disponível — Preta / G.' : 'Esta variação está esgotada.');
+        const mensagem = document.getElementById('disponibilidade-estoque');
+        const variacaoCorreta = cor === 'Preta' && tamanho === 'G';
+        estoqueAtual = 0;
+        if (!tamanho) {
+          comprar.disabled = true;
+          comprar.setAttribute('aria-disabled', 'true');
+          comprar.textContent = 'SELECIONE O TAMANHO';
+          adicionarBotao.disabled = true;
+          mensagem.textContent = 'Selecione uma variação para consultar a disponibilidade.';
+          return;
+        }
+        if (!variacaoCorreta) {
+          comprar.disabled = true;
+          comprar.setAttribute('aria-disabled', 'true');
+          comprar.textContent = 'ESGOTADO';
+          adicionarBotao.disabled = true;
+          mensagem.textContent = 'Esta variação está esgotada.';
+          return;
+        }
+        comprar.disabled = true;
+        comprar.setAttribute('aria-disabled', 'true');
+        comprar.textContent = 'CONSULTANDO ESTOQUE';
+        adicionarBotao.disabled = true;
+        mensagem.textContent = 'Consultando disponibilidade...';
+        try {
+          const resposta = await fetch(API_URL + '/api/stock?variantId=' + encodeURIComponent(variantIdDisponivel), { cache: 'no-store' });
+          if (!resposta.ok) throw new Error('Falha ao consultar estoque');
+          const dados = await resposta.json();
+          estoqueAtual = Math.max(0, Number(dados.stock) || 0);
+          const disponivel = estoqueAtual > 0;
+          comprar.disabled = !disponivel;
+          comprar.setAttribute('aria-disabled', String(!disponivel));
+          comprar.textContent = disponivel ? 'COMPRAR AGORA' : 'ESGOTADO';
+          adicionarBotao.disabled = !disponivel;
+          mensagem.textContent = disponivel
+            ? estoqueAtual + (estoqueAtual === 1 ? ' unidade disponível — Preta / G.' : ' unidades disponíveis — Preta / G.')
+            : 'Esta variação está esgotada.';
+        } catch (_) {
+          comprar.disabled = true;
+          comprar.setAttribute('aria-disabled', 'true');
+          comprar.textContent = 'INDISPONÍVEL';
+          adicionarBotao.disabled = true;
+          mensagem.textContent = 'Não foi possível consultar o estoque. Atualize a página e tente novamente.';
+        }
       }
       document.querySelectorAll('[data-size]').forEach(botao => botao.addEventListener('click', () => {
         tamanho = botao.dataset.size;
@@ -248,12 +286,12 @@
       }
       function salvar() { localStorage.setItem('imp-carrinho',JSON.stringify(carrinho)); renderizarCarrinho(); }
       function adicionar(abrir) {
-        if (!(cor === 'Preta' && tamanho === 'G')) {
+        if (!(cor === 'Preta' && tamanho === 'G') || estoqueAtual < 1) {
           document.getElementById('disponibilidade-estoque').textContent = 'Apenas a variação Preta / G está disponível.';
           return;
         }
         if (carrinho.some(item => item.nome === 'CAMISETA IMP GENGAR DROP #1' && item.cor === 'Preta' && item.tamanho === 'G')) {
-          alert('A única unidade disponível já está na sua sacola.');
+          alert('Esta variação já está na sua sacola.');
           return;
         }
         if (!tamanho) { document.getElementById('tamanho-atual').textContent = 'Escolha P, M, G ou GG'; document.querySelector('.grupo:nth-of-type(2)').scrollIntoView({behavior:'smooth',block:'center'}); return; }
