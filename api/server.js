@@ -149,6 +149,31 @@ app.get("/health", (_req, res) => {
   });
 });
 
+
+app.get("/api/stock", async (req, res) => {
+  if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+    return res.status(503).json({ error: "STOCK_NOT_CONFIGURED", message: "Consulta de estoque indisponível." });
+  }
+  const variantId = cleanText(req.query?.variantId, 64);
+  if (variantId !== VARIANT_ID) {
+    return res.status(404).json({ error: "VARIANT_NOT_FOUND" });
+  }
+  try {
+    const rows = await supabaseRequest(
+      `store_variants?id=eq.${encodeURIComponent(VARIANT_ID)}&select=stock,active`,
+      { method: "GET" }
+    );
+    const variant = rows?.[0];
+    if (!variant || !variant.active) {
+      return res.status(404).json({ error: "VARIANT_UNAVAILABLE", stock: 0 });
+    }
+    return res.set("Cache-Control", "no-store").json({ stock: Math.max(0, Number(variant.stock) || 0) });
+  } catch (error) {
+    console.error("Erro ao consultar estoque:", error.details || error.message);
+    return res.status(500).json({ error: "STOCK_LOOKUP_FAILED", message: "Não foi possível consultar o estoque." });
+  }
+});
+
 app.post("/api/shipping/quote", async (req, res) => {
   if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
     return res.status(503).json({ error: "SHIPPING_NOT_CONFIGURED", message: "Cálculo de frete indisponível no momento." });
