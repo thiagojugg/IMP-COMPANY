@@ -17,7 +17,7 @@ const VARIANT_ID = "713eb4db-9c0c-4101-9968-35f0d40031a1";
 
 app.use(cors({
   origin(origin, callback) {
-    if (!origin || allowedOrigins.includes(origin)) return callback(null, true);
+    const originAllowed = allowedOrigins.some((allowed) => {\n      try { return new URL(allowed).origin === origin; } catch { return false; }\n    });\n    if (!origin || originAllowed) return callback(null, true);
     return callback(new Error("Origem não autorizada pelo CORS."));
   },
   methods: ["GET", "POST", "OPTIONS"],
