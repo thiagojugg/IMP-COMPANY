@@ -197,12 +197,21 @@ app.post("/api/shipping/quote", async (req, res) => {
 });
 
 app.post("/api/coupons/validate", async (req, res) => {
-  const code = cleanText(req.body?.code, 32).toUpperCase();
-  if (code !== COUPON_CODE) {
-    return res.status(400).json({ valid: false, error: "INVALID_COUPON", message: "Cupom inválido ou não disponível." });
+  try {
+    const code = cleanText(req.body?.code, 32).toUpperCase();
+    if (code !== COUPON_CODE) {
+      return res.status(400).json({ valid: false, error: "INVALID_COUPON", message: "Cupom inválido ou não disponível." });
+    }
+    const remaining = Number(await rpc("get_vn10_coupon_remaining", {}));
+    if (remaining <= 0) {
+      return res.status(409).json({ valid: false, error: "COUPON_LIMIT_REACHED", message: "Este cupom já atingiu o limite de 3 utilizações." });
+    }
+    const discountCents = Math.round(PRODUCT_PRICE_CENTS * COUPON_PERCENT / 100);
+    return res.json({ valid: true, code: COUPON_CODE, percent: COUPON_PERCENT, discountCents, productPriceCents: PRODUCT_PRICE_CENTS, remaining });
+  } catch (error) {
+    console.error("Erro ao validar cupom:", error.details || error.message);
+    return res.status(500).json({ valid: false, message: "Não foi possível verificar a disponibilidade do cupom." });
   }
-  const discountCents = Math.round(PRODUCT_PRICE_CENTS * COUPON_PERCENT / 100);
-  return res.json({ valid: true, code: COUPON_CODE, percent: COUPON_PERCENT, discountCents, productPriceCents: PRODUCT_PRICE_CENTS });
 });
 
 app.post("/api/checkout", async (req, res) => {
@@ -238,6 +247,15 @@ app.post("/api/checkout", async (req, res) => {
       p_shipping_address: customer.address,
       p_shipping_cents: shippingCents,
     });
+
+    if (couponCode) {
+      const couponReserved = await rpc("reserve_vn10_coupon", { p_order_id: orderId });
+      if (!couponReserved) {
+        const error = new Error("Este cupom já atingiu o limite de 3 utilizações.");
+        error.status = 409;
+        throw error;
+      }
+    }
 
     const apiBase = (process.env.RENDER_EXTERNAL_URL || "https://imp-company-payments-uwq7.onrender.com").replace(/\/$/, "");
     const preference = await mpRequest("/checkout/preferences", {
@@ -320,7 +338,7 @@ app.post("/api/checkout", async (req, res) => {
       error: error.message === "OUT_OF_STOCK" ? "OUT_OF_STOCK" : "CHECKOUT_FAILED",
       message: error.message === "OUT_OF_STOCK"
         ? "Essa variação acabou de esgotar."
-        : (error.status === 400 ? error.message : "Não foi possível iniciar o pagamento. Tente novamente."),
+        : ([400, 409].includes(error.status) ? error.message : "Não foi possível iniciar o pagamento. Tente novamente."),
     });
   }
 });
