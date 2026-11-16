@@ -121,6 +121,17 @@ function validateCustomer(customer) {
   return { name, email, phone, address };
 }
 
+async function getShippingCents(state) {
+  const result = await rpc("get_store_shipping_rate", { p_state: state });
+  const cents = Array.isArray(result) ? result[0] : result;
+  if (!Number.isInteger(cents) || cents <= 0) {
+    const error = new Error("Ainda não há tarifa de entrega cadastrada para esse estado.");
+    error.status = 400;
+    throw error;
+  }
+  return cents;
+}
+
 app.get("/", (_req, res) => {
   res.json({ service: "IMP COMPANY Payments API", status: "online" });
 });
@@ -138,11 +149,31 @@ app.get("/health", (_req, res) => {
   });
 });
 
+app.post("/api/shipping/quote", async (req, res) => {
+  if (!SUPABASE_URL || !SUPABASE_SERVICE_ROLE_KEY) {
+    return res.status(503).json({ error: "SHIPPING_NOT_CONFIGURED", message: "Cálculo de frete indisponível no momento." });
+  }
+  const state = cleanText(req.body?.state, 2).toUpperCase();
+  if (!/^[A-Z]{2}$/.test(state)) {
+    return res.status(400).json({ error: "INVALID_STATE", message: "Informe uma UF válida para calcular o frete." });
+  }
+  try {
+    const shippingCents = await getShippingCents(state);
+    return res.json({ state, shippingCents });
+  } catch (error) {
+    return res.status(error.status || 500).json({
+      error: "SHIPPING_QUOTE_FAILED",
+      message: error.status === 400 ? error.message : "Não foi possível calcular o frete agora.",
+    });
+  }
+});
+
 app.post("/api/checkout", async (req, res) => {
   if (!requireConfig(res)) return;
   let orderId = null;
   try {
     const customer = validateCustomer(req.body?.customer);
+    const shippingCents = await getShippingCents(customer.address.state_name);
     const items = req.body?.items;
     if (!Array.isArray(items) || items.length !== 1 ||
         items[0]?.variantId !== VARIANT_ID ||
@@ -160,17 +191,27 @@ app.post("/api/checkout", async (req, res) => {
       p_customer_email: customer.email,
       p_customer_phone: customer.phone,
       p_shipping_address: customer.address,
+      p_shipping_cents: shippingCents,
     });
 
     const apiBase = (process.env.RENDER_EXTERNAL_URL || "https://imp-company-payments-uwq7.onrender.com").replace(/\/$/, "");
     const preference = await mpRequest("/checkout/preferences", {
-      items: [{
-        id: "IMP-GENGAR-PRETA-G",
-        title: "CAMISETA IMP GENGAR DROP #1 — PRETA / G",
-        quantity: 1,
-        currency_id: "BRL",
-        unit_price: 123.90,
-      }],
+      items: [
+        {
+          id: "IMP-GENGAR-PRETA-G",
+          title: "CAMISETA IMP GENGAR DROP #1 — PRETA / G",
+          quantity: 1,
+          currency_id: "BRL",
+          unit_price: 123.90,
+        },
+        {
+          id: `IMP-FRETE-${customer.address.state_name}`,
+          title: `Frete de entrega — ${customer.address.state_name}`,
+          quantity: 1,
+          currency_id: "BRL",
+          unit_price: shippingCents / 100,
+        },
+      ],
       payer: {
         name: customer.name,
         email: customer.email,
