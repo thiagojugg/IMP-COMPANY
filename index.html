@@ -163,6 +163,7 @@
   </style>
 
 
+    <style id="vitrine-produtos-home">
     .vitrine-produtos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;width:100%;max-width:1200px;margin:0 auto}
     .produto-card{display:block;min-width:0;background:#f5f5f5;border:1px solid #e8e8e8;transition:transform .25s ease,box-shadow .25s ease;overflow:hidden}
     .produto-card:hover{transform:translateY(-5px);box-shadow:0 16px 30px #00000012}
@@ -174,7 +175,11 @@
     .produto-info h3{font:900 clamp(17px,2vw,24px) Impact,'Arial Black',Arial,sans-serif;letter-spacing:-.02em;margin:9px 0 12px;min-height:1.2em}
     .produto-preco{display:block;font:800 15px Arial,sans-serif;color:#111}
     .produto-link{display:inline-block;margin-top:18px;padding-top:12px;border-top:1px solid #d8d8d8;width:100%;font:700 9px Arial,sans-serif;letter-spacing:.16em}
-    .produto-selo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-7deg);padding:12px 18px;background:#111c;color:#fff;border:2px solid #fff;outline:1px solid #111;outline-offset:4px;font:900    <section class="secao" id="colecao">
+    .produto-selo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-7deg);padding:12px 18px;background:#111c;color:#fff;border:2px solid #fff;outline:1px solid #111;outline-offset:4px;font:900 22px Impact,'Arial Black',Arial,sans-serif;letter-spacing:.1em;white-space:nowrap}
+    .produto-em-breve .produto-foto img{filter:brightness(.72)}
+    @media(max-width:700px){.vitrine-produtos{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.produto-info{padding:13px 12px 15px}.produto-info h3{font-size:18px;min-height:2.2em}.produto-preco{font-size:13px}.produto-link{font-size:8px;margin-top:14px}}
+  </style>
+    <section class="secao" id="colecao">
       <div class="cabecalho-secao">
         <div><div class="sobretitulo">IMP COMPANY — STORE</div><h2>TODOS OS PRODUTOS</h2></div>
         <p class="texto-apoio">Explore a coleção completa. Escolha sua peça e acesse os detalhes do produto.</p>
