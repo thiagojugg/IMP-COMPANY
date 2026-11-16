@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: imp-company-payments
+    runtime: node
+    plan: free
+    region: virginia
+    branch: main
+    rootDir: api
+    buildCommand: npm install
+    startCommand: npm start
+    healthCheckPath: /health
+    autoDeployTrigger: commit
