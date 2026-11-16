@@ -17,6 +17,9 @@ const MP_ACCESS_TOKEN = MP_ENVIRONMENT === "test"
   : (process.env.MERCADO_PAGO_ACCESS_TOKEN || "");
 const MP_WEBHOOK_SECRET = process.env.MERCADO_PAGO_WEBHOOK_SECRET || "";
 const VARIANT_ID = "713eb4db-9c0c-4101-9968-35f0d40031a1";
+const PRODUCT_PRICE_CENTS = 12390;
+const COUPON_CODE = "VN10";
+const COUPON_PERCENT = 10;
 
 app.use(cors({
   origin(origin, callback) {
@@ -193,12 +196,29 @@ app.post("/api/shipping/quote", async (req, res) => {
   }
 });
 
+app.post("/api/coupons/validate", async (req, res) => {
+  const code = cleanText(req.body?.code, 32).toUpperCase();
+  if (code !== COUPON_CODE) {
+    return res.status(400).json({ valid: false, error: "INVALID_COUPON", message: "Cupom inválido ou não disponível." });
+  }
+  const discountCents = Math.round(PRODUCT_PRICE_CENTS * COUPON_PERCENT / 100);
+  return res.json({ valid: true, code: COUPON_CODE, percent: COUPON_PERCENT, discountCents, productPriceCents: PRODUCT_PRICE_CENTS });
+});
+
 app.post("/api/checkout", async (req, res) => {
   if (!requireConfig(res)) return;
   let orderId = null;
   try {
     const customer = validateCustomer(req.body?.customer);
     const shippingCents = await getShippingCents(customer.address.state_name);
+    const couponCode = cleanText(req.body?.couponCode, 32).toUpperCase();
+    if (couponCode && couponCode !== COUPON_CODE) {
+      const error = new Error("Cupom inválido ou não disponível.");
+      error.status = 400;
+      throw error;
+    }
+    const discountCents = couponCode ? Math.round(PRODUCT_PRICE_CENTS * COUPON_PERCENT / 100) : 0;
+    const discountedProductCents = PRODUCT_PRICE_CENTS - discountCents;
     const items = req.body?.items;
     if (!Array.isArray(items) || items.length !== 1 ||
         items[0]?.variantId !== VARIANT_ID ||
@@ -227,7 +247,7 @@ app.post("/api/checkout", async (req, res) => {
           title: "CAMISETA IMP GENGAR DROP #1 — PRETA / G",
           quantity: 1,
           currency_id: "BRL",
-          unit_price: 123.90,
+          unit_price: discountedProductCents / 100,
         },
         {
           id: `IMP-FRETE-${customer.address.state_name}`,
@@ -282,6 +302,9 @@ app.post("/api/checkout", async (req, res) => {
       body: JSON.stringify({
         mp_preference_id: preference.id,
         checkout_url: checkoutUrl,
+        total_cents: discountedProductCents + shippingCents,
+        coupon_code: couponCode || null,
+        discount_cents: discountCents,
         updated_at: new Date().toISOString(),
       }),
     });
