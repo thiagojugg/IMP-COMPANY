@@ -279,8 +279,8 @@
       checkoutButton.addEventListener('click',async()=>{
         if(!carrinho.length || !form.reportValidity()) return;
         const item=carrinho[0];
-        if(carrinho.length!==1 || item.nome!=='CAMISETA IMP GENGAR DROP #1' || item.cor!=='Preta' || item.tamanho!=='G'){
-          alert('No momento, a única variação disponível é a camiseta Gengar preta, tamanho G. Remova os outros itens da sacola.');
+        if(carrinho.length!==1 || !item.variantId){
+          alert('No momento, cada pedido pode conter apenas uma variação e uma unidade. Confira sua sacola.');
           return;
         }
         const data=new FormData(form);
