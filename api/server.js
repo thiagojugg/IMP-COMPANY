@@ -201,16 +201,25 @@ app.post("/api/checkout", async (req, res) => {
       metadata: { order_id: orderId },
     });
 
+    const checkoutUrl = MP_ENVIRONMENT === "test"
+      ? preference.sandbox_init_point
+      : preference.init_point;
+    if (!checkoutUrl) {
+      throw new Error(MP_ENVIRONMENT === "test"
+        ? "Mercado Pago não retornou sandbox_init_point para a preferência de teste."
+        : "Mercado Pago não retornou init_point para a preferência.");
+    }
+
     await supabaseRequest(`store_orders?id=eq.${encodeURIComponent(orderId)}`, {
       method: "PATCH",
       headers: { Prefer: "return=minimal" },
       body: JSON.stringify({
         mp_preference_id: preference.id,
-        checkout_url: preference.init_point,
+        checkout_url: checkoutUrl,
         updated_at: new Date().toISOString(),
       }),
     });
-    return res.status(201).json({ orderId, checkoutUrl: preference.init_point });
+    return res.status(201).json({ orderId, checkoutUrl });
   } catch (error) {
     if (orderId) {
       try { await rpc("release_store_order_stock", { p_order_id: orderId }); } catch (releaseError) {
