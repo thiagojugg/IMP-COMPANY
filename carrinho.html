@@ -53,6 +53,17 @@
     .instagram-rodape{width:16px;height:16px;display:inline-flex;align-items:center;justify-content:center;color:#111;transition:opacity .2s ease,transform .2s ease}
     .instagram-rodape:hover{opacity:.6;transform:translateY(-1px)}
     .instagram-rodape svg{width:16px;height:16px;display:block}
+    .dados-entrega{margin:24px 0 0;padding:20px;border:1px solid var(--linha)}
+    .dados-entrega h2{margin:0 0 7px;font:900 22px Impact,'Arial Black',sans-serif;letter-spacing:.03em}
+    .dados-entrega p{margin:0 0 17px;color:#777;font-size:11px;line-height:1.6}
+    .grade-entrega{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .campo-entrega{display:grid;gap:6px}
+    .campo-entrega.largo{grid-column:1/-1}
+    .campo-entrega label{font-size:9px;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
+    .campo-entrega input{width:100%;height:43px;min-width:0;border:1px solid #dedede;border-radius:0;padding:0 11px;background:#fff;color:#111;font:14px Arial,sans-serif}
+    .campo-entrega input:focus{outline:1px solid #111;outline-offset:1px}
+    .finalizar-pedido:not(:disabled){opacity:1;cursor:pointer}
+    .finalizar-pedido:disabled{opacity:.4;cursor:not-allowed}
     @media(max-width:600px){.cabecalho{height:66px}.logo-cabecalho{width:76px;height:36px}.voltar{font-size:9px;min-height:32px;padding:0 10px}main{padding-top:36px}.item-carrinho{gap:13px}.imagem-item-carrinho{width:76px;height:90px;flex-basis:76px}.acoes-carrinho{max-width:none}}
     @media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important}}
     .copyright,sup.copyright{display:none!important}
@@ -83,6 +94,24 @@
   <main>
     <div class="cabecalho-sacola"><h1>SUA SACOLA</h1><span class="quantidade" id="quantidade-carrinho">0 itens</span></div>
     <section class="itens-carrinho" id="itens-carrinho" aria-live="polite"></section>
+    <section class="dados-entrega" id="dados-entrega-container" hidden aria-labelledby="titulo-entrega">
+      <h2 id="titulo-entrega">DADOS PARA ENTREGA</h2>
+      <p>Preencha os dados de quem vai receber. Eles serão usados para identificar e enviar seu pedido.</p>
+      <form id="dados-entrega" autocomplete="on">
+        <div class="grade-entrega">
+          <div class="campo-entrega largo"><label for="nome-cliente">Nome completo</label><input id="nome-cliente" name="name" autocomplete="name" required minlength="3" maxlength="120"></div>
+          <div class="campo-entrega"><label for="email-cliente">E-mail</label><input id="email-cliente" name="email" type="email" autocomplete="email" required maxlength="180"></div>
+          <div class="campo-entrega"><label for="telefone-cliente">Telefone / WhatsApp</label><input id="telefone-cliente" name="phone" type="tel" autocomplete="tel" inputmode="tel" required minlength="10" maxlength="20" placeholder="(99) 99999-9999"></div>
+          <div class="campo-entrega"><label for="cep-entrega">CEP</label><input id="cep-entrega" name="zipCode" autocomplete="postal-code" inputmode="numeric" required minlength="8" maxlength="9" placeholder="00000-000"></div>
+          <div class="campo-entrega"><label for="estado-entrega">Estado (UF)</label><input id="estado-entrega" name="state" autocomplete="address-level1" required minlength="2" maxlength="2" placeholder="MA"></div>
+          <div class="campo-entrega largo"><label for="rua-entrega">Rua / Avenida</label><input id="rua-entrega" name="street" autocomplete="address-line1" required maxlength="160"></div>
+          <div class="campo-entrega"><label for="numero-entrega">Número</label><input id="numero-entrega" name="number" autocomplete="address-line2" required maxlength="20"></div>
+          <div class="campo-entrega"><label for="complemento-entrega">Complemento (opcional)</label><input id="complemento-entrega" name="complement" maxlength="100"></div>
+          <div class="campo-entrega"><label for="bairro-entrega">Bairro</label><input id="bairro-entrega" name="neighborhood" autocomplete="address-level3" required maxlength="100"></div>
+          <div class="campo-entrega"><label for="cidade-entrega">Cidade</label><input id="cidade-entrega" name="city" autocomplete="address-level2" required maxlength="100"></div>
+        </div>
+      </form>
+    </section>
     <section class="acoes-carrinho" aria-label="Finalizar pedido">
       <button class="botao-cupom" type="button" id="abrir-cupom" aria-expanded="false">＋ Adicionar cupom</button>
       <div class="campo-cupom" id="campo-cupom">
@@ -90,8 +119,8 @@
         <button class="aplicar-cupom" type="button" id="aplicar-cupom">Aplicar</button>
       </div>
       <p class="mensagem-cupom" id="mensagem-cupom" role="status">A aplicação de cupons será disponibilizada em breve.</p>
-      <button class="finalizar-pedido" type="button" disabled>Finalizar pedido</button>
-      <p class="aviso">Seu item fica salvo neste navegador. A finalização de pedidos e o pagamento online serão ativados quando a loja definir os dados comerciais e a integração de pagamento.</p>
+      <button class="finalizar-pedido" id="finalizar-pedido" type="button" disabled>Finalizar pedido</button>
+      <p class="aviso">Após conferir os dados de entrega, você será direcionado ao ambiente seguro do Mercado Pago para concluir o pagamento.</p>
     </section>
   </main>
   <footer class="rodape"><strong>IMP COMPANY</strong><div class="rodape-info"><span>© 2020/2026 IMP COMPANY. Todos os direitos reservados.</span><a class="instagram-rodape" href="https://www.instagram.com/imp_records/" target="_blank" rel="noopener noreferrer" aria-label="Instagram da IMP RECORDS"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r=".8" fill="currentColor" stroke="none"/></svg></a></div></footer>
@@ -113,6 +142,8 @@
       const lista=document.getElementById('itens-carrinho');
       function renderizar(){
         document.getElementById('quantidade-carrinho').textContent=carrinho.length+' '+(carrinho.length===1?'item':'itens');
+        document.getElementById('dados-entrega-container').hidden=!carrinho.length;
+        document.getElementById('finalizar-pedido').disabled=!carrinho.length;
         lista.innerHTML='';
         if(!carrinho.length){const vazio=document.createElement('p');vazio.className='vazio';vazio.textContent='Sua sacola está vazia.';lista.appendChild(vazio);return;}
         carrinho.forEach((item,i)=>{
@@ -136,6 +167,41 @@
       });
       document.getElementById('aplicar-cupom').addEventListener('click',()=>document.getElementById('mensagem-cupom').classList.add('visivel'));
       renderizar();
+      const form=document.getElementById('dados-entrega');
+      const checkoutButton=document.getElementById('finalizar-pedido');
+      checkoutButton.addEventListener('click',async()=>{
+        if(!carrinho.length || !form.reportValidity()) return;
+        const item=carrinho[0];
+        if(carrinho.length!==1 || item.nome!=='CAMISETA IMP GENGAR DROP #1' || item.cor!=='Preta' || item.tamanho!=='G'){
+          alert('No momento, a única variação disponível é a camiseta Gengar preta, tamanho G. Remova os outros itens da sacola.');
+          return;
+        }
+        const data=new FormData(form);
+        const customer={
+          name:data.get('name'),email:data.get('email'),phone:data.get('phone'),
+          address:{
+            zipCode:data.get('zipCode'),state:data.get('state'),street:data.get('street'),
+            number:data.get('number'),complement:data.get('complement'),
+            neighborhood:data.get('neighborhood'),city:data.get('city')
+          }
+        };
+        checkoutButton.disabled=true;
+        checkoutButton.textContent='PREPARANDO PAGAMENTO...';
+        try{
+          const response=await fetch('https://imp-company-payments-uwq7.onrender.com/api/checkout',{
+            method:'POST',headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({items:[{variantId:item.variantId||'713eb4db-9c0c-4101-9968-35f0d40031a1',quantity:1}],customer})
+          });
+          const result=await response.json().catch(()=>({}));
+          if(!response.ok) throw new Error(result.message||'Não foi possível iniciar o pagamento.');
+          if(!result.checkoutUrl) throw new Error('O Mercado Pago não retornou o link de pagamento.');
+          window.location.assign(result.checkoutUrl);
+        }catch(error){
+          alert(error.message||'Falha ao conectar com o pagamento. Tente novamente.');
+          checkoutButton.disabled=false;
+          checkoutButton.textContent='Finalizar pedido';
+        }
+      });
     })();
   </script>
 
