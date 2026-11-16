@@ -151,5 +151,6 @@
   <script>
     (()=>{const links=document.querySelectorAll('a[href]');links.forEach(link=>link.addEventListener('click',event=>{if(link.target||event.metaKey||event.ctrlKey||event.shiftKey)return;const target=new URL(link.href,location.href);if(target.origin!==location.origin||target.pathname===location.pathname)return;event.preventDefault();document.body.style.opacity='.65';document.body.style.transition='opacity .25s';setTimeout(()=>location.href=target.href,250);}));})();
   </script>
+  <script src="assets/product-reviews.js" defer></script>
 </body>
 </html>
