@@ -125,7 +125,7 @@
         <input type="text" id="codigo-cupom" placeholder="Código do cupom" aria-label="Código do cupom" autocomplete="off">
         <button class="aplicar-cupom" type="button" id="aplicar-cupom">Aplicar</button>
       </div>
-      <p class="mensagem-cupom" id="mensagem-cupom" role="status">A aplicação de cupons será disponibilizada em breve.</p>
+      <p class="mensagem-cupom" id="mensagem-cupom" role="status" aria-live="polite"></p>
       <button class="finalizar-pedido" id="finalizar-pedido" type="button" disabled>Finalizar pedido</button>
       <p class="aviso">Após conferir os dados de entrega, você será direcionado ao ambiente seguro do Mercado Pago para concluir o pagamento.</p>
     </section>
@@ -164,6 +164,10 @@
         });
       }
       function salvar(){localStorage.setItem('imp-carrinho',JSON.stringify(carrinho));renderizar();}
+      let cupomAplicado='';
+      const codigoCupom=document.getElementById('codigo-cupom');
+      const mensagemCupom=document.getElementById('mensagem-cupom');
+      const botaoAplicarCupom=document.getElementById('aplicar-cupom');
       const botaoCupom=document.getElementById('abrir-cupom');
       const campoCupom=document.getElementById('campo-cupom');
       botaoCupom.addEventListener('click',()=>{
@@ -172,7 +176,35 @@
         botaoCupom.textContent=aberto?'− Fechar cupom':'＋ Adicionar cupom';
         if(aberto)document.getElementById('codigo-cupom').focus();
       });
-      document.getElementById('aplicar-cupom').addEventListener('click',()=>document.getElementById('mensagem-cupom').classList.add('visivel'));
+      async function aplicarCupom(){
+        const codigo=(codigoCupom.value||'').trim().toUpperCase();
+        mensagemCupom.classList.add('visivel');
+        if(!codigo){cupomAplicado='';mensagemCupom.textContent='Digite um código de cupom.';mensagemCupom.style.color='#b00020';return;}
+        botaoAplicarCupom.disabled=true;
+        botaoAplicarCupom.textContent='VERIFICANDO...';
+        try{
+          const response=await fetch('https://imp-company-payments-uwq7.onrender.com/api/coupons/validate',{
+            method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({code:codigo})
+          });
+          const result=await response.json().catch(()=>({}));
+          if(!response.ok||!result.valid) throw new Error(result.message||'Cupom inválido ou não disponível.');
+          cupomAplicado=result.code;
+          const desconto=(result.discountCents/100).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
+          mensagemCupom.textContent='Cupom '+result.code+' aplicado! '+result.percent+'% de desconto — você economiza '+desconto+' no produto.';
+          mensagemCupom.style.color='#16733b';
+          codigoCupom.value=result.code;
+        }catch(error){
+          cupomAplicado='';
+          mensagemCupom.textContent=error.message||'Não foi possível validar o cupom.';
+          mensagemCupom.style.color='#b00020';
+        }finally{
+          botaoAplicarCupom.disabled=false;
+          botaoAplicarCupom.textContent='Aplicar';
+        }
+      }
+      botaoAplicarCupom.addEventListener('click',aplicarCupom);
+      codigoCupom.addEventListener('input',()=>{cupomAplicado='';mensagemCupom.classList.remove('visivel');});
+      codigoCupom.addEventListener('keydown',event=>{if(event.key==='Enter'){event.preventDefault();aplicarCupom();}});
       renderizar();
       const form=document.getElementById('dados-entrega');
       const checkoutButton=document.getElementById('finalizar-pedido');
@@ -265,7 +297,7 @@
         try{
           const response=await fetch('https://imp-company-payments-uwq7.onrender.com/api/checkout',{
             method:'POST',headers:{'Content-Type':'application/json'},
-            body:JSON.stringify({items:[{variantId:item.variantId||'713eb4db-9c0c-4101-9968-35f0d40031a1',quantity:1}],customer})
+            body:JSON.stringify({items:[{variantId:item.variantId||'713eb4db-9c0c-4101-9968-35f0d40031a1',quantity:1}],customer,couponCode:cupomAplicado})
           });
           const result=await response.json().catch(()=>({}));
           if(!response.ok) throw new Error(result.message||'Não foi possível iniciar o pagamento.');
