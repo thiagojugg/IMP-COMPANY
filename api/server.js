@@ -11,7 +11,10 @@ const FRONTEND_URL = (process.env.FRONTEND_URL || "https://thiagojugg.github.io/
   .replace(/\/$/, "");
 const SUPABASE_URL = (process.env.SUPABASE_URL || "").replace(/\/$/, "");
 const SUPABASE_SERVICE_ROLE_KEY = process.env.SUPABASE_SERVICE_ROLE_KEY || "";
-const MP_ACCESS_TOKEN = process.env.MERCADO_PAGO_ACCESS_TOKEN || "";
+const MP_ENVIRONMENT = (process.env.MP_ENVIRONMENT || "production").toLowerCase();
+const MP_ACCESS_TOKEN = MP_ENVIRONMENT === "test"
+  ? (process.env.MERCADO_PAGO_TEST_ACCESS_TOKEN || "")
+  : (process.env.MERCADO_PAGO_ACCESS_TOKEN || "");
 const MP_WEBHOOK_SECRET = process.env.MERCADO_PAGO_WEBHOOK_SECRET || "";
 const VARIANT_ID = "713eb4db-9c0c-4101-9968-35f0d40031a1";
 
@@ -32,7 +35,7 @@ function requireConfig(res) {
   const missing = [];
   if (!SUPABASE_URL) missing.push("SUPABASE_URL");
   if (!SUPABASE_SERVICE_ROLE_KEY) missing.push("SUPABASE_SERVICE_ROLE_KEY");
-  if (!MP_ACCESS_TOKEN) missing.push("MERCADO_PAGO_ACCESS_TOKEN");
+  if (!MP_ACCESS_TOKEN) missing.push(MP_ENVIRONMENT === "test" ? "MERCADO_PAGO_TEST_ACCESS_TOKEN" : "MERCADO_PAGO_ACCESS_TOKEN");
   if (!MP_WEBHOOK_SECRET) missing.push("MERCADO_PAGO_WEBHOOK_SECRET");
   if (missing.length) {
     res.status(503).json({ error: "SERVER_NOT_CONFIGURED", message: "Integração ainda não configurada no servidor.", missing });
@@ -129,6 +132,7 @@ app.get("/health", (_req, res) => {
     configured: {
       supabase: Boolean(SUPABASE_URL && SUPABASE_SERVICE_ROLE_KEY),
       mercadoPago: Boolean(MP_ACCESS_TOKEN),
+      mercadoPagoEnvironment: MP_ENVIRONMENT === "test" ? "test" : "production",
       webhook: Boolean(MP_WEBHOOK_SECRET),
     },
   });
