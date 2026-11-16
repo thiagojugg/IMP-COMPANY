@@ -26,7 +26,9 @@ A rota `GET /health` informa se o serviço está ativo e quais integrações est
 Configure no painel Environment do Render:
 - `SUPABASE_URL`
 - `SUPABASE_SERVICE_ROLE_KEY` — segredo privado, nunca expor ao navegador ou GitHub
-- `MERCADO_PAGO_ACCESS_TOKEN`
+- `MP_ENVIRONMENT` — `production` (padrão) ou `test`.
+- `MERCADO_PAGO_ACCESS_TOKEN` — token de produção; mantenha-o guardado para voltar à operação real.
+- `MERCADO_PAGO_TEST_ACCESS_TOKEN` — token de teste do vendedor de teste; usado quando `MP_ENVIRONMENT=test`.
 - `MERCADO_PAGO_WEBHOOK_SECRET` — assinatura secreta gerada em Webhooks no painel do Mercado Pago
 - `FRONTEND_URL` — URL base do GitHub Pages: `https://thiagojugg.github.io/IMP-COMPANY`
 
@@ -41,7 +43,7 @@ Configure no painel Environment do Render:
 ## Endpoint de webhook
 `POST /api/webhooks/mercadopago`
 
-A preferência inclui essa URL como `notification_url`. Configure a assinatura secreta da aplicação no Render antes de liberar pagamentos.
+A preferência inclui essa URL como `notification_url`. Configure a assinatura secreta da aplicação no Render antes de liberar pagamentos. Para testar sem cobranças reais, defina `MP_ENVIRONMENT=test` e `MERCADO_PAGO_TEST_ACCESS_TOKEN` com o Access Token de teste do vendedor de teste. Para voltar à produção, defina `MP_ENVIRONMENT=production`; o token de produção permanece em `MERCADO_PAGO_ACCESS_TOKEN`.
 
 ## Disponibilidade atual
 A única variação liberada é a camiseta Gengar preta, tamanho G, com estoque inicial de 1 unidade. O produto THE WORLD IS OURS permanece indisponível.
