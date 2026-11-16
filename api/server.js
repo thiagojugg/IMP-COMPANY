@@ -158,12 +158,12 @@ app.get("/api/stock", async (req, res) => {
     return res.status(503).json({ error: "STOCK_NOT_CONFIGURED", message: "Consulta de estoque indisponível." });
   }
   const variantId = cleanText(req.query?.variantId, 64);
-  if (variantId !== VARIANT_ID) {
-    return res.status(404).json({ error: "VARIANT_NOT_FOUND" });
+  if (!/^[0-9a-f-]{36}$/i.test(variantId)) {
+    return res.status(400).json({ error: "INVALID_VARIANT_ID" });
   }
   try {
     const rows = await supabaseRequest(
-      `store_variants?id=eq.${encodeURIComponent(VARIANT_ID)}&select=stock,active`,
+      `store_variants?id=eq.${encodeURIComponent(variantId)}&select=stock,active`,
       { method: "GET" }
     );
     const variant = rows?.[0];
@@ -226,20 +226,46 @@ app.post("/api/checkout", async (req, res) => {
       error.status = 400;
       throw error;
     }
-    const discountCents = couponCode ? Math.round(PRODUCT_PRICE_CENTS * COUPON_PERCENT / 100) : 0;
-    const discountedProductCents = PRODUCT_PRICE_CENTS - discountCents;
     const items = req.body?.items;
     if (!Array.isArray(items) || items.length !== 1 ||
-        items[0]?.variantId !== VARIANT_ID ||
+        !/^[0-9a-f-]{36}$/i.test(items[0]?.variantId || "") ||
         !Number.isInteger(items[0]?.quantity) || items[0].quantity !== 1) {
       return res.status(400).json({
         error: "INVALID_CART",
-        message: "No momento, apenas 1 camiseta Gengar preta, tamanho G, está disponível.",
+        message: "A sacola deve conter um único item e uma única unidade por pedido.",
       });
     }
 
+    const variantRows = await supabaseRequest(
+      `store_variants?id=eq.${encodeURIComponent(items[0].variantId)}&select=id,product_id,color,size,price_cents,stock,active,sku`,
+      { method: "GET" }
+    );
+    const variant = variantRows?.[0];
+    if (!variant || !variant.active) {
+      const error = new Error("Esta variação não está disponível.");
+      error.status = 400;
+      throw error;
+    }
+    const productRows = await supabaseRequest(
+      `store_products?id=eq.${encodeURIComponent(variant.product_id)}&select=name,active`,
+      { method: "GET" }
+    );
+    const product = productRows?.[0];
+    if (!product || !product.active) {
+      const error = new Error("Este produto não está disponível.");
+      error.status = 400;
+      throw error;
+    }
+
+    const productPriceCents = Number(variant.price_cents);
+    if (!Number.isInteger(productPriceCents) || productPriceCents <= 0) {
+      throw new Error("Preço de produto inválido.");
+    }
+    const discountCents = couponCode ? Math.round(productPriceCents * COUPON_PERCENT / 100) : 0;
+    const discountedProductCents = productPriceCents - discountCents;
+
     orderId = await rpc("reserve_store_order", {
-      p_variant_id: VARIANT_ID,
+      p_variant_id: variant.id,
       p_quantity: 1,
       p_customer_name: customer.name,
       p_customer_email: customer.email,
@@ -261,8 +287,8 @@ app.post("/api/checkout", async (req, res) => {
     const preference = await mpRequest("/checkout/preferences", {
       items: [
         {
-          id: "IMP-GENGAR-PRETA-G",
-          title: "CAMISETA IMP GENGAR DROP #1 — PRETA / G",
+          id: variant.sku || variant.id,
+          title: `${product.name} — ${variant.color} / ${variant.size}`,
           quantity: 1,
           currency_id: "BRL",
           unit_price: discountedProductCents / 100,
