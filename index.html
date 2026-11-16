@@ -162,14 +162,39 @@
     }
   </style>
 
-  <style id="protecoes-conteudo-imp">
-    body,body *:not(input):not(textarea):not([contenteditable="true"]){-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none}
-    img{-webkit-user-drag:none;user-drag:none}
-  </style>
-</head>
-<body>
-  <div class="transicao-cinematografica entrada" aria-hidden="true"></div>
-  <header class="cabecalho"><a class="marca" href="#" aria-label="IMP COMPANY — início"><img class="logo-cabecalho" src="assets/7F820FC2-E4D9-44CA-832A-119734248297.jpeg" alt="IMP COMPANY"></a></header>
+
+    .vitrine-produtos{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;width:100%;max-width:1200px;margin:0 auto}
+    .produto-card{display:block;min-width:0;background:#f5f5f5;border:1px solid #e8e8e8;transition:transform .25s ease,box-shadow .25s ease;overflow:hidden}
+    .produto-card:hover{transform:translateY(-5px);box-shadow:0 16px 30px #00000012}
+    .produto-foto{position:relative;aspect-ratio:4/5;background:#ededed;overflow:hidden}
+    .produto-foto img{width:100%;height:100%;display:block;object-fit:cover;transition:transform .45s ease}
+    .produto-card:hover .produto-foto img{transform:scale(1.025)}
+    .produto-info{padding:18px 18px 20px}
+    .produto-categoria{font:700 9px Arial,sans-serif;letter-spacing:.2em;color:#777}
+    .produto-info h3{font:900 clamp(17px,2vw,24px) Impact,'Arial Black',Arial,sans-serif;letter-spacing:-.02em;margin:9px 0 12px;min-height:1.2em}
+    .produto-preco{display:block;font:800 15px Arial,sans-serif;color:#111}
+    .produto-link{display:inline-block;margin-top:18px;padding-top:12px;border-top:1px solid #d8d8d8;width:100%;font:700 9px Arial,sans-serif;letter-spacing:.16em}
+    .produto-selo{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%) rotate(-7deg);padding:12px 18px;background:#111c;color:#fff;border:2px solid #fff;outline:1px solid #111;outline-offset:4px;font:900    <section class="secao" id="colecao">
+      <div class="cabecalho-secao">
+        <div><div class="sobretitulo">IMP COMPANY — STORE</div><h2>TODOS OS PRODUTOS</h2></div>
+        <p class="texto-apoio">Explore a coleção completa. Escolha sua peça e acesse os detalhes do produto.</p>
+      </div>
+      <div class="vitrine-produtos">
+        <a class="produto-card" href="camiseta-gengar.html" aria-label="Ver CAMISETA IMP GENGAR DROP #1">
+          <div class="produto-foto"><img src="assets/FE633D37-CBDE-4FBC-B7BE-BD8BE80F3F23.jpeg" alt="Camiseta IMP Gengar preta" loading="lazy"></div>
+          <div class="produto-info"><span class="produto-categoria">CAMISETA</span><h3>IMP GENGAR DROP #1</h3><strong class="produto-preco">R$ 123,90</strong><span class="produto-link">VER PRODUTO ↗</span></div>
+        </a>
+        <a class="produto-card" href="regata-lady-death.html" aria-label="Ver REGATA LADY DEATH">
+          <div class="produto-foto"><img src="assets/03EE116A-5087-446B-8141-0ACC6D1745F6.jpeg" alt="Regata Lady Death preta" loading="lazy"></div>
+          <div class="produto-info"><span class="produto-categoria">REGATA</span><h3>LADY DEATH</h3><strong class="produto-preco">R$ 123,90</strong><span class="produto-link">VER PRODUTO ↗</span></div>
+        </a>
+        <a class="produto-card produto-em-breve" href="the-words-is-ours-vol-01.html" aria-label="Ver CAMISETA THE WORLD IS OURS, em breve">
+          <div class="produto-foto"><img src="assets/146323B1-98BD-4DFB-BE3A-802524D94693.jpeg" alt="Camiseta The World Is Ours preta" loading="lazy"><span class="produto-selo">EM BREVE</span></div>
+          <div class="produto-info"><span class="produto-categoria">CAMISETA</span><h3>THE WORLD IS OURS</h3><strong class="produto-preco">EM BREVE</strong><span class="produto-link">VER PRODUTO ↗</span></div>
+        </a>
+      </div>
+    </section>
+"IMP COMPANY"></a></header>
   <main>
     <section class="capa" aria-label="Apresentação da IMP">
       <div class="capa-galeria" aria-label="Imagens da coleção">
