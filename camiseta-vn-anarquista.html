@@ -8,7 +8,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <link rel="icon" href="assets/7F820FC2-E4D9-44CA-832A-119734248297.jpeg" type="image/jpeg">
   <meta name="description" content="CAMISETA VN ANARQUISTA — IMP COMPANY. Camiseta preta, tamanhos P ao GG.">
-  <title>REGATA LADY DEATH — IMP COMPANY</title>
+  <title>CAMISETA VN ANARQUISTA — IMP COMPANY</title>
   <style>
     :root{--line:#e8e8e8;--black:#080808;--muted:#777}
     *{box-sizing:border-box}
@@ -84,7 +84,7 @@
     </section>
     <section class="details">
       <div class="eyebrow">IMP COMPANY · VESTUÁRIO</div>
-      <h1>REGATA LADY DEATH</h1>
+      <h1>CAMISETA VN ANARQUISTA</h1>
       <div class="price">R$ 134,90</div>
       <div class="group">
         <div class="label"><span>Cor</span><span class="selected">Preta</span></div>
@@ -104,7 +104,7 @@
         <button class="action primary" id="buy" type="button" disabled>SELECIONE O TAMANHO</button>
         <button class="action secondary" id="add" type="button" disabled>ADICIONAR À SACOLA</button>
       </div>
-      <div class="description"><strong>Detalhes do produto</strong><p>REGATA LADY DEATH — uma peça de presença marcante, com identidade visual exclusiva da IMP COMPANY.</p><p>Cor: preta. Tamanhos P, M, G e GG. Estoque zerado em todas as variações.</p></div>
+      <div class="description"><strong>Detalhes do produto</strong><p>CAMISETA VN ANARQUISTA — uma peça de presença marcante, com identidade visual exclusiva da IMP COMPANY.</p><p>Cor: preta. Tamanhos P, M, G e GG. Estoque zerado em todas as variações.</p></div>
     </section>
   </main>
   <footer><strong>IMP COMPANY</strong><span>© 2020/2026 IMP COMPANY. Todos os direitos reservados.</span></footer>
@@ -150,7 +150,7 @@
       function addToCart(go){
         if(!size||stock<1)return;
         if(cart.some(item=>item.variantId===variants[size])){alert('Esta variação já está na sua sacola.');return;}
-        cart.push({nome:'REGATA LADY DEATH',cor:'Preta',tamanho:size,variantId:variants[size],imagem:frontImage});
+        cart.push({nome:'CAMISETA VN ANARQUISTA',cor:'Preta',tamanho:size,variantId:variants[size],imagem:frontImage});
         localStorage.setItem('imp-carrinho',JSON.stringify(cart));
         if(go)location.href='carrinho.html';
         else{add.textContent='ADICIONADO À SACOLA';setTimeout(()=>add.textContent='ADICIONAR À SACOLA',1500);}
