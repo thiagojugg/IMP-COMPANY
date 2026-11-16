@@ -22,7 +22,7 @@
   }
 
   function setup() {
-    const details = document.querySelector(".detalhes");
+    const details = document.querySelector(".detalhes, .details");
     const heading = details?.querySelector("h1");
     if (!details || !heading) return;
 
