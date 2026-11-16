@@ -190,7 +190,7 @@
           if(!response.ok||!result.valid) throw new Error(result.message||'Cupom inválido ou não disponível.');
           cupomAplicado=result.code;
           const desconto=(result.discountCents/100).toLocaleString('pt-BR',{style:'currency',currency:'BRL'});
-          mensagemCupom.textContent='Cupom '+result.code+' aplicado! '+result.percent+'% de desconto — você economiza '+desconto+' no produto.';
+          mensagemCupom.textContent='Cupom '+result.code+' aplicado! '+result.percent+'% de desconto — você economiza '+desconto+' no produto. Restam '+result.remaining+' utilizações.';
           mensagemCupom.style.color='#16733b';
           codigoCupom.value=result.code;
         }catch(error){
