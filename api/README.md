@@ -36,7 +36,7 @@ Configure no painel Environment do Render:
 - A função `reserve_store_order` reserva o estoque de forma atômica e cria o pedido.
 - O backend cria a preferência do Checkout Pro e direciona o comprador para o Mercado Pago.
 - O webhook valida a assinatura e consulta o pagamento diretamente na API do Mercado Pago antes de atualizar o pedido.
-- Reservas não pagas expiram após 30 minutos; pedidos com pagamento em processamento mantêm a reserva até uma atualização de status.
+- Reservas sem pagamento são liberadas na próxima tentativa de checkout após o prazo de 30 minutos; pedidos com pagamento em processamento mantêm a reserva até uma atualização de status.
 
 ## Endpoint de webhook
 `POST /api/webhooks/mercadopago`
