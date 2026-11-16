@@ -1,0 +1,134 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=5">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="icon" href="assets/7F820FC2-E4D9-44CA-832A-119734248297.jpeg" type="image/jpeg">
+  <meta name="description" content="REGATA LADY DEATH — IMP COMPANY. Regata preta, tamanhos P ao GG.">
+  <title>REGATA LADY DEATH — IMP COMPANY</title>
+  <style>
+    :root{--line:#e8e8e8;--black:#080808;--muted:#777}
+    *{box-sizing:border-box}
+    body{margin:0;background:#fff;color:var(--black);font-family:Arial,Helvetica,sans-serif}
+    a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}
+    .header{height:76px;display:flex;align-items:center;justify-content:center;border-bottom:1px solid var(--line);position:relative}
+    .logo{width:92px;height:44px;object-fit:contain}
+    .back,.bag{position:absolute;top:50%;transform:translateY(-50%)}
+    .back{left:clamp(18px,5vw,64px);font-size:10px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;border:1px solid #dedede;padding:11px 13px}
+    .bag{right:clamp(18px,5vw,64px);font-size:11px;font-weight:700;letter-spacing:.1em}
+    main{width:min(1240px,100%);margin:auto;padding:52px clamp(18px,5vw,64px) 90px;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(300px,.9fr);gap:clamp(34px,6vw,90px);align-items:start}
+    .photo{background:#f3f3f3;overflow:hidden;aspect-ratio:1170/1461}
+    .photo img{width:100%;height:100%;object-fit:cover;display:block}
+    .details{position:sticky;top:32px;padding-top:10px}
+    .eyebrow{font-size:9px;letter-spacing:.25em;color:#888;text-transform:uppercase;margin-bottom:18px}
+    h1{font-family:Impact,'Arial Black',Arial,sans-serif;font-size:clamp(38px,5vw,64px);line-height:.94;letter-spacing:-.035em;margin:0}
+    .price{font-size:24px;font-weight:800;margin:18px 0 32px}
+    .group{border-top:1px solid var(--line);padding:22px 0}
+    .label{display:flex;justify-content:space-between;gap:12px;margin-bottom:14px;font-size:10px;letter-spacing:.16em;text-transform:uppercase}
+    .selected{color:#777}
+    .swatch{width:42px;height:42px;border:1px solid #111;border-radius:50%;padding:4px;background:#fff}
+    .swatch span{display:block;width:100%;height:100%;border-radius:50%;background:#111}
+    .sizes{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+    .size{height:48px;background:#fff;border:1px solid #dedede;font-size:12px}
+    .size[aria-pressed=true]{background:#080808;color:#fff;border-color:#080808}
+    .availability{min-height:32px;margin:12px 0 0;color:#777;font-size:11px;line-height:1.5}
+    .actions{display:grid;gap:10px;padding-top:18px}
+    .action{min-height:54px;border:1px solid #080808;font-size:10px;font-weight:700;letter-spacing:.16em;text-transform:uppercase}
+    .primary{background:#080808;color:#fff}.secondary{background:#fff;color:#080808}
+    .action:disabled{opacity:.42;cursor:not-allowed}
+    .description{margin-top:30px;padding-top:22px;border-top:1px solid var(--line);font-size:12px;line-height:1.8;color:#666}
+    .description strong{display:block;color:#111;font-size:10px;letter-spacing:.16em;text-transform:uppercase;margin-bottom:8px}
+    footer{border-top:1px solid var(--line);min-height:130px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:12px}
+    footer strong{font-family:Impact,'Arial Black',Arial,sans-serif;font-size:17px;letter-spacing:.24em}
+    footer span{font:10px Arial,sans-serif;color:#777}
+    @media(max-width:800px){.header{height:66px}.logo{width:78px;height:38px}.back{left:14px;font-size:9px;padding:10px}.bag{right:16px}main{grid-template-columns:1fr;gap:28px;padding-top:20px}.details{position:static;padding-top:0}h1{font-size:44px}}
+    @media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+  </style>
+</head>
+<body>
+  <header class="header">
+    <a class="back" href="index.html">← Voltar</a>
+    <a href="index.html" aria-label="IMP COMPANY — início"><img class="logo" src="assets/7F820FC2-E4D9-44CA-832A-119734248297.jpeg" alt="IMP COMPANY"></a>
+    <a class="bag" href="carrinho.html" aria-label="Abrir sacola">SACOLA</a>
+  </header>
+  <main>
+    <section class="photo" aria-label="Foto da REGATA LADY DEATH">
+      <img src="assets/03EE116A-5087-446B-8141-0ACC6D1745F6.jpeg" alt="REGATA LADY DEATH preta">
+    </section>
+    <section class="details">
+      <div class="eyebrow">IMP COMPANY · VESTUÁRIO</div>
+      <h1>REGATA LADY DEATH</h1>
+      <div class="price">R$ 123,90</div>
+      <div class="group">
+        <div class="label"><span>Cor</span><span class="selected">Preta</span></div>
+        <button class="swatch" type="button" aria-label="Cor preta selecionada" aria-pressed="true"><span></span></button>
+      </div>
+      <div class="group">
+        <div class="label"><span>Tamanho</span><span class="selected" id="size-label">Selecione</span></div>
+        <div class="sizes">
+          <button class="size" type="button" data-size="P" aria-pressed="false">P</button>
+          <button class="size" type="button" data-size="M" aria-pressed="false">M</button>
+          <button class="size" type="button" data-size="G" aria-pressed="false">G</button>
+          <button class="size" type="button" data-size="GG" aria-pressed="false">GG</button>
+        </div>
+        <p class="availability" id="availability" aria-live="polite">Selecione um tamanho para consultar a disponibilidade.</p>
+      </div>
+      <div class="actions">
+        <button class="action primary" id="buy" type="button" disabled>SELECIONE O TAMANHO</button>
+        <button class="action secondary" id="add" type="button" disabled>ADICIONAR À SACOLA</button>
+      </div>
+      <div class="description"><strong>Detalhes do produto</strong><p>REGATA LADY DEATH — uma peça de presença marcante, com identidade visual exclusiva da IMP COMPANY.</p><p>Cor: preta. Grade disponível para cadastro: P, M, G e GG.</p></div>
+    </section>
+  </main>
+  <footer><strong>IMP COMPANY</strong><span>© 2020/2026 IMP COMPANY. Todos os direitos reservados.</span></footer>
+  <script>
+    (() => {
+      const api='https://imp-company-payments-uwq7.onrender.com';
+      const variants={
+        P:'510ff676-bbb6-439a-ba4a-71592dbe5155',
+        M:'9fbcf108-cfd0-4955-84c3-0c9fb8899929',
+        G:'9b0df00c-fe62-4c0a-bb29-232effa96155',
+        GG:'1ab1eeae-f5a2-4386-83a2-e0b1e33f45f5'
+      };
+      let size='',stock=0,cart=[];
+      try{cart=JSON.parse(localStorage.getItem('imp-carrinho')||'[]');if(!Array.isArray(cart))cart=[];}catch(_){cart=[];}
+      const buy=document.getElementById('buy'),add=document.getElementById('add'),availability=document.getElementById('availability');
+      async function checkStock(){
+        buy.disabled=true;add.disabled=true;stock=0;
+        if(!size){buy.textContent='SELECIONE O TAMANHO';availability.textContent='Selecione um tamanho para consultar a disponibilidade.';return;}
+        buy.textContent='CONSULTANDO ESTOQUE';availability.textContent='Consultando disponibilidade...';
+        try{
+          const response=await fetch(api+'/api/stock?variantId='+encodeURIComponent(variants[size]),{cache:'no-store'});
+          const data=await response.json().catch(()=>({}));
+          if(!response.ok)throw new Error('Estoque indisponível para consulta.');
+          stock=Math.max(0,Number(data.stock)||0);
+          const available=stock>0;
+          buy.disabled=!available;add.disabled=!available;
+          buy.textContent=available?'COMPRAR AGORA':'ESGOTADO';
+          availability.textContent=available?stock+' unidade(s) disponível(is).':'Esta variação está esgotada.';
+        }catch(_){buy.disabled=true;add.disabled=true;buy.textContent='INDISPONÍVEL';availability.textContent='Não foi possível consultar o estoque. Tente novamente.';}
+      }
+      document.querySelectorAll('[data-size]').forEach(button=>button.addEventListener('click',()=>{
+        size=button.dataset.size;document.getElementById('size-label').textContent=size;
+        document.querySelectorAll('[data-size]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+        checkStock();
+      }));
+      function addToCart(go){
+        if(!size||stock<1)return;
+        if(cart.some(item=>item.variantId===variants[size])){alert('Esta variação já está na sua sacola.');return;}
+        cart.push({nome:'REGATA LADY DEATH',cor:'Preta',tamanho:size,variantId:variants[size],imagem:'assets/03EE116A-5087-446B-8141-0ACC6D1745F6.jpeg'});
+        localStorage.setItem('imp-carrinho',JSON.stringify(cart));
+        if(go)location.href='carrinho.html';
+        else{add.textContent='ADICIONADO À SACOLA';setTimeout(()=>add.textContent='ADICIONAR À SACOLA',1500);}
+      }
+      add.addEventListener('click',()=>addToCart(false));
+      buy.addEventListener('click',()=>addToCart(true));
+    })();
+  </script>
+  <script>
+    (()=>{const links=document.querySelectorAll('a[href]');links.forEach(link=>link.addEventListener('click',event=>{if(link.target||event.metaKey||event.ctrlKey||event.shiftKey)return;const target=new URL(link.href,location.href);if(target.origin!==location.origin||target.pathname===location.pathname)return;event.preventDefault();document.body.style.opacity='.65';document.body.style.transition='opacity .25s';setTimeout(()=>location.href=target.href,250);}));})();
+  </script>
+</body>
+</html>
