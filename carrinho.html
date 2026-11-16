@@ -215,7 +215,7 @@
       let ultimoCepConsultado='';
       let consultaCepEmAndamento=false;
       async function preencherEnderecoPorCep(){
-        const cep=cepInput.value.replace(/\\D/g,'');
+        const cep=cepInput.value.replace(/\D/g,'');
         if(cep.length!==8 || cep===ultimoCepConsultado || consultaCepEmAndamento) return;
         consultaCepEmAndamento=true;
         try{
@@ -237,7 +237,7 @@
         }
       }
       cepInput.addEventListener('input',()=>{
-        const cep=cepInput.value.replace(/\\D/g,'');
+        const cep=cepInput.value.replace(/\D/g,'');
         if(cep.length===8) preencherEnderecoPorCep();
         else ultimoCepConsultado='';
       });
