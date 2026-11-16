@@ -332,6 +332,15 @@ app.post("/api/checkout", async (req, res) => {
       try { await rpc("release_store_order_stock", { p_order_id: orderId }); } catch (releaseError) {
         console.error("Falha ao liberar reserva após erro no checkout:", releaseError.message);
       }
+      try {
+        await supabaseRequest(`store_orders?id=eq.${encodeURIComponent(orderId)}`, {
+          method: "PATCH",
+          headers: { Prefer: "return=minimal" },
+          body: JSON.stringify({ status: "failed", updated_at: new Date().toISOString() }),
+        });
+      } catch (statusError) {
+        console.error("Falha ao encerrar pedido após erro no checkout:", statusError.message);
+      }
     }
     console.error("Erro ao criar checkout:", error.details || error.message);
     return res.status(error.status || 500).json({
@@ -397,6 +406,8 @@ app.post("/api/webhooks/mercadopago", async (req, res) => {
         method: "PATCH",
         headers: { Prefer: "return=minimal" },
         body: JSON.stringify({
+          status: payment.status === "cancelled" ? "cancelled" :
+            (["refunded", "charged_back"].includes(payment.status) ? "refunded" : "failed"),
           mp_payment_id: String(payment.id),
           updated_at: new Date().toISOString(),
         }),
