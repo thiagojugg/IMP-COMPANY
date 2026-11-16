@@ -19,7 +19,8 @@ app.use(cors({
   origin(origin, callback) {
     const originAllowed = allowedOrigins.some((allowed) => {
       try { return new URL(allowed).origin === origin; } catch { return false; }
-    });\n    if (!origin || originAllowed) return callback(null, true);
+    });
+    if (!origin || originAllowed) return callback(null, true);
     return callback(new Error("Origem não autorizada pelo CORS."));
   },
   methods: ["GET", "POST", "OPTIONS"],
