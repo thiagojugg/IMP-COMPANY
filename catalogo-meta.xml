@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
+  <channel>
+    <title>IMP COMPANY</title>
+    <link>https://thiagojugg.github.io/IMP-COMPANY/</link>
+    <description>Catálogo de produtos IMP COMPANY</description>
+    <item>
+      <g:id>IMP-LADY-DEATH-PRETA-P</g:id>
+      <g:item_group_id>IMP-REGATA-LADY-DEATH</g:item_group_id>
+      <g:title>REGATA LADY DEATH — Preta — P</g:title>
+      <g:description>Regata preta REGATA LADY DEATH, da IMP COMPANY. Tamanho P.</g:description>
+      <g:availability>out_of_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>123.90 BRL</g:price>
+      <g:link>https://thiagojugg.github.io/IMP-COMPANY/regata-lady-death.html</g:link>
+      <g:image_link>https://thiagojugg.github.io/IMP-COMPANY/assets/03EE116A-5087-446B-8141-0ACC6D1745F6.jpeg</g:image_link>
+      <g:brand>IMP COMPANY</g:brand>
+      <g:mpn>IMP-LADY-DEATH-PRETA-P</g:mpn>
+      <g:color>Preta</g:color>
+      <g:size>P</g:size>
+      <g:gender>unisex</g:gender>
+      <g:age_group>adult</g:age_group>
+    </item>
+    <item>
+      <g:id>IMP-LADY-DEATH-PRETA-M</g:id>
+      <g:item_group_id>IMP-REGATA-LADY-DEATH</g:item_group_id>
+      <g:title>REGATA LADY DEATH — Preta — M</g:title>
+      <g:description>Regata preta REGATA LADY DEATH, da IMP COMPANY. Tamanho M.</g:description>
+      <g:availability>out_of_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>123.90 BRL</g:price>
+      <g:link>https://thiagojugg.github.io/IMP-COMPANY/regata-lady-death.html</g:link>
+      <g:image_link>https://thiagojugg.github.io/IMP-COMPANY/assets/03EE116A-5087-446B-8141-0ACC6D1745F6.jpeg</g:image_link>
+      <g:brand>IMP COMPANY</g:brand>
+      <g:mpn>IMP-LADY-DEATH-PRETA-M</g:mpn>
+      <g:color>Preta</g:color>
+      <g:size>M</g:size>
+      <g:gender>unisex</g:gender>
+      <g:age_group>adult</g:age_group>
+    </item>
+    <item>
+      <g:id>IMP-LADY-DEATH-PRETA-G</g:id>
+      <g:item_group_id>IMP-REGATA-LADY-DEATH</g:item_group_id>
+      <g:title>REGATA LADY DEATH — Preta — G</g:title>
+      <g:description>Regata preta REGATA LADY DEATH, da IMP COMPANY. Tamanho G.</g:description>
+      <g:availability>out_of_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>123.90 BRL</g:price>
+      <g:link>https://thiagojugg.github.io/IMP-COMPANY/regata-lady-death.html</g:link>
+      <g:image_link>https://thiagojugg.github.io/IMP-COMPANY/assets/03EE116A-5087-446B-8141-0ACC6D1745F6.jpeg</g:image_link>
+      <g:brand>IMP COMPANY</g:brand>
+      <g:mpn>IMP-LADY-DEATH-PRETA-G</g:mpn>
+      <g:color>Preta</g:color>
+      <g:size>G</g:size>
+      <g:gender>unisex</g:gender>
+      <g:age_group>adult</g:age_group>
+    </item>
+    <item>
+      <g:id>IMP-LADY-DEATH-PRETA-GG</g:id>
+      <g:item_group_id>IMP-REGATA-LADY-DEATH</g:item_group_id>
+      <g:title>REGATA LADY DEATH — Preta — GG</g:title>
+      <g:description>Regata preta REGATA LADY DEATH, da IMP COMPANY. Tamanho GG.</g:description>
+      <g:availability>out_of_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>123.90 BRL</g:price>
+      <g:link>https://thiagojugg.github.io/IMP-COMPANY/regata-lady-death.html</g:link>
+      <g:image_link>https://thiagojugg.github.io/IMP-COMPANY/assets/03EE116A-5087-446B-8141-0ACC6D1745F6.jpeg</g:image_link>
+      <g:brand>IMP COMPANY</g:brand>
+      <g:mpn>IMP-LADY-DEATH-PRETA-GG</g:mpn>
+      <g:color>Preta</g:color>
+      <g:size>GG</g:size>
+      <g:gender>unisex</g:gender>
+      <g:age_group>adult</g:age_group>
+    </item>
+  </channel>
+</rss>
