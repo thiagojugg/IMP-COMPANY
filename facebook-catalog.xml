@@ -1,13 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<rss xmlns:g="http://base.google.com/ns/1.0" version="2.0">
+<rss version="2.0" xmlns:g="http://base.google.com/ns/1.0">
   <channel>
     <title>IMP COMPANY</title>
     <link>https://thiagojugg.github.io/IMP-COMPANY/</link>
     <description>Catálogo de produtos IMP COMPANY</description>
+
     <item>
       <g:id>imp-regata-lady-death</g:id>
       <g:title>REGATA LADY DEATH</g:title>
-      <g:description>Regata preta IMP COMPANY. Disponível nos tamanhos P, M, G e GG quando houver reposição.</g:description>
+      <g:description>Regata preta da IMP COMPANY. Modelagem unissex, tamanhos P, M, G e GG.</g:description>
       <g:availability>out_of_stock</g:availability>
       <g:condition>new</g:condition>
       <g:price>123.90 BRL</g:price>
@@ -15,5 +16,42 @@
       <g:image_link>https://thiagojugg.github.io/IMP-COMPANY/assets/03EE116A-5087-446B-8141-0ACC6D1745F6.jpeg</g:image_link>
       <g:brand>IMP COMPANY</g:brand>
     </item>
+
+    <item>
+      <g:id>imp-gengar-drop-1</g:id>
+      <g:title>CAMISETA IMP GENGAR DROP #1</g:title>
+      <g:description>Camiseta IMP Gengar Drop #1. Tecido 100% algodão, estampa em DTF e opções de cores e tamanhos conforme disponibilidade.</g:description>
+      <g:availability>out_of_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>123.90 BRL</g:price>
+      <g:link>https://thiagojugg.github.io/IMP-COMPANY/camiseta-gengar.html</g:link>
+      <g:image_link>https://thiagojugg.github.io/IMP-COMPANY/assets/FE633D37-CBDE-4FBC-B7BE-BD8BE80F3F23.jpeg</g:image_link>
+      <g:brand>IMP COMPANY</g:brand>
+    </item>
+
+    <item>
+      <g:id>imp-camiseta-vn-anarquista</g:id>
+      <g:title>CAMISETA VN ANARQUISTA</g:title>
+      <g:description>Camiseta VN Anarquista da IMP COMPANY. Cor preta, tecido e estampa exclusivos, tamanhos P, M, G e GG.</g:description>
+      <g:availability>out_of_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>123.90 BRL</g:price>
+      <g:link>https://thiagojugg.github.io/IMP-COMPANY/camiseta-vn-anarquista.html</g:link>
+      <g:image_link>https://thiagojugg.github.io/IMP-COMPANY/assets/58E45D54-8A7B-4528-9565-6862BA09B643.jpeg</g:image_link>
+      <g:brand>IMP COMPANY</g:brand>
+    </item>
+
+    <item>
+      <g:id>imp-bone-truck-parental-explicit-content</g:id>
+      <g:title>BONÉ TRUCK PARENTAL EXPLICIT CONTENT</g:title>
+      <g:description>Boné trucker IMP COMPANY, nas cores preto e branco, tamanho único ajustável.</g:description>
+      <g:availability>out_of_stock</g:availability>
+      <g:condition>new</g:condition>
+      <g:price>119.90 BRL</g:price>
+      <g:link>https://thiagojugg.github.io/IMP-COMPANY/bone-truck-parental-explicit-content.html</g:link>
+      <g:image_link>https://thiagojugg.github.io/IMP-COMPANY/assets/1A56518D-EFD6-49A9-9630-4AF49557BCFB.jpeg</g:image_link>
+      <g:brand>IMP COMPANY</g:brand>
+    </item>
+
   </channel>
 </rss>
