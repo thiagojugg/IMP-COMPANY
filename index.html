@@ -253,6 +253,12 @@
         <img class="capa-imagem" src="assets/BBAD368B-86EC-4F99-81D1-9BA12B669DC7.jpeg?v=20261117" alt="Imagem da coleção IMP" loading="lazy">
         <img class="capa-imagem" src="assets/CDF4D0EA-04C3-474E-9ED9-76B67C111956.jpeg?v=20261117" alt="Imagem da coleção IMP" loading="lazy">
         <img class="capa-imagem" src="assets/D93C7BA8-5AB4-46FC-8150-9D9DBAF2293F.jpeg?v=20261117" alt="Imagem da coleção IMP" loading="lazy">
+        <img class="capa-imagem" src="assets/11CAD732-507E-4035-8217-1F78B47BD368.jpeg?v=20261118" alt="Imagem da coleção IMP" loading="lazy">
+        <img class="capa-imagem" src="assets/88F09F03-FA6C-4A95-ACB7-1310E45FB178.jpeg?v=20261118" alt="Imagem da coleção IMP" loading="lazy">
+        <img class="capa-imagem" src="assets/8D6AAD83-0220-4CAD-8398-B9FA02C520A2.jpeg?v=20261118" alt="Imagem da coleção IMP" loading="lazy">
+        <img class="capa-imagem" src="assets/A1747D0C-B333-4798-8016-65890BEE2E13.jpeg?v=20261118" alt="Imagem da coleção IMP" loading="lazy">
+        <img class="capa-imagem" src="assets/BAE64692-ADC2-463D-87D0-A01BF85607CE.jpeg?v=20261118" alt="Imagem da coleção IMP" loading="lazy">
+        <img class="capa-imagem" src="assets/CE21CDE5-EEF8-488A-AB7D-4756687C11E0.jpeg?v=20261118" alt="Imagem da coleção IMP" loading="lazy">
       </div>
       <div class="degrade-banner-vitrine" aria-hidden="true"></div>
       <div class="sombra-corrente" aria-hidden="true"></div>
@@ -308,7 +314,7 @@
       const imagensCapa = Array.from(document.querySelectorAll('.capa-imagem'));
       const sombraCorrente = document.querySelector('.sombra-corrente');
       const atualizarSombraCorrente = imagem => { if (sombraCorrente && imagem) sombraCorrente.style.backgroundImage = 'url("' + imagem.src + '")'; };
-      // Embaralha as seis imagens para cada visita, sem repetir antes de percorrer todas.
+      // Embaralha todas as imagens do banner para cada visita, sem repetir antes de percorrer todas.
       for (let i = imagensCapa.length - 1; i > 0; i--) {
         const j = Math.floor(Math.random() * (i + 1));
         [imagensCapa[i], imagensCapa[j]] = [imagensCapa[j], imagensCapa[i]];
